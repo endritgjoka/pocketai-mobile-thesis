@@ -1,0 +1,65 @@
+{
+  "expo": {
+    "name": "PocketAI",
+    "slug": "pocket-ai",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "scheme": "pocketai",
+    "userInterfaceStyle": "automatic",
+    "newArchEnabled": true,
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.endritgjokaj.pocketai",
+      "infoPlist": {
+        "NSHealthShareUsageDescription": "PocketAI reads selected health data locally to provide offline insights.",
+        "NSHealthUpdateUsageDescription": "PocketAI does not write health data. This permission is included only if required by the native library.",
+        "NSCalendarsUsageDescription": "PocketAI reads calendar events locally to show upcoming events and schedule local reminders.",
+        "NSCalendarsFullAccessUsageDescription": "PocketAI reads calendar events locally to show upcoming events and schedule local reminders.",
+        "NSRemindersUsageDescription": "PocketAI does not use reminders directly. This permission is required by the native calendar module to initialize safely.",
+        "NSRemindersFullAccessUsageDescription": "PocketAI does not use reminders directly. This permission is required by the native calendar module to initialize safely."
+      }
+    },
+    "android": {
+      "package": "com.endritgjokaj.pocketai",
+      "softwareKeyboardLayoutMode": "resize",
+      "permissions": [
+        "android.permission.POST_NOTIFICATIONS",
+        "android.permission.health.READ_STEPS",
+        "android.permission.health.READ_SLEEP",
+        "android.permission.health.READ_HEART_RATE",
+        "android.permission.READ_CALENDAR",
+        "android.permission.WRITE_CALENDAR"
+      ]
+    },
+    "plugins": [
+      "expo-sqlite",
+      "expo-document-picker",
+      [
+        "llama.rn/lib/commonjs/expo-plugin/withLlamaRN",
+        {
+          "enableEntitlements": true,
+          "entitlementsProfile": "production",
+          "forceCxx20": true,
+          "enableOpenCL": true
+        }
+      ],
+      "expo-font",
+      "expo-notifications",
+      [
+        "react-native-health",
+        {
+          "healthSharePermission": "PocketAI reads selected health data locally to provide offline insights.",
+          "healthUpdatePermission": "PocketAI does not write health data."
+        }
+      ],
+      "react-native-health-connect",
+      [
+        "expo-calendar",
+        {
+          "calendarPermission": "PocketAI reads calendar events locally to show upcoming events and schedule local reminders.",
+          "remindersPermission": "PocketAI does not use reminders directly. This permission is required by the native calendar module to initialize safely."
+        }
+      ]
+    ]
+  }
+}
