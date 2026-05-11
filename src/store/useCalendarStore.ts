@@ -28,7 +28,7 @@ export const useCalendarStore = create<CalendarState>((set, get) => ({
   error: null,
 
   checkPermission: async () => {
-    set({ isLoading: true, error: null, permissionStatus: "unknown" });
+    set({ isLoading: true, error: null, permissionStatus: "checking" });
     try {
       const status = await CalendarService.getPermissionStatus();
       const preferences = await calendarRepository.patchPreferences({ permissionStatus: status });
@@ -42,7 +42,7 @@ export const useCalendarStore = create<CalendarState>((set, get) => ({
   },
 
   requestPermissions: async () => {
-    set({ isLoading: true, error: null });
+    set({ isLoading: true, error: null, permissionStatus: "checking" });
     try {
       await CalendarService.requestPermissions();
       const status = await CalendarService.getPermissionStatus();

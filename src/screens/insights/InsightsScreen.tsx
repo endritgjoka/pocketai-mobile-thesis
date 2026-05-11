@@ -1,5 +1,5 @@
-import React, { useCallback } from "react";
-import { Alert, ScrollView, StyleSheet, Text, View } from "react-native";
+import React, { useCallback, useEffect } from "react";
+import { Alert, AppState, ScrollView, StyleSheet, Text, View } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useFocusEffect } from "@react-navigation/native";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -14,7 +14,7 @@ import { openAppSettings } from "../../utils/openAppSettings";
 
 const formatMetric = (value: number | null | undefined, suffix = "") => value == null ? "No data" : `${Number.isInteger(value) ? value : value.toFixed(1)}${suffix}`;
 const statusTone = (status: PermissionStatus | "available" | "checking") => status === "granted" || status === "available" ? "success" : status === "unsupported" || status === "denied" || status === "restricted" ? "danger" : "warning";
-const statusLabel = (status: PermissionStatus, grantedLabel = "Connected") => status === "unknown" ? "Checking" : status === "granted" ? grantedLabel : status === "denied" ? "Permission denied" : status === "restricted" ? "Restricted" : status === "unsupported" ? "Unsupported" : "Not connected";
+const statusLabel = (status: PermissionStatus, grantedLabel = "Connected") => status === "unknown" || status === "checking" ? "Checking" : status === "granted" ? grantedLabel : status === "denied" ? "Permission denied" : status === "restricted" ? "Restricted" : status === "unsupported" ? "Unsupported" : "Not connected";
 const formatEventTime = (value: string) => new Intl.DateTimeFormat(undefined, { hour: "2-digit", minute: "2-digit" }).format(new Date(value));
 
 export function InsightsScreen() {
@@ -37,18 +37,25 @@ export function InsightsScreen() {
   const refreshEvents = useCalendarStore((state) => state.refreshEvents);
   const loadCalendarCached = useCalendarStore((state) => state.loadCached);
 
+  const refreshPermissions = useCallback(async () => {
+    await Promise.all([loadLatestSnapshot(), loadCalendarCached()]);
+    const [health, calendar] = await Promise.all([checkHealthAvailability(), checkCalendarPermission()]);
+    if (health === "granted") void refreshSnapshot();
+    if (calendar === "granted") void refreshEvents();
+  }, [checkCalendarPermission, checkHealthAvailability, loadCalendarCached, loadLatestSnapshot, refreshEvents, refreshSnapshot]);
+
   useFocusEffect(useCallback(() => {
     let active = true;
-    const refresh = async () => {
-      await Promise.all([loadLatestSnapshot(), loadCalendarCached()]);
-      const [health, calendar] = await Promise.all([checkHealthAvailability(), checkCalendarPermission()]);
-      if (!active) return;
-      if (health === "granted") void refreshSnapshot();
-      if (calendar === "granted") void refreshEvents();
-    };
-    void refresh();
+    void refreshPermissions().finally(() => { if (!active) return; });
     return () => { active = false; };
-  }, [checkCalendarPermission, checkHealthAvailability, loadCalendarCached, loadLatestSnapshot, refreshEvents, refreshSnapshot]));
+  }, [refreshPermissions]));
+
+  useEffect(() => {
+    const subscription = AppState.addEventListener("change", (state) => {
+      if (state === "active") void refreshPermissions();
+    });
+    return () => subscription.remove();
+  }, [refreshPermissions]);
 
   const handleRequestHealth = useCallback(async () => {
     const status = await requestHealthPermissions();
@@ -82,7 +89,7 @@ export function InsightsScreen() {
             <View style={styles.headerText}><Text style={styles.cardTitle}>Fitness connection</Text><Text style={styles.caption}>Health data is optional and read locally.</Text></View>
             <StatusBadge label={healthConnectionLabel} tone={statusTone(healthToneSource) as any} />
           </View>
-          {healthStatus === "unknown" || availability === "checking" ? <Text style={styles.caption}>Checking fitness permissions...</Text> : null}
+          {healthStatus === "unknown" || healthStatus === "checking" || availability === "checking" ? <Text style={styles.caption}>Checking fitness permissions...</Text> : null}
           {healthStatus === "not_determined" ? <AppButton title="Request Fitness Permission" icon="shield-checkmark-outline" onPress={() => { void handleRequestHealth(); }} loading={healthLoading} style={styles.actionButton} /> : null}
           {healthStatus === "granted" ? <AppButton title="Refresh Fitness Data" icon="refresh-outline" variant="secondary" onPress={() => { void refreshSnapshot(); }} loading={healthLoading} style={styles.actionButton} /> : null}
           {healthStatus === "denied" || healthStatus === "restricted" ? <><Text style={styles.error}>Fitness permission was denied. Enable it in system settings to use local health insights.</Text><AppButton title="Open Settings" icon="settings-outline" variant="secondary" onPress={() => { void openAppSettings(); }} style={styles.actionButton} /></> : null}
@@ -107,7 +114,7 @@ export function InsightsScreen() {
             <View style={styles.headerText}><Text style={styles.cardTitle}>Calendar</Text><Text style={styles.caption}>Events stay on this phone.</Text></View>
             <StatusBadge label={statusLabel(calendarStatus)} tone={statusTone(calendarStatus) as any} />
           </View>
-          {calendarStatus === "unknown" ? <Text style={styles.caption}>Checking calendar permission...</Text> : null}
+          {calendarStatus === "unknown" || calendarStatus === "checking" ? <Text style={styles.caption}>Checking calendar permission...</Text> : null}
           {calendarStatus === "not_determined" ? <AppButton title="Request Calendar Permission" icon="calendar-outline" onPress={() => { void handleRequestCalendar(); }} loading={calendarLoading} style={styles.actionButton} /> : null}
           {calendarStatus === "granted" ? <AppButton title="Refresh Calendar" icon="refresh-outline" variant="secondary" onPress={() => { void refreshEvents(); }} loading={calendarLoading} style={styles.actionButton} /> : null}
           {calendarStatus === "denied" || calendarStatus === "restricted" ? <><Text style={styles.error}>Calendar permission was denied. Enable it in system settings to use local event reminders.</Text><AppButton title="Open Settings" icon="settings-outline" variant="secondary" onPress={() => { void openAppSettings(); }} style={styles.actionButton} /></> : null}

@@ -1,13 +1,13 @@
-import React, { useCallback, useMemo, useState } from "react";
-import { Alert, Pressable, ScrollView, StyleSheet, Switch, Text, View } from "react-native";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
+import { Alert, AppState, Pressable, ScrollView, StyleSheet, Switch, Text, View } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { RootStackParamList } from "../../navigation/RootNavigator";
 import { AppButton } from "../../components/ui/AppButton";
-import { StatusBadge } from "../../components/ui/StatusBadge";
 import { ModelManagementCard } from "../../components/model/ModelManagementCard";
+import { PermissionStatusRow } from "../../components/permissions/PermissionStatusRow";
 import { MODEL_CATALOG } from "../../config/models";
 import { colors, radii, spacing, typography } from "../../config/theme";
 import { benchmarkRepository } from "../../repositories/benchmarkRepository";
@@ -41,14 +41,29 @@ export function SettingsScreen() {
   const [notificationStatus, setNotificationStatus] = useState<PermissionStatus>(settings.notificationPermissionStatus ?? "unknown");
 
   const refreshNotificationStatus = useCallback(async () => {
-    setNotificationStatus("unknown");
+    setNotificationStatus("checking");
     const nextStatus = await NotificationService.getPermissionStatus();
     setNotificationStatus(nextStatus);
     await updateSettings({ notificationPermissionStatus: nextStatus, notificationsEnabled: nextStatus === "granted" ? settings.notificationsEnabled : false });
     return nextStatus;
   }, [settings.notificationsEnabled, updateSettings]);
 
-  useFocusEffect(useCallback(() => { void loadModels(); void refreshNotificationStatus(); void checkCalendarPermission(); }, [checkCalendarPermission, loadModels, refreshNotificationStatus]));
+  const refreshSettingsPermissions = useCallback(() => {
+    void loadModels();
+    void refreshNotificationStatus();
+    void checkCalendarPermission();
+  }, [checkCalendarPermission, loadModels, refreshNotificationStatus]);
+
+  useFocusEffect(useCallback(() => {
+    refreshSettingsPermissions();
+  }, [refreshSettingsPermissions]));
+
+  useEffect(() => {
+    const subscription = AppState.addEventListener("change", (state) => {
+      if (state === "active") refreshSettingsPermissions();
+    });
+    return () => subscription.remove();
+  }, [refreshSettingsPermissions]);
 
   const activeModel = useMemo(() => MODEL_CATALOG.find((item) => item.id === settings.activeModelId), [settings.activeModelId]);
   const notificationsGranted = notificationStatus === "granted";
@@ -188,9 +203,14 @@ export function SettingsScreen() {
         </Section>
         <Section title="Retrieval"><PickerRow label="Chunk size" value={String(settings.ragChunkSize)} options={[256, 512, 1024]} onPick={(value) => updateSettings({ ragChunkSize: value as 256 | 512 | 1024 })} /><PickerRow label="Top K" value={String(settings.ragTopK)} options={[2, 4, 6, 8]} onPick={(value) => updateSettings({ ragTopK: value as 2 | 4 | 6 | 8 })} /></Section>
         <Section title="Notifications">
-          <View style={styles.notificationStatus}><View><Text style={styles.rowLabel}>Permission status</Text><Text style={styles.rowHint}>{notificationStatus === "unknown" ? "Checking notification permission..." : "Local reminders only. No push service is used."}</Text></View><StatusBadge label={permissionLabel(notificationStatus)} tone={permissionTone(notificationStatus)} /></View>
-          {notificationStatus === "not_determined" ? <View style={styles.notificationActions}><AppButton title="Request Permission" icon="notifications-outline" onPress={requestNotifications} style={styles.notificationButton} /></View> : null}
-          {notificationStatus === "denied" || notificationStatus === "restricted" ? <View style={styles.notificationActions}><AppButton title="Open Settings" icon="settings-outline" variant="secondary" onPress={() => { void openAppSettings(); }} style={styles.notificationButton} /></View> : null}
+          <PermissionStatusRow
+            status={notificationStatus}
+            connectedLabel="Granted"
+            helperText={notificationStatus === "checking" || notificationStatus === "unknown" ? "Checking notification permission..." : "Local reminders only. No push service is used."}
+            requestLabel="Request Notification Permission"
+            onRequest={requestNotifications}
+            onOpenSettings={() => { void openAppSettings(); }}
+          />
           {notificationsGranted ? <View style={styles.notificationActions}><AppButton title="Test Notification" icon="time-outline" variant="secondary" onPress={testNotification} style={styles.notificationButton} /></View> : null}
           <NotificationToggle disabled={!notificationsGranted} label="Morning Briefing" time={settings.morningBriefingTime} value={settings.morningBriefingEnabled} onValueChange={(value) => { void syncNotificationPatch({ morningBriefingEnabled: value }); }} />
           <NotificationToggle disabled={!notificationsGranted} label="Document Review" time={settings.documentReviewTime} value={settings.documentReviewEnabled} onValueChange={(value) => { void syncNotificationPatch({ documentReviewEnabled: value }); }} />
@@ -198,9 +218,14 @@ export function SettingsScreen() {
           <DangerRow label="Cancel all PocketAI notifications" onPress={cancelNotifications} />
         </Section>
         <Section title="Calendar">
-          <View style={styles.notificationStatus}><View><Text style={styles.rowLabel}>Permission status</Text><Text style={styles.rowHint}>{calendarStatus === "unknown" ? "Checking calendar permission..." : "Calendar data stays local on this phone."}</Text></View><StatusBadge label={permissionLabel(calendarStatus)} tone={permissionTone(calendarStatus)} /></View>
-          {calendarStatus === "not_determined" ? <View style={styles.notificationActions}><AppButton title="Request Calendar Permission" icon="calendar-outline" onPress={requestCalendar} style={styles.notificationButton} /></View> : null}
-          {calendarStatus === "denied" || calendarStatus === "restricted" ? <View style={styles.notificationActions}><AppButton title="Open Settings" icon="settings-outline" variant="secondary" onPress={() => { void openAppSettings(); }} style={styles.notificationButton} /></View> : null}
+          <PermissionStatusRow
+            status={calendarStatus}
+            connectedLabel="Granted"
+            helperText={calendarStatus === "checking" || calendarStatus === "unknown" ? "Checking calendar permission..." : "Calendar data stays local on this phone."}
+            requestLabel="Request Calendar Permission"
+            onRequest={requestCalendar}
+            onOpenSettings={() => { void openAppSettings(); }}
+          />
           {calendarGranted ? <><NotificationToggle label="Enable Calendar Integration" time="Local events" value={calendarIntegrationEnabled} onValueChange={(value) => { void updateCalendarPatch({ integration: value, reminders: value ? meetingRemindersEnabled : false }); }} /><NotificationToggle disabled={!calendarIntegrationEnabled || !notificationsGranted} label="Meeting Reminders" time={`${reminderMinutesBefore} minutes before events`} value={meetingRemindersEnabled} onValueChange={(value) => { void updateCalendarPatch({ reminders: value }); }} /><PickerRow label="Reminder time" value={String(reminderMinutesBefore)} options={[10, 15, 30, 60]} onPick={(value) => { void updateCalendarPatch({ minutes: value as 10 | 15 | 30 | 60 }); }} /><View style={styles.notificationActions}><AppButton title="Refresh Calendar Events" icon="refresh-outline" variant="secondary" onPress={() => { void refreshCalendarEvents(); }} style={styles.notificationButton} /><AppButton title="Schedule Meeting Reminders" icon="alarm-outline" onPress={scheduleMeetingReminders} style={styles.notificationButton} /></View>{!notificationsGranted ? <Text style={styles.inlineHelp}>Enable notification permission to receive meeting reminders.</Text> : null}</> : null}
         </Section>
         <Section title="Data"><DangerRow label="Clear chats" onPress={() => confirmDestructive("Clear chats", "All conversations will be deleted.", () => chatRepository.clear())} /><DangerRow label="Clear documents" onPress={() => confirmDestructive("Clear documents", "All imported documents and chunks will be deleted.", () => documentRepository.clear())} /><DangerRow label="Clear benchmarks" onPress={() => confirmDestructive("Clear benchmarks", "All benchmark runs will be deleted.", () => benchmarkRepository.clear())} /><DangerRow label="Clear all app data" onPress={clearAll} strong /></Section>
@@ -210,8 +235,6 @@ export function SettingsScreen() {
   );
 }
 
-const permissionLabel = (status: string) => status === "granted" ? "Granted" : status === "denied" ? "Denied" : status === "restricted" ? "Restricted" : status === "unsupported" ? "Unsupported" : status === "unknown" ? "Checking" : "Not determined";
-const permissionTone = (status: string) => status === "granted" ? "success" : status === "denied" || status === "restricted" || status === "unsupported" ? "danger" : "warning";
 function Section({ title, children }: React.PropsWithChildren<{ title: string }>) { return <View style={styles.sectionWrap}><Text style={styles.sectionTitle}>{title}</Text><View style={styles.section}>{children}</View></View>; }
 function SettingRow({ icon, label, value }: { icon: keyof typeof Ionicons.glyphMap; label: string; value: string }) { return <View style={styles.settingRow}><Ionicons name={icon} size={20} color={colors.textSecondary} /><Text style={styles.rowLabel}>{label}</Text><Text style={styles.rowValue} numberOfLines={1}>{value}</Text></View>; }
 function PickerRow({ label, value, options, onPick }: { label: string; value: string; options: number[]; onPick: (value: number) => void }) { return <View style={styles.pickerRow}><View style={styles.pickerHeader}><Text style={styles.rowLabel}>{label}</Text><Text style={styles.rowValue}>{value}</Text></View><View style={styles.segmented}>{options.map((option) => <Pressable key={option} onPress={() => onPick(option)} style={[styles.segment, String(option) === value && styles.segmentActive]}><Text style={[styles.segmentText, String(option) === value && styles.segmentTextActive]}>{option}</Text></Pressable>)}</View></View>; }

@@ -92,6 +92,19 @@ const healthKitAvailable = async (): Promise<boolean> => {
 };
 
 const getHealthKitPermissionStatus = async (): Promise<HealthPermissionStatus> => {
+  const pocketHealth = getPocketAIHealthKit();
+  if (pocketHealth) {
+    try {
+      if (!(await pocketHealth.isAvailable())) return "unsupported";
+      // HealthKit intentionally does not expose reliable read-permission status.
+      // A successful read query is the practical source of truth for this prototype.
+      await pocketHealth.getStepCount(dayRange(0).startDate, dayRange(0).endDate);
+      return "granted";
+    } catch {
+      return "not_determined";
+    }
+  }
+
   const kit = tryLoadHealthKit();
   if (!kit) return "unsupported";
   if (!kit.getAuthStatus) return "not_determined";

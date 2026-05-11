@@ -23,7 +23,7 @@ export const useHealthStore = create<HealthState>((set, get) => ({
   isLoading: false,
   error: null,
   checkAvailability: async () => {
-    set({ availability: "checking", permissionStatus: "unknown", error: null });
+    set({ availability: "checking", permissionStatus: "checking", error: null });
     try {
       const availability = await HealthService.isAvailable();
       const permissionStatus = availability === "available" ? await HealthService.getPermissionStatus() : "unsupported";
@@ -35,7 +35,7 @@ export const useHealthStore = create<HealthState>((set, get) => ({
     }
   },
   requestPermissions: async () => {
-    set({ isLoading: true, error: null });
+    set({ isLoading: true, error: null, permissionStatus: "checking" });
     try {
       const requestedStatus = await HealthService.requestPermissions();
       const availability = await HealthService.isAvailable();
