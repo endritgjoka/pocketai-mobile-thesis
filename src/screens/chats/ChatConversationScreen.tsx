@@ -17,6 +17,7 @@ import { colors, spacing, typography } from "../../config/theme";
 import { chatRepository } from "../../repositories/chatRepository";
 import { benchmarkRepository } from "../../repositories/benchmarkRepository";
 import { LlamaService } from "../../services/llm/LlamaService";
+import { buildPrioritizedPrompt } from "../../services/context";
 import { estimateTokens } from "../../services/llm/tokenEstimate";
 import { useChatStore } from "../../store/useChatStore";
 import { useModelStore } from "../../store/useModelStore";
@@ -47,6 +48,8 @@ export function ChatConversationScreen({ route, navigation }: NativeStackScreenP
   const temperature = useSettingsStore((state) => state.temperature);
   const topP = useSettingsStore((state) => state.topP);
   const maxTokens = useSettingsStore((state) => state.maxTokens);
+  const contextPrioritizationEnabled = useSettingsStore((state) => state.contextPrioritizationEnabled);
+  const prioritizationStrategy = useSettingsStore((state) => state.prioritizationStrategy);
   const [conversation, setConversation] = useState<Conversation | null>(null);
   const [input, setInput] = useState("");
   const [generating, setGenerating] = useState(false);
@@ -110,11 +113,27 @@ export function ChatConversationScreen({ route, navigation }: NativeStackScreenP
       await loadMessages(conversationId);
       scrollToBottom();
       const current = [...messages, user].map(({ role, content: text }) => ({ role, content: text }));
-      const result = await LlamaService.generateChatCompletion({ modelId: selectedModelId, messages: current, contextSize, temperature, topP, maxTokens, useMockInference, onToken: appendToken, shouldStop: () => stopRef.current });
+      let systemPrompt: string | undefined;
+      let prioritizationNote: string | null = null;
+      if (contextPrioritizationEnabled) {
+        const built = await buildPrioritizedPrompt({
+          query: content,
+          recentMessages: current,
+          conversationId,
+          includeChat: false,
+          includeCalendar: true,
+          includeHealth: true,
+          strategy: prioritizationStrategy,
+        });
+        systemPrompt = built.systemPromptWithContext;
+        prioritizationNote = `strategy=${built.prioritization.strategy}; selected=${built.prioritization.selected.length}/${built.candidatesConsidered}; ctxTokens=${built.prioritization.tokensUsed}; embed=${built.embeddingPath}`;
+      }
+      const result = await LlamaService.generateChatCompletion({ modelId: selectedModelId, messages: current, systemPrompt, contextSize, temperature, topP, maxTokens, useMockInference, onToken: appendToken, shouldStop: () => stopRef.current });
       flushStream();
       const finalText = result.text.trim() || "Generation stopped.";
       await chatRepository.addMessage({ conversationId, role: "assistant", content: result.stopped ? finalText + "\n\n[Stopped]" : finalText, tokenCount: result.stats.outputTokens, stats: result.stats });
-      await benchmarkRepository.addRun({ id: createId("bench"), taskType: "chat", modelId: selectedModelId, documentId: null, chunkStrategy: null, topK: null, promptText: content, promptTokenEstimate: estimateTokens(content), outputTokenEstimate: result.stats.outputTokens, retrievalTimeMs: null, generationTimeMs: result.stats.totalTimeMs, totalTimeMs: result.stats.totalTimeMs, tokensPerSecond: result.stats.tokensPerSecond, selectedChunkIds: null, notes: result.stopped ? "Stopped by user" : null, createdAt: nowIso() });
+      const runNote = [result.stopped ? "Stopped by user" : null, prioritizationNote].filter(Boolean).join(" | ") || null;
+      await benchmarkRepository.addRun({ id: createId("bench"), taskType: "chat", modelId: selectedModelId, documentId: null, chunkStrategy: null, topK: null, promptText: content, promptTokenEstimate: estimateTokens(content), outputTokenEstimate: result.stats.outputTokens, retrievalTimeMs: null, generationTimeMs: result.stats.totalTimeMs, totalTimeMs: result.stats.totalTimeMs, tokensPerSecond: result.stats.tokensPerSecond, selectedChunkIds: null, notes: runNote, createdAt: nowIso() });
       setStreamingMessage(null);
       await refresh();
       await refreshChats();
@@ -132,7 +151,7 @@ export function ChatConversationScreen({ route, navigation }: NativeStackScreenP
       streamBufferRef.current = "";
       setGenerating(false);
     }
-  }, [appendToken, contextSize, conversation, conversationId, flushStream, generating, loadMessages, maxTokens, messages, modelReady, refresh, refreshChats, scrollToBottom, selectedModelId, streamingMessage?.content, temperature, topP, useMockInference]);
+  }, [appendToken, contextPrioritizationEnabled, contextSize, conversation, conversationId, flushStream, generating, loadMessages, maxTokens, messages, modelReady, prioritizationStrategy, refresh, refreshChats, scrollToBottom, selectedModelId, streamingMessage?.content, temperature, topP, useMockInference]);
 
   const selectModel = useCallback(async (modelId: ModelId) => {
     if (modelId === selectedModelId) return setModelModalVisible(false);

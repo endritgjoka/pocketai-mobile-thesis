@@ -10,6 +10,8 @@ const defaults: AppSettings = {
   maxTokens: 512,
   ragChunkSize: 512,
   ragTopK: 4,
+  contextPrioritizationEnabled: false,
+  prioritizationStrategy: "pocketai",
   useMockInference: false,
   notificationsEnabled: false,
   morningBriefingEnabled: false,

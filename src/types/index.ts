@@ -40,6 +40,8 @@ export interface AppSettings {
   maxTokens: number;
   ragChunkSize: 256 | 512 | 1024;
   ragTopK: 2 | 4 | 6 | 8;
+  contextPrioritizationEnabled: boolean;
+  prioritizationStrategy: "pocketai" | "truncation" | "recency" | "relevance";
   useMockInference: boolean;
   notificationsEnabled: boolean;
   morningBriefingEnabled: boolean;
