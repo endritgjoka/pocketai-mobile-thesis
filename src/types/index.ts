@@ -1,6 +1,6 @@
 import { PermissionStatus } from "./permissions";
 
-export type ModelId = "phi3-mini-q4" | "llama32-3b-q4";
+export type ModelId = "phi3-mini-q4" | "llama32-3b-q4" | "llama32-1b-q4";
 
 export interface ModelCatalogItem {
   id: ModelId;
@@ -110,6 +110,8 @@ export interface DocumentChunk {
   tokenCount: number;
   strategy: "fixed_256" | "fixed_512" | "fixed_1024";
   createdAt: string;
+  embedding?: Float32Array | null;
+  embeddingModel?: string | null;
 }
 
 export interface BenchmarkRun {

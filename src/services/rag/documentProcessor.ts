@@ -5,6 +5,7 @@ import { ChunkSize, chunkText, toStrategy } from "./chunkText";
 import { DocumentRecord } from "../../types";
 import { createId } from "../../utils/errors";
 import { nowIso } from "../../utils/dates";
+import { EmbeddingIndexer } from "../embeddings/EmbeddingIndexer";
 
 const documentsDir = `${FileSystem.documentDirectory ?? ""}documents/`;
 
@@ -59,6 +60,7 @@ export const documentProcessor = {
     };
     await documentRepository.upsertDocument(doc);
     await documentRepository.replaceChunks(id, allChunks);
+    await EmbeddingIndexer.indexDocument(id).catch(() => undefined);
     return doc;
   }
 };

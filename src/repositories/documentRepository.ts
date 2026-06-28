@@ -1,5 +1,6 @@
 import { DocumentChunk, DocumentRecord } from "../types";
 import { execute, queryAll, queryFirst } from "../db/database";
+import { decodeFloat32, encodeFloat32 } from "../services/embeddings/EmbeddingService";
 
 const mapDoc = (row: Record<string, unknown>): DocumentRecord => ({
   id: String(row.id),
@@ -23,7 +24,9 @@ const mapChunk = (row: Record<string, unknown>): DocumentChunk => ({
   text: String(row.text),
   tokenCount: Number(row.token_count),
   strategy: String(row.strategy) as DocumentChunk["strategy"],
-  createdAt: String(row.created_at)
+  createdAt: String(row.created_at),
+  embedding: row.embedding ? decodeFloat32(String(row.embedding)) : null,
+  embeddingModel: row.embedding_model ? String(row.embedding_model) : null
 });
 
 export const documentRepository = {
@@ -50,10 +53,27 @@ export const documentRepository = {
     await execute("DELETE FROM document_chunks WHERE document_id = ?", [documentId]);
     for (const chunk of chunks) {
       await execute(
-        "INSERT INTO document_chunks (id, document_id, chunk_index, text, token_count, strategy, created_at) VALUES (?, ?, ?, ?, ?, ?, ?)",
-        [chunk.id, chunk.documentId, chunk.chunkIndex, chunk.text, chunk.tokenCount, chunk.strategy, chunk.createdAt]
+        "INSERT INTO document_chunks (id, document_id, chunk_index, text, token_count, strategy, created_at, embedding, embedding_model) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)",
+        [
+          chunk.id,
+          chunk.documentId,
+          chunk.chunkIndex,
+          chunk.text,
+          chunk.tokenCount,
+          chunk.strategy,
+          chunk.createdAt,
+          chunk.embedding ? encodeFloat32(chunk.embedding) : null,
+          chunk.embeddingModel ?? null
+        ]
       );
     }
+  },
+
+  async updateChunkEmbedding(chunkId: string, embedding: Float32Array, model: string) {
+    await execute(
+      "UPDATE document_chunks SET embedding = ?, embedding_model = ? WHERE id = ?",
+      [encodeFloat32(embedding), model, chunkId]
+    );
   },
 
   async getChunks(documentId: string, strategy?: string) {

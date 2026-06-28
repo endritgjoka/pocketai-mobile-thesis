@@ -2,6 +2,7 @@ import { MODEL_CATALOG } from "../../config/models";
 import { settingsRepository } from "../../repositories/settingsRepository";
 import { InferenceStats, Message, ModelId } from "../../types";
 import { toUserMessage } from "../../utils/errors";
+import { buildPrioritizedPrompt, BuildPromptOptions, PrioritizationResult } from "../context";
 import { ModelFileService } from "../models/ModelFileService";
 import { buildChatPrompt } from "./promptTemplates";
 import { estimateTokens } from "./tokenEstimate";
@@ -155,6 +156,29 @@ class PocketLlamaService {
     const settings = await settingsRepository.getSettings();
     if (!settings.activeModelId) throw new Error("Select and download a model before running inference.");
     return this.generateChatCompletion({ modelId: settings.activeModelId, messages, contextSize: settings.contextSize, temperature: settings.temperature, topP: settings.topP, maxTokens: settings.maxTokens, useMockInference: settings.useMockInference, onToken, shouldStop });
+  }
+
+  async generateWithPrioritizedContext(
+    contextOptions: BuildPromptOptions,
+    onToken?: (token: string) => void,
+    shouldStop?: () => boolean,
+  ): Promise<GenerateResult & { prioritization: PrioritizationResult; candidatesConsidered: number }> {
+    const settings = await settingsRepository.getSettings();
+    if (!settings.activeModelId) throw new Error("Select and download a model before running inference.");
+    const built = await buildPrioritizedPrompt(contextOptions);
+    const result = await this.generateChatCompletion({
+      modelId: settings.activeModelId,
+      messages: built.messages,
+      systemPrompt: built.systemPromptWithContext,
+      contextSize: settings.contextSize,
+      temperature: settings.temperature,
+      topP: settings.topP,
+      maxTokens: settings.maxTokens,
+      useMockInference: settings.useMockInference,
+      onToken,
+      shouldStop,
+    });
+    return { ...result, prioritization: built.prioritization, candidatesConsidered: built.candidatesConsidered };
   }
 }
 

@@ -10,12 +10,13 @@ import { ChatConversationScreen } from "../screens/chats/ChatConversationScreen"
 import { DocumentDetailScreen } from "../screens/documents/DocumentDetailScreen";
 import { ModelInfoScreen } from "../screens/settings/ModelInfoScreen";
 import { colors } from "../config/theme";
+import { ModelId } from "../types";
 
 export type RootStackParamList = {
   Welcome: undefined;
   Privacy: undefined;
   ModelSelection: undefined;
-  ModelDownload: { modelId: "phi3-mini-q4" | "llama32-3b-q4" };
+  ModelDownload: { modelId: ModelId };
   MainTabs: undefined;
   ChatConversation: { conversationId: string };
   DocumentDetail: { documentId: string };

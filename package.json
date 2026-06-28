@@ -27,6 +27,7 @@
     "expo-sharing": "~13.0.1",
     "expo-sqlite": "~15.0.6",
     "llama.rn": "^0.7.0",
+    "onnxruntime-react-native": "^1.24.3",
     "react": "18.3.1",
     "react-native": "0.76.7",
     "react-native-health": "^1.19.0",

@@ -65,4 +65,15 @@ export const runMigrations = async (db: SQLite.SQLiteDatabase) => {
       PRAGMA user_version = 4;
     `);
   }
+
+  const afterCalendar = afterHealth < 4 ? 4 : afterHealth;
+  if (afterCalendar < 5) {
+    if (!(await hasColumn(db, "document_chunks", "embedding"))) {
+      await db.execAsync("ALTER TABLE document_chunks ADD COLUMN embedding TEXT");
+    }
+    if (!(await hasColumn(db, "document_chunks", "embedding_model"))) {
+      await db.execAsync("ALTER TABLE document_chunks ADD COLUMN embedding_model TEXT");
+    }
+    await db.execAsync("PRAGMA user_version = 5;");
+  }
 };
