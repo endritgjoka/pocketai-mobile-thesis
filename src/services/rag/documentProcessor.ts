@@ -6,6 +6,7 @@ import { DocumentRecord } from "../../types";
 import { createId } from "../../utils/errors";
 import { nowIso } from "../../utils/dates";
 import { EmbeddingIndexer } from "../embeddings/EmbeddingIndexer";
+import { extractText } from "./textExtraction";
 
 const documentsDir = `${FileSystem.documentDirectory ?? ""}documents/`;
 
@@ -33,14 +34,11 @@ export const documentProcessor = {
     const localPath = `${documentsDir}${id}-${asset.name}`;
     await FileSystem.copyAsync({ from: asset.uri, to: localPath });
     const now = nowIso();
-    let text = "";
-    let status: DocumentRecord["status"] = "ready";
-    if (fileType === "txt") {
-      text = await FileSystem.readAsStringAsync(localPath);
-    } else {
-      text = `Text extraction placeholder for ${asset.name}. TXT files are fully supported in this prototype. PDF/DOCX extraction should be connected to a native extraction module before running formal RAG experiments on this file type.`;
-      status = "imported";
-    }
+    const extraction = await extractText(localPath, fileType);
+    const text = extraction.ok && extraction.text.trim()
+      ? extraction.text
+      : `Nuk u arrit të nxirret tekst nga "${asset.name}". Për PDF të skanuar ose me fonte të veçanta, nxjerrja mund të dështojë.`;
+    const status: DocumentRecord["status"] = extraction.ok && extraction.text.trim() ? "ready" : "failed";
 
     const activeChunks = chunkText(id, text, chunkSize);
     const allChunks = ([256, 512, 1024] as const).flatMap((size) => chunkText(id, text, size));
