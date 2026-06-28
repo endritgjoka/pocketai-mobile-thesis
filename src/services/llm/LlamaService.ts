@@ -4,7 +4,7 @@ import { InferenceStats, Message, ModelId } from "../../types";
 import { toUserMessage } from "../../utils/errors";
 import { buildPrioritizedPrompt, BuildPromptOptions, PrioritizationResult } from "../context";
 import { ModelFileService } from "../models/ModelFileService";
-import { buildChatPrompt } from "./promptTemplates";
+import { buildChatPromptFor, cleanGeneratedText, stopTokensFor } from "./promptTemplates";
 import { estimateTokens } from "./tokenEstimate";
 
 type LlamaContext = {
@@ -103,7 +103,7 @@ class PocketLlamaService {
   }
 
   private async generateInternal(options: GenerateOptions): Promise<GenerateResult> {
-    const prompt = buildChatPrompt(options.messages, options.systemPrompt);
+    const prompt = buildChatPromptFor(options.modelId, options.messages, options.systemPrompt);
     const promptTokens = estimateTokens(prompt);
     const catalogItem = MODEL_CATALOG.find((item) => item.id === options.modelId);
 
@@ -127,7 +127,7 @@ class PocketLlamaService {
     let streamed = "";
     let sawLiveToken = false;
     const result = await this.context.completion(
-      { prompt, n_predict: options.maxTokens, temperature: options.temperature, top_p: options.topP, stop: ["User:"] },
+      { prompt, n_predict: options.maxTokens, temperature: options.temperature, top_p: options.topP, stop: stopTokensFor(options.modelId) },
       (data) => {
         if (data.token && !options.shouldStop?.()) {
           sawLiveToken = true;
@@ -136,7 +136,7 @@ class PocketLlamaService {
         }
       }
     );
-    let text = (streamed || result.text || result.content || "").trim();
+    let text = cleanGeneratedText(streamed || result.text || result.content || "");
     let stopped = Boolean(options.shouldStop?.());
     if (!sawLiveToken && text) {
       const visual = await this.emitVisual(text, options.onToken, options.shouldStop);

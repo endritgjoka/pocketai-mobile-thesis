@@ -10,6 +10,15 @@ export interface RetrievalOptions {
   chunkEmbeddings?: Map<string, Float32Array>;
 }
 
+// Zgjedh top-K sipas rezultatit. Nëse asnjë copë nuk e kalon pragun, kthen prapë më të mirat
+// (që konteksti të mos jetë bosh për pyetje që nuk përputhen leksikisht me tekstin).
+const rankTopK = (scored: RetrievalResult[], topK: number, threshold: number): RetrievalResult[] => {
+  const sorted = [...scored].sort((a, b) => b.score - a.score);
+  const aboveThreshold = sorted.filter((c) => c.score >= threshold);
+  const chosen = aboveThreshold.length > 0 ? aboveThreshold : sorted;
+  return chosen.slice(0, topK);
+};
+
 export const retrieveChunks = async (
   question: string,
   chunks: DocumentChunk[],
@@ -17,6 +26,7 @@ export const retrieveChunks = async (
 ): Promise<RetrievalResult[]> => {
   const topK = options.topK ?? 4;
   const threshold = options.similarityThreshold ?? 0.05;
+  if (chunks.length === 0) return [];
 
   if (await EmbeddingService.modelExists()) {
     try {
@@ -28,17 +38,11 @@ export const retrieveChunks = async (
         const chunkEmbedding = cached ?? (await EmbeddingService.embed(chunk.text));
         scored.push({ ...chunk, score: cosineSimilarityVec(queryEmbedding, chunkEmbedding) });
       }
-      return scored
-        .filter((c) => c.score >= threshold)
-        .sort((a, b) => b.score - a.score)
-        .slice(0, topK);
+      return rankTopK(scored, topK, threshold);
     } catch {}
   }
 
   const questionVector = termFrequency(question);
-  return chunks
-    .map((chunk) => ({ ...chunk, score: cosineSimilarity(questionVector, termFrequency(chunk.text)) }))
-    .filter((chunk) => chunk.score >= threshold)
-    .sort((a, b) => b.score - a.score)
-    .slice(0, topK);
+  const scored = chunks.map((chunk) => ({ ...chunk, score: cosineSimilarity(questionVector, termFrequency(chunk.text)) }));
+  return rankTopK(scored, topK, threshold);
 };

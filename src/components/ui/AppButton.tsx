@@ -26,7 +26,7 @@ export const AppButton = memo(function AppButton({ title, onPress, variant = "pr
       ) : (
         <View style={styles.content}>
           {icon ? <Ionicons name={icon} size={18} color={variant === "primary" || variant === "danger" ? "#fff" : colors.textPrimary} /> : null}
-          <Text style={[styles.text, (variant === "secondary" || variant === "ghost") && styles.secondaryText]}>{title}</Text>
+          <Text numberOfLines={1} style={[styles.text, (variant === "secondary" || variant === "ghost") && styles.secondaryText]}>{title}</Text>
         </View>
       )}
     </Pressable>
@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
   ghost: { backgroundColor: "transparent" },
   pressed: { opacity: 0.82 },
   disabled: { opacity: 0.5 },
-  content: { flexDirection: "row", alignItems: "center", justifyContent: "center", gap: 8 },
-  text: { ...typography.button, color: "#fff" },
+  content: { flexDirection: "row", alignItems: "center", justifyContent: "center", gap: 8, flexShrink: 1 },
+  text: { ...typography.button, color: "#fff", flexShrink: 1 },
   secondaryText: { color: colors.textPrimary }
 });
