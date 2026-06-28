@@ -7,6 +7,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { RootStackParamList } from "../../navigation/RootNavigator";
 import { AppButton } from "../../components/ui/AppButton";
 import { ModelManagementCard } from "../../components/model/ModelManagementCard";
+import { EmbeddingModelCard } from "../../components/model/EmbeddingModelCard";
 import { PermissionStatusRow } from "../../components/permissions/PermissionStatusRow";
 import { MODEL_CATALOG } from "../../config/models";
 import { colors, radii, spacing, typography } from "../../config/theme";
@@ -202,6 +203,7 @@ export function SettingsScreen() {
           <View style={styles.toggleRow}><View style={styles.toggleText}><Text style={styles.rowLabel}>Use mock inference</Text><Text style={styles.rowHint}>UI testing only. Disabled by default.</Text></View><Switch value={settings.useMockInference} onValueChange={(value) => updateSettings({ useMockInference: value })} /></View>
         </Section>
         <Section title="Retrieval"><PickerRow label="Chunk size" value={String(settings.ragChunkSize)} options={[256, 512, 1024]} onPick={(value) => updateSettings({ ragChunkSize: value as 256 | 512 | 1024 })} /><PickerRow label="Top K" value={String(settings.ragTopK)} options={[2, 4, 6, 8]} onPick={(value) => updateSettings({ ragTopK: value as 2 | 4 | 6 | 8 })} /></Section>
+        <Section title="Embeddings (RAG)"><View style={styles.modelList}><EmbeddingModelCard /></View></Section>
         <Section title="Context prioritization">
           <View style={styles.toggleRow}><View style={styles.toggleText}><Text style={styles.rowLabel}>Prioritize context</Text><Text style={styles.rowHint}>Inject calendar and health context into the prompt under a token budget.</Text></View><Switch value={settings.contextPrioritizationEnabled} onValueChange={(value) => updateSettings({ contextPrioritizationEnabled: value })} /></View>
           {settings.contextPrioritizationEnabled ? <StringPickerRow label="Strategy" value={settings.prioritizationStrategy} options={["pocketai", "truncation", "recency", "relevance"]} onPick={(value) => updateSettings({ prioritizationStrategy: value as "pocketai" | "truncation" | "recency" | "relevance" })} /> : null}
