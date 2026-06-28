@@ -3,7 +3,7 @@
 
 # Dependencies
 node_modules/
-
+/.idea
 # Expo / React Native
 .expo/
 .expo-shared/
