@@ -13,6 +13,17 @@ export const MODEL_CATALOG: ModelCatalogItem[] = [
     defaultContextSize: 2048
   },
   {
+    id: "llama32-1b-q8",
+    name: "Llama 3.2 1B Q8",
+    modeLabel: "8-bit",
+    filename: "llama-3.2-1b-instruct-q8.gguf",
+    url: "https://huggingface.co/bartowski/Llama-3.2-1B-Instruct-GGUF/resolve/main/Llama-3.2-1B-Instruct-Q8_0.gguf",
+    sizeLabel: "~1.3 GB",
+    recommendedRam: "4GB+ RAM",
+    description: "Same model as 1B Q4 at 8-bit — for the quantization-level comparison.",
+    defaultContextSize: 2048
+  },
+  {
     id: "phi3-mini-q4",
     name: "Phi-3 Mini Q4",
     modeLabel: "Light Mode",
@@ -32,6 +43,17 @@ export const MODEL_CATALOG: ModelCatalogItem[] = [
     sizeLabel: "~2.0 GB",
     recommendedRam: "8GB+ RAM",
     description: "Larger Llama — best reasoning of the three.",
+    defaultContextSize: 2048
+  },
+  {
+    id: "llama32-3b-q8",
+    name: "Llama 3.2 3B Q8",
+    modeLabel: "8-bit",
+    filename: "llama-3.2-3b-instruct-q8.gguf",
+    url: "https://huggingface.co/bartowski/Llama-3.2-3B-Instruct-GGUF/resolve/main/Llama-3.2-3B-Instruct-Q8_0.gguf",
+    sizeLabel: "~3.4 GB",
+    recommendedRam: "8GB+ RAM",
+    description: "Same model as 3B Q4 at 8-bit — heavier, for the quantization-level comparison.",
     defaultContextSize: 2048
   }
 ];

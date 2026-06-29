@@ -38,9 +38,10 @@ android/local.properties
 android/.idea/
 android/.cxx/
 
-# App generated storage/model files
-models/
-documents/
+# App generated storage/model files (anchored to repo root so src/ dirs are NOT ignored)
+/models/
+/documents/
 *.gguf
 *.sqlite
 *.db
+thesis/

@@ -19,6 +19,7 @@ export function BenchmarkScreen() {
   const [runs, setRuns] = useState<BenchmarkRun[]>([]);
   const [documents, setDocuments] = useState<DocumentRecord[]>([]);
   const [loading, setLoading] = useState(false);
+  const [sweepStatus, setSweepStatus] = useState<string | null>(null);
 
   const load = useCallback(async () => {
     const [nextRuns, nextDocuments] = await Promise.all([benchmarkRepository.listRuns(), documentRepository.listDocuments()]);
@@ -55,6 +56,25 @@ export function BenchmarkScreen() {
     try { setLoading(true); await BenchmarkService.runDocumentBenchmarks(documents[0].id); await load(); } catch (error) { Alert.alert("Benchmark failed", toUserMessage(error)); } finally { setLoading(false); }
   }, [documents, load]);
 
+  const modelName = useCallback((id: string) => MODEL_CATALOG.find((m) => m.id === id)?.name ?? id, []);
+
+  const runModelSweep = useCallback(async () => {
+    try {
+      setLoading(true);
+      await BenchmarkService.runModelSweep((p) => setSweepStatus(`Model sweep ${p.current}/${p.total}: ${modelName(p.modelId)}`));
+      await load();
+    } catch (error) { Alert.alert("Sweep failed", toUserMessage(error)); } finally { setLoading(false); setSweepStatus(null); }
+  }, [load, modelName]);
+
+  const runRagSweep = useCallback(async () => {
+    if (!documents[0]) return Alert.alert("No document", "Import a document before running the RAG sweep.");
+    try {
+      setLoading(true);
+      await BenchmarkService.runDocumentSweep(documents[0].id, (p) => setSweepStatus(`RAG sweep ${p.current}/${p.total}: ${modelName(p.modelId)} · ${p.chunkSize} tokens`));
+      await load();
+    } catch (error) { Alert.alert("Sweep failed", toUserMessage(error)); } finally { setLoading(false); setSweepStatus(null); }
+  }, [documents, load, modelName]);
+
   const header = (
     <View style={styles.headerContent}>
       <View style={styles.header}>
@@ -71,10 +91,16 @@ export function BenchmarkScreen() {
         <Text style={styles.bestLabel}>Best current model</Text>
         <Text style={styles.bestValue}>{stats.bestModel}</Text>
       </View>
+      {sweepStatus ? <View style={styles.sweepBanner}><Text style={styles.sweepText}>{sweepStatus}</Text></View> : null}
       <View style={styles.actions}>
         <AppButton title="Run test prompt" icon="play" loading={loading} onPress={runChat} />
-        <AppButton title="Run RAG comparison" icon="git-compare-outline" variant="secondary" loading={loading} onPress={runDocument} />
-        <AppButton title="Export JSON" icon="download-outline" variant="secondary" onPress={() => BenchmarkService.exportJson().catch((error) => Alert.alert("Export failed", toUserMessage(error)))} />
+        <AppButton title="Model sweep (all models)" icon="layers-outline" variant="secondary" loading={loading} onPress={runModelSweep} />
+        <AppButton title="RAG sweep (models × chunks)" icon="git-compare-outline" variant="secondary" loading={loading} onPress={runRagSweep} />
+        <AppButton title="Run RAG (active model)" icon="document-text-outline" variant="ghost" loading={loading} onPress={runDocument} />
+        <View style={styles.exportRow}>
+          <AppButton title="Export CSV" icon="download-outline" variant="secondary" onPress={() => BenchmarkService.exportCsv().catch((error) => Alert.alert("Export failed", toUserMessage(error)))} style={styles.exportButton} />
+          <AppButton title="Export JSON" icon="code-outline" variant="secondary" onPress={() => BenchmarkService.exportJson().catch((error) => Alert.alert("Export failed", toUserMessage(error)))} style={styles.exportButton} />
+        </View>
       </View>
       <Text style={styles.sectionTitle}>Recent runs</Text>
     </View>
@@ -130,6 +156,10 @@ const styles = StyleSheet.create({
   bestLabel: { ...typography.caption, color: colors.textMuted, textTransform: "uppercase", fontWeight: "700" },
   bestValue: { ...typography.sectionTitle, color: colors.textPrimary, marginTop: 6 },
   actions: { gap: spacing.sm },
+  exportRow: { flexDirection: "row", gap: spacing.sm },
+  exportButton: { flex: 1 },
+  sweepBanner: { backgroundColor: "#EFF6FF", borderWidth: 1, borderColor: "#BFDBFE", borderRadius: 14, padding: spacing.md },
+  sweepText: { ...typography.secondary, color: colors.primary },
   sectionTitle: { ...typography.sectionTitle, color: colors.textPrimary, marginTop: spacing.sm },
   row: { backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.border, borderRadius: 18, padding: spacing.lg, marginBottom: spacing.sm },
   rowTop: { flexDirection: "row", alignItems: "center", justifyContent: "space-between", marginBottom: spacing.sm },

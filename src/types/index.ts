@@ -1,6 +1,6 @@
 import { PermissionStatus } from "./permissions";
 
-export type ModelId = "phi3-mini-q4" | "llama32-3b-q4" | "llama32-1b-q4";
+export type ModelId = "phi3-mini-q4" | "llama32-3b-q4" | "llama32-1b-q4" | "llama32-1b-q8" | "llama32-3b-q8";
 
 export interface ModelCatalogItem {
   id: ModelId;
