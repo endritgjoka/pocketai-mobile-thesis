@@ -4,7 +4,7 @@
   "private": true,
   "main": "index.js",
   "scripts": {
-    "postinstall": "node scripts/patch-react-native-xcode.js",
+    "postinstall": "node scripts/patch-react-native-xcode.js && patch-package",
     "start": "expo start --dev-client",
     "android": "expo run:android",
     "ios": "expo run:ios",
@@ -42,6 +42,7 @@
   "devDependencies": {
     "@babel/core": "^7.25.2",
     "@types/react": "~18.3.12",
+    "patch-package": "^8.0.1",
     "typescript": "^5.3.3"
   }
 }

@@ -22,6 +22,7 @@ import { buildRagPrompt } from "../../services/rag/ragPrompt";
 import { retrieveChunks, RetrievalResult } from "../../services/rag/retrieval";
 import { useSettingsStore } from "../../store/useSettingsStore";
 import { DocumentRecord } from "../../types";
+import { documentStatusLabel } from "../../utils/statusLabels";
 import { createId, toUserMessage } from "../../utils/errors";
 import { nowIso } from "../../utils/dates";
 
@@ -101,7 +102,7 @@ export function DocumentDetailScreen({ route }: NativeStackScreenProps<RootStack
   if (!doc) return <View style={styles.loading}><Text style={styles.loadingText}>Loading document...</Text></View>;
 
   return (
-    <KeyboardAvoidingView style={styles.keyboard} behavior={Platform.OS === "ios" ? "padding" : undefined} keyboardVerticalOffset={88}>
+    <KeyboardAvoidingView style={styles.keyboard} enabled={Platform.OS === "ios"} behavior={Platform.OS === "ios" ? "padding" : undefined} keyboardVerticalOffset={88}>
       <ScrollView style={styles.container} contentContainerStyle={styles.content} keyboardShouldPersistTaps="handled">
         <View style={styles.hero}>
           <View style={styles.iconWrap}><Ionicons name="document-text-outline" size={24} color={colors.primary} /></View>
@@ -109,7 +110,7 @@ export function DocumentDetailScreen({ route }: NativeStackScreenProps<RootStack
             <Text style={styles.title} numberOfLines={2}>{doc.title}</Text>
             <Text style={styles.subtitle}>{doc.filename}</Text>
           </View>
-          <StatusBadge label={doc.status} tone={doc.status === "ready" ? "success" : doc.status === "failed" ? "danger" : "warning"} />
+          <StatusBadge label={documentStatusLabel(doc.status)} tone={doc.status === "ready" ? "success" : doc.status === "failed" ? "danger" : "warning"} />
         </View>
         {doc.status === "failed" ? <View style={styles.warning}><Text style={styles.warningText}>Text could not be extracted from this file (e.g. a scanned PDF or one with subset fonts). Document Q&A is unavailable for it.</Text></View> : doc.fileType === "pdf" ? <View style={styles.warning}><Text style={styles.warningText}>PDF text extraction is best-effort. Standard text PDFs work well; scanned or special-font PDFs may extract partially.</Text></View> : null}
         <View style={styles.metaGrid}>

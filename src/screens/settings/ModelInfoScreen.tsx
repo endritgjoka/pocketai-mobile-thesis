@@ -26,7 +26,7 @@ export function ModelInfoScreen({ route }: NativeStackScreenProps<RootStackParam
 
 const styles = StyleSheet.create({
   container: { flex: 1, padding: spacing.lg, backgroundColor: colors.background },
-  title: { ...typography.title, color: colors.textPrimary },
+  title: { ...typography.screenTitle, color: colors.textPrimary },
   meta: { ...typography.cardTitle, color: colors.primary, marginVertical: 8 },
   body: { ...typography.body, color: colors.textSecondary, lineHeight: 23, marginTop: 6 }
 });

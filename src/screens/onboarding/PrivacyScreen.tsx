@@ -20,7 +20,7 @@ export function PrivacyScreen({ navigation }: NativeStackScreenProps<RootStackPa
 
 const styles = StyleSheet.create({
   container: { flex: 1, justifyContent: "center", padding: spacing.xl, backgroundColor: colors.background, gap: spacing.lg },
-  title: { ...typography.title, color: colors.textPrimary },
+  title: { ...typography.screenTitle, color: colors.textPrimary },
   card: { gap: 12 },
   check: { ...typography.body, color: colors.textPrimary, lineHeight: 24 }
 });

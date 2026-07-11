@@ -41,12 +41,6 @@ const wrappedLineEstimate = (text: string, inputWidth: number) => {
   return text.split("\n").reduce((total, line) => total + Math.max(1, Math.ceil(line.length / charsPerLine)), 0);
 };
 
-const measuredLineEstimate = (contentHeight: number) => {
-  const height = Math.ceil(contentHeight);
-  const textHeight = Platform.OS === "android" ? height : Math.max(INPUT_LINE_HEIGHT, height - INPUT_VERTICAL_PADDING);
-  return Math.max(1, Math.ceil(textHeight / INPUT_LINE_HEIGHT));
-};
-
 export const ChatComposer = memo(function ChatComposer({ value, onChangeText, onSend, disabled, isGenerating, onStop, placeholder = "Message PocketAI...", bottomInset }: Props) {
   const [inputHeight, setInputHeight] = useState(MIN_INPUT_HEIGHT);
   const [inputScrollable, setInputScrollable] = useState(false);
@@ -87,15 +81,6 @@ export const ChatComposer = memo(function ChatComposer({ value, onChangeText, on
     applyLineCount(Math.max(explicitLineCount(nextValue), wrappedLineEstimate(nextValue, inputWidth)));
   }, [applyLineCount, inputWidth, onChangeText]);
 
-  const handleContentSizeChange = useCallback((event: { nativeEvent: { contentSize: { height: number } } }) => {
-    const lineCount = Math.max(
-      explicitLineCount(value),
-      wrappedLineEstimate(value, inputWidth),
-      measuredLineEstimate(event.nativeEvent.contentSize.height)
-    );
-    applyLineCount(lineCount);
-  }, [applyLineCount, inputWidth, value]);
-
   return (
     <View style={[styles.container, { paddingBottom: Math.max(bottomInset, spacing.sm) }]}>
       <View style={styles.inputWrapper}>
@@ -108,7 +93,6 @@ export const ChatComposer = memo(function ChatComposer({ value, onChangeText, on
           editable={!disabled && !isGenerating}
           multiline
           scrollEnabled={inputScrollable}
-          onContentSizeChange={handleContentSizeChange}
           style={[styles.input, { height: inputHeight }]}
           returnKeyType="default"
           blurOnSubmit={false}

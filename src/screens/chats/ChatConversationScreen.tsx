@@ -1,7 +1,6 @@
-import React, { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Alert, FlatList, KeyboardAvoidingView, NativeScrollEvent, NativeSyntheticEvent, Platform, Pressable, StyleSheet, Text, View } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
-import { useHeaderHeight } from "@react-navigation/elements";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { SafeAreaView, useSafeAreaInsets } from "react-native-safe-area-context";
 import { RootStackParamList } from "../../navigation/RootNavigator";
@@ -13,7 +12,7 @@ import { IconButton } from "../../components/ui/IconButton";
 import { ModelSelectorModal } from "../../components/chat/ModelSelectorModal";
 import { TextPromptModal } from "../../components/ui/TextPromptModal";
 import { MODEL_CATALOG } from "../../config/models";
-import { colors, spacing, typography } from "../../config/theme";
+import { colors, hitSlop, spacing, typography } from "../../config/theme";
 import { chatRepository } from "../../repositories/chatRepository";
 import { benchmarkRepository } from "../../repositories/benchmarkRepository";
 import { LlamaService } from "../../services/llm/LlamaService";
@@ -30,7 +29,6 @@ import { generateConversationTitle } from "../../utils/conversationTitle";
 export function ChatConversationScreen({ route, navigation }: NativeStackScreenProps<RootStackParamList, "ChatConversation">) {
   const { conversationId } = route.params;
   const insets = useSafeAreaInsets();
-  const headerHeight = useHeaderHeight();
   const listRef = useRef<FlatList>(null);
   const isNearBottomRef = useRef(true);
   const stopRef = useRef(false);
@@ -169,28 +167,22 @@ export function ChatConversationScreen({ route, navigation }: NativeStackScreenP
     ]);
   }, [conversation?.title, conversationId, navigation, refresh, refreshChats]);
 
-  useLayoutEffect(() => {
-    navigation.setOptions({
-      title: conversation?.title ?? "Conversation",
-      headerBackTitle: "",
-      headerRight: () => <IconButton name="ellipsis-horizontal" onPress={openMenu} />,
-      headerTitle: () => (
-        <View style={styles.nativeHeaderTitle}>
-          <Text style={styles.headerTitle} numberOfLines={1}>{conversation?.title ?? "Conversation"}</Text>
-          <Pressable onPress={() => setModelModalVisible(true)} style={styles.modelPill} hitSlop={8}>
-            <Text style={styles.headerSubtitle} numberOfLines={1}>{activeModel?.name ?? "No model selected"} ▾</Text>
-          </Pressable>
-        </View>
-      )
-    });
-  }, [activeModel?.name, conversation?.title, navigation, openMenu]);
-
   const listData = useMemo(() => messages, [messages]);
 
   return (
-    <SafeAreaView style={styles.safe} edges={["bottom"]}>
+    <SafeAreaView style={styles.safe} edges={["top", "bottom"]}>
+      <View style={styles.header}>
+        <IconButton name="chevron-back" onPress={() => navigation.goBack()} />
+        <Pressable onPress={() => setModelModalVisible(true)} style={styles.headerCenter} hitSlop={hitSlop}>
+          <Text style={styles.headerTitle} numberOfLines={1}>{conversation?.title ?? "Conversation"}</Text>
+          <View style={styles.modelPill}>
+            <Text style={styles.headerSubtitle} numberOfLines={1}>{activeModel?.name ?? "No model selected"} ▾</Text>
+          </View>
+        </Pressable>
+        <IconButton name="ellipsis-horizontal" onPress={openMenu} />
+      </View>
       {!modelReady ? <View style={styles.banner}><Ionicons name="alert-circle-outline" size={18} color={colors.warning} /><Text style={styles.bannerText}>Download or select a model to start chatting.</Text></View> : null}
-      <KeyboardAvoidingView style={styles.keyboard} behavior={Platform.OS === "ios" ? "padding" : "height"} keyboardVerticalOffset={Platform.OS === "ios" ? headerHeight : 0}>
+      <KeyboardAvoidingView style={styles.keyboard} enabled={Platform.OS === "ios"} behavior={Platform.OS === "ios" ? "padding" : undefined}>
         <FlatList
           style={styles.messageList}
           ref={listRef}
@@ -219,9 +211,10 @@ export function ChatConversationScreen({ route, navigation }: NativeStackScreenP
 
 const styles = StyleSheet.create({
   safe: { flex: 1, backgroundColor: colors.background },
-  nativeHeaderTitle: { alignItems: "center", justifyContent: "center", maxWidth: 230 },
+  header: { flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingHorizontal: spacing.sm, minHeight: 52 },
+  headerCenter: { flex: 1, alignItems: "center", justifyContent: "center", paddingVertical: 6 },
   headerTitle: { ...typography.sectionTitle, color: colors.textPrimary, maxWidth: "100%" },
-  modelPill: { marginTop: 3, borderRadius: 999, paddingHorizontal: spacing.sm, paddingVertical: 2, backgroundColor: colors.surfaceMuted },
+  modelPill: { marginTop: 4, borderRadius: 999, paddingHorizontal: spacing.sm, paddingVertical: 5, backgroundColor: colors.surfaceMuted },
   headerSubtitle: { ...typography.caption, color: colors.textSecondary },
   banner: { flexDirection: "row", alignItems: "center", gap: spacing.sm, backgroundColor: "#FFFBEB", borderBottomWidth: 1, borderBottomColor: "#FDE68A", paddingHorizontal: spacing.lg, paddingVertical: spacing.sm },
   bannerText: { ...typography.secondary, color: colors.textPrimary, flex: 1 },

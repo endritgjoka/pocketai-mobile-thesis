@@ -28,9 +28,8 @@ export const colors = {
 };
 
 export const typography = {
+  // screenTitle: titulli kryesor i çdo ekrani (28/700). heading: titull dytësor / vlerë e theksuar (22/700).
   screenTitle: { fontSize: 28, fontWeight: "700" as const },
-  headerTitle: { fontSize: 22, fontWeight: "700" as const },
-  title: { fontSize: 28, fontWeight: "700" as const },
   heading: { fontSize: 22, fontWeight: "700" as const },
   sectionTitle: { fontSize: 16, fontWeight: "700" as const },
   cardTitle: { fontSize: 17, fontWeight: "600" as const },

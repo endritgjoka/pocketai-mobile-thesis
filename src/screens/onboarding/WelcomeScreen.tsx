@@ -18,7 +18,7 @@ export function WelcomeScreen({ navigation }: NativeStackScreenProps<RootStackPa
 
 const styles = StyleSheet.create({
   container: { flex: 1, justifyContent: "center", padding: spacing.xl, backgroundColor: colors.background, gap: spacing.lg },
-  title: { ...typography.title, color: colors.textPrimary },
+  title: { ...typography.screenTitle, color: colors.textPrimary },
   subtitle: { fontSize: 20, fontWeight: "600", color: colors.textPrimary, lineHeight: 28 },
   body: { ...typography.body, color: colors.textSecondary, lineHeight: 22 }
 });

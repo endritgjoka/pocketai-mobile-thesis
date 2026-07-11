@@ -13,6 +13,7 @@ import { ModelDownloadService } from "../../services/models/ModelDownloadService
 import { useSettingsStore } from "../../store/useSettingsStore";
 import { formatBytes } from "../../utils/fileSize";
 import { toUserMessage } from "../../utils/errors";
+import { modelDownloadStatusLabel } from "../../utils/statusLabels";
 
 export function ModelDownloadScreen({ route }: NativeStackScreenProps<RootStackParamList, "ModelDownload">) {
   const { modelId } = route.params;
@@ -54,7 +55,7 @@ export function ModelDownloadScreen({ route }: NativeStackScreenProps<RootStackP
             <Text style={styles.modelName}>{model.name}</Text>
             <Text style={styles.modelMeta}>{model.modeLabel} · {model.sizeLabel} · {model.recommendedRam}</Text>
           </View>
-          <StatusBadge label={status} tone={statusTone} />
+          <StatusBadge label={modelDownloadStatusLabel(status)} tone={statusTone} />
         </View>
         <View style={styles.progressHeader}>
           <Text style={styles.progressText}>{percent}%</Text>
