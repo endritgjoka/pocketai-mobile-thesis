@@ -14,6 +14,8 @@ import { estimateTokens } from "../llm/tokenEstimate";
 import { ChunkSize, toStrategy } from "../rag/chunkText";
 import { buildRagPrompt } from "../rag/ragPrompt";
 import { retrieveChunks } from "../rag/retrieval";
+import { BatteryService, batteryDeltaPct } from "./BatteryService";
+import { computeRouge } from "../eval/rouge";
 
 const testPrompt = "Explain quantization in large language models in simple terms.";
 const CHUNK_SIZES: ChunkSize[] = [256, 512, 1024];
@@ -35,8 +37,10 @@ export const BenchmarkService = {
     const settings = await settingsRepository.getSettings();
     if (!settings.activeModelId) throw new Error("Select a model before running a benchmark.");
     const messages: Pick<Message, "role" | "content">[] = [{ role: "user", content: testPrompt }];
+    const batteryStart = await BatteryService.level();
     const started = Date.now();
     const result = await LlamaService.generateWithCurrentSettings(messages);
+    const batteryEnd = await BatteryService.level();
     const run: BenchmarkRun = {
       id: createId("bench"),
       taskType: "chat",
@@ -53,7 +57,8 @@ export const BenchmarkService = {
       tokensPerSecond: result.stats.tokensPerSecond,
       selectedChunkIds: null,
       notes: null,
-      createdAt: nowIso()
+      createdAt: nowIso(),
+      batteryStart, batteryEnd, batteryDelta: batteryDeltaPct(batteryStart, batteryEnd)
     };
     await benchmarkRepository.addRun(run);
     return run;
@@ -108,17 +113,20 @@ export const BenchmarkService = {
     let current = 0;
     for (const modelId of models) {
       onProgress?.({ current: ++current, total: models.length, modelId });
+      const batteryStart = await BatteryService.level();
       const started = Date.now();
       const result = await LlamaService.generateChatCompletion({
         modelId, messages: [{ role: "user", content: testPrompt }],
         contextSize: settings.contextSize, temperature: settings.temperature, topP: settings.topP,
         maxTokens: settings.maxTokens, useMockInference: settings.useMockInference,
       });
+      const batteryEnd = await BatteryService.level();
       const run: BenchmarkRun = {
         id: createId("bench"), taskType: "chat", modelId, documentId: null, chunkStrategy: null, topK: null,
         promptText: testPrompt, promptTokenEstimate: estimateTokens(testPrompt), outputTokenEstimate: result.stats.outputTokens,
         retrievalTimeMs: null, generationTimeMs: result.stats.totalTimeMs, totalTimeMs: Date.now() - started,
         tokensPerSecond: result.stats.tokensPerSecond, selectedChunkIds: null, notes: "sweep:model", createdAt: nowIso(),
+        batteryStart, batteryEnd, batteryDelta: batteryDeltaPct(batteryStart, batteryEnd),
       };
       await benchmarkRepository.addRun(run);
       runs.push(run);
@@ -145,11 +153,13 @@ export const BenchmarkService = {
         const selected = await retrieveChunks(testPrompt, chunks, { topK: settings.ragTopK });
         const retrievalTimeMs = Date.now() - retrievalStarted;
         const promptMessages = buildRagPrompt(doc.title, testPrompt, selected);
+        const batteryStart = await BatteryService.level();
         const started = Date.now();
         const result = await LlamaService.generateChatCompletion({
           modelId, messages: promptMessages, contextSize: settings.contextSize, temperature: settings.temperature,
           topP: settings.topP, maxTokens: settings.maxTokens, useMockInference: settings.useMockInference,
         });
+        const batteryEnd = await BatteryService.level();
         const promptText = promptMessages[0].content;
         const run: BenchmarkRun = {
           id: createId("bench"), taskType: "document_qa", modelId, documentId, chunkStrategy: strategy, topK: settings.ragTopK,
@@ -157,12 +167,44 @@ export const BenchmarkService = {
           retrievalTimeMs, generationTimeMs: result.stats.totalTimeMs, totalTimeMs: Date.now() - started + retrievalTimeMs,
           tokensPerSecond: result.stats.tokensPerSecond, selectedChunkIds: JSON.stringify(selected.map((c) => c.id)),
           notes: `sweep:rag embed=${(await EmbeddingService.modelExists()) ? "neural" : "tfidf"}`, createdAt: nowIso(),
+          batteryStart, batteryEnd, batteryDelta: batteryDeltaPct(batteryStart, batteryEnd),
         };
         await benchmarkRepository.addRun(run);
         runs.push(run);
       }
     }
     return runs;
+  },
+
+  // Përmbledh dokumentin me modelin aktiv dhe llogarit ROUGE përkundër një përmbledhjeje referencë.
+  async runSummaryEval(documentId: string, referenceSummary: string) {
+    const settings = await settingsRepository.getSettings();
+    if (!settings.activeModelId) throw new Error("Select a model before running the summary evaluation.");
+    const doc = await documentRepository.getDocument(documentId);
+    if (!doc) throw new Error("Document not found.");
+    const source = doc.text.slice(0, 4000);
+    const messages: Pick<Message, "role" | "content">[] = [
+      { role: "user", content: `Summarize the following document in a few sentences.\n\nDocument:\n${source}` },
+    ];
+    const batteryStart = await BatteryService.level();
+    const started = Date.now();
+    const result = await LlamaService.generateChatCompletion({
+      modelId: settings.activeModelId, messages, contextSize: settings.contextSize, temperature: settings.temperature,
+      topP: settings.topP, maxTokens: settings.maxTokens, useMockInference: settings.useMockInference,
+    });
+    const batteryEnd = await BatteryService.level();
+    const rouge = computeRouge(result.text, referenceSummary);
+    const run: BenchmarkRun = {
+      id: createId("bench"), taskType: "summary", modelId: settings.activeModelId, documentId, chunkStrategy: null, topK: null,
+      promptText: messages[0].content, promptTokenEstimate: estimateTokens(messages[0].content), outputTokenEstimate: result.stats.outputTokens,
+      retrievalTimeMs: null, generationTimeMs: result.stats.totalTimeMs, totalTimeMs: Date.now() - started,
+      tokensPerSecond: result.stats.tokensPerSecond, selectedChunkIds: null,
+      notes: `summary R1=${rouge.rouge1.toFixed(3)} R2=${rouge.rouge2.toFixed(3)} RL=${rouge.rougeL.toFixed(3)}`, createdAt: nowIso(),
+      batteryStart, batteryEnd, batteryDelta: batteryDeltaPct(batteryStart, batteryEnd),
+      rouge1: rouge.rouge1, rouge2: rouge.rouge2, rougeL: rouge.rougeL,
+    };
+    await benchmarkRepository.addRun(run);
+    return { run, summary: result.text, rouge };
   },
 
   async exportJson() {
@@ -177,7 +219,8 @@ export const BenchmarkService = {
     const runs = await benchmarkRepository.listRuns();
     const cols: (keyof BenchmarkRun)[] = [
       "createdAt", "taskType", "modelId", "documentId", "chunkStrategy", "topK",
-      "promptTokenEstimate", "outputTokenEstimate", "retrievalTimeMs", "generationTimeMs", "totalTimeMs", "tokensPerSecond", "notes",
+      "promptTokenEstimate", "outputTokenEstimate", "retrievalTimeMs", "generationTimeMs", "totalTimeMs", "tokensPerSecond",
+      "batteryStart", "batteryEnd", "batteryDelta", "rouge1", "rouge2", "rougeL", "notes",
     ];
     const esc = (v: unknown) => {
       if (v === null || v === undefined) return "";

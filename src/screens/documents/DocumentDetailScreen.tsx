@@ -6,6 +6,9 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { RootStackParamList } from "../../navigation/RootNavigator";
 import { ChatComposer } from "../../components/chat/ChatComposer";
 import { TypingIndicator } from "../../components/chat/TypingIndicator";
+import { AppButton } from "../../components/ui/AppButton";
+import { TextPromptModal } from "../../components/ui/TextPromptModal";
+import { BenchmarkService } from "../../services/benchmark/BenchmarkService";
 import { AppCard } from "../../components/ui/AppCard";
 import { ChunkBadge } from "../../components/document/ChunkBadge";
 import { StatusBadge } from "../../components/ui/StatusBadge";
@@ -29,6 +32,8 @@ export function DocumentDetailScreen({ route }: NativeStackScreenProps<RootStack
   const [answer, setAnswer] = useState("");
   const [selected, setSelected] = useState<RetrievalResult[]>([]);
   const [loading, setLoading] = useState(false);
+  const [rougeVisible, setRougeVisible] = useState(false);
+  const [evaluating, setEvaluating] = useState(false);
   const activeModelId = useSettingsStore((state) => state.activeModelId);
   const ragChunkSize = useSettingsStore((state) => state.ragChunkSize);
   const ragTopK = useSettingsStore((state) => state.ragTopK);
@@ -79,6 +84,20 @@ export function DocumentDetailScreen({ route }: NativeStackScreenProps<RootStack
     }
   }, [activeModelId, doc, loading, question, ragTopK, strategy]);
 
+  const runRouge = useCallback(async (reference: string) => {
+    setRougeVisible(false);
+    if (!doc || !activeModelId || !reference.trim()) return;
+    try {
+      setEvaluating(true);
+      const { rouge } = await BenchmarkService.runSummaryEval(doc.id, reference.trim());
+      Alert.alert("ROUGE scores", `ROUGE-1: ${rouge.rouge1.toFixed(3)}\nROUGE-2: ${rouge.rouge2.toFixed(3)}\nROUGE-L: ${rouge.rougeL.toFixed(3)}\n\nSaved to benchmarks.`);
+    } catch (error) {
+      Alert.alert("Summary evaluation failed", toUserMessage(error));
+    } finally {
+      setEvaluating(false);
+    }
+  }, [activeModelId, doc]);
+
   if (!doc) return <View style={styles.loading}><Text style={styles.loadingText}>Loading document...</Text></View>;
 
   return (
@@ -106,7 +125,9 @@ export function DocumentDetailScreen({ route }: NativeStackScreenProps<RootStack
         {selected.length ? <View style={styles.badges}>{selected.map((item) => <ChunkBadge key={item.id} label={`Chunk ${item.chunkIndex}`} />)}</View> : null}
         {loading ? <TypingIndicator /> : null}
         {answer ? <AppCard style={styles.card}><Text style={styles.cardTitle}>Answer</Text><Text style={styles.preview}>{answer}</Text></AppCard> : null}
+        {doc.status !== "failed" ? <AppButton title="Evaluate summary (ROUGE)" icon="stats-chart-outline" variant="secondary" loading={evaluating} disabled={!activeModelId} onPress={() => setRougeVisible(true)} /> : null}
       </ScrollView>
+      <TextPromptModal visible={rougeVisible} title="Reference summary" initialValue="" onCancel={() => setRougeVisible(false)} onConfirm={runRouge} />
       <ChatComposer
         value={question}
         onChangeText={setQuestion}

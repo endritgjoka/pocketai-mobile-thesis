@@ -76,4 +76,14 @@ export const runMigrations = async (db: SQLite.SQLiteDatabase) => {
     }
     await db.execAsync("PRAGMA user_version = 5;");
   }
+
+  const afterEmbeddings = afterCalendar < 5 ? 5 : afterCalendar;
+  if (afterEmbeddings < 6) {
+    for (const col of ["battery_start", "battery_end", "battery_delta", "rouge1", "rouge2", "rouge_l"]) {
+      if (!(await hasColumn(db, "benchmark_runs", col))) {
+        await db.execAsync(`ALTER TABLE benchmark_runs ADD COLUMN ${col} REAL`);
+      }
+    }
+    await db.execAsync("PRAGMA user_version = 6;");
+  }
 };

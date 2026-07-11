@@ -49,7 +49,7 @@ export function DocumentListScreen() {
         <AppButton title="Import" icon="add" loading={loading} onPress={importDoc} style={styles.importButton} />
       </View>
       <View style={styles.notice}>
-        <Text style={styles.noticeText}>TXT is fully supported. PDF/DOCX are imported with a clear placeholder until native text extraction is added.</Text>
+        <Text style={styles.noticeText}>TXT and DOCX extract reliably. PDF extraction is best-effort: standard text PDFs work well, while scanned or special-font PDFs may extract only partially.</Text>
       </View>
       <FlatList
         data={documents}
@@ -60,7 +60,7 @@ export function DocumentListScreen() {
         initialNumToRender={10}
         maxToRenderPerBatch={10}
         windowSize={7}
-        ListEmptyComponent={<EmptyState icon="document-text-outline" title="No documents yet" body="Import a TXT file to run local chunking, retrieval, and document Q&A experiments." />}
+        ListEmptyComponent={<EmptyState icon="document-text-outline" title="No documents yet" body="Import a TXT, DOCX, or PDF file to run local chunking, retrieval, and document Q&A experiments." />}
       />
     </SafeAreaView>
   );

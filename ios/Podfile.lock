@@ -11,6 +11,8 @@ PODS:
     - ExpoModulesCore
   - ExpoAsset (11.0.5):
     - ExpoModulesCore
+  - ExpoBattery (9.0.2):
+    - ExpoModulesCore
   - ExpoCalendar (14.0.6):
     - ExpoModulesCore
   - ExpoDocumentPicker (13.0.3):
@@ -1722,6 +1724,7 @@ DEPENDENCIES:
   - EXNotifications (from `../node_modules/expo-notifications/ios`)
   - Expo (from `../node_modules/expo`)
   - ExpoAsset (from `../node_modules/expo-asset/ios`)
+  - ExpoBattery (from `../node_modules/expo-battery/ios`)
   - ExpoCalendar (from `../node_modules/expo-calendar/ios`)
   - ExpoDocumentPicker (from `../node_modules/expo-document-picker/ios`)
   - ExpoFileSystem (from `../node_modules/expo-file-system/ios`)
@@ -1818,6 +1821,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/expo"
   ExpoAsset:
     :path: "../node_modules/expo-asset/ios"
+  ExpoBattery:
+    :path: "../node_modules/expo-battery/ios"
   ExpoCalendar:
     :path: "../node_modules/expo-calendar/ios"
   ExpoDocumentPicker:
@@ -1974,6 +1979,7 @@ SPEC CHECKSUMS:
   EXNotifications: 9d3d17e52c95f377750d4a2ae553a716313dd4aa
   Expo: 4bb70893882e6382b41d1e910d7226c6a1b85f0a
   ExpoAsset: 48386d40d53a8c1738929b3ed509bcad595b5516
+  ExpoBattery: d2e508fb7a2a6214d97ff598274c8bd71b704ce6
   ExpoCalendar: 12208702ad2461776a5a59b6e51e37ef23f9efac
   ExpoDocumentPicker: 6d3d499cf15b692688a804f42927d0f35de5ebaa
   ExpoFileSystem: 42d363d3b96f9afab980dcef60d5657a4443c655

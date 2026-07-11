@@ -17,7 +17,13 @@ const mapRun = (row: Record<string, unknown>): BenchmarkRun => ({
   tokensPerSecond: row.tokens_per_second === null || row.tokens_per_second === undefined ? null : Number(row.tokens_per_second),
   selectedChunkIds: row.selected_chunk_ids ? String(row.selected_chunk_ids) : null,
   notes: row.notes ? String(row.notes) : null,
-  createdAt: String(row.created_at)
+  createdAt: String(row.created_at),
+  batteryStart: row.battery_start === null || row.battery_start === undefined ? null : Number(row.battery_start),
+  batteryEnd: row.battery_end === null || row.battery_end === undefined ? null : Number(row.battery_end),
+  batteryDelta: row.battery_delta === null || row.battery_delta === undefined ? null : Number(row.battery_delta),
+  rouge1: row.rouge1 === null || row.rouge1 === undefined ? null : Number(row.rouge1),
+  rouge2: row.rouge2 === null || row.rouge2 === undefined ? null : Number(row.rouge2),
+  rougeL: row.rouge_l === null || row.rouge_l === undefined ? null : Number(row.rouge_l)
 });
 
 export const benchmarkRepository = {
@@ -31,9 +37,9 @@ export const benchmarkRepository = {
       `INSERT INTO benchmark_runs
        (id, task_type, model_id, document_id, chunk_strategy, top_k, prompt_text, prompt_token_estimate,
         output_token_estimate, retrieval_time_ms, generation_time_ms, total_time_ms, tokens_per_second,
-        selected_chunk_ids, notes, created_at)
-       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
-      [run.id, run.taskType, run.modelId, run.documentId, run.chunkStrategy, run.topK, run.promptText, run.promptTokenEstimate, run.outputTokenEstimate, run.retrievalTimeMs, run.generationTimeMs, run.totalTimeMs, run.tokensPerSecond, run.selectedChunkIds, run.notes, run.createdAt]
+        selected_chunk_ids, notes, created_at, battery_start, battery_end, battery_delta, rouge1, rouge2, rouge_l)
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+      [run.id, run.taskType, run.modelId, run.documentId, run.chunkStrategy, run.topK, run.promptText, run.promptTokenEstimate, run.outputTokenEstimate, run.retrievalTimeMs, run.generationTimeMs, run.totalTimeMs, run.tokensPerSecond, run.selectedChunkIds, run.notes, run.createdAt, run.batteryStart ?? null, run.batteryEnd ?? null, run.batteryDelta ?? null, run.rouge1 ?? null, run.rouge2 ?? null, run.rougeL ?? null]
     );
   },
 

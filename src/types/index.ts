@@ -118,7 +118,7 @@ export interface DocumentChunk {
 
 export interface BenchmarkRun {
   id: string;
-  taskType: "chat" | "document_qa";
+  taskType: "chat" | "document_qa" | "summary";
   modelId: string;
   documentId: string | null;
   chunkStrategy: string | null;
@@ -133,4 +133,10 @@ export interface BenchmarkRun {
   selectedChunkIds: string | null;
   notes: string | null;
   createdAt: string;
+  batteryStart?: number | null;
+  batteryEnd?: number | null;
+  batteryDelta?: number | null;
+  rouge1?: number | null;
+  rouge2?: number | null;
+  rougeL?: number | null;
 }

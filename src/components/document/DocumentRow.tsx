@@ -15,7 +15,7 @@ export const DocumentRow = memo(function DocumentRow({ document, onPress }: { do
       <View style={styles.body}>
         <View style={styles.titleRow}>
           <Text style={styles.title} numberOfLines={1}>{document.title}</Text>
-          <StatusBadge label={document.status} tone={statusTone(document.status)} />
+          <StatusBadge label={document.status.charAt(0).toUpperCase() + document.status.slice(1)} tone={statusTone(document.status)} />
         </View>
         <Text style={styles.meta} numberOfLines={1}>{document.fileType.toUpperCase()} · {document.chunkCount} chunks · {document.characterCount.toLocaleString()} chars</Text>
         <Text style={styles.date}>{formatShortDate(document.updatedAt)}</Text>
