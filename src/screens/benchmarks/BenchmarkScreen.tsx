@@ -43,6 +43,7 @@ export function BenchmarkScreen() {
       generation: avg(runs.map((run) => run.generationTimeMs)),
       tps: avg(runs.map((run) => run.tokensPerSecond ?? 0)),
       retrieval: avg(runs.filter((run) => run.retrievalTimeMs !== null).map((run) => run.retrievalTimeMs ?? 0)),
+      modelMemoryMb: avg(runs.filter((run) => run.memoryModelBytes).map((run) => (run.memoryModelBytes ?? 0) / (1024 * 1024))),
       bestModel: MODEL_CATALOG.find((item) => item.id === bestModelId)?.name ?? "-"
     };
   }, [runs]);
@@ -61,7 +62,7 @@ export function BenchmarkScreen() {
   const runModelSweep = useCallback(async () => {
     try {
       setLoading(true);
-      await BenchmarkService.runModelSweep((p) => setSweepStatus(`Model sweep ${p.current}/${p.total}: ${modelName(p.modelId)}`));
+      await BenchmarkService.runModelSweep((p) => setSweepStatus(`Model sweep ${p.current}/${p.total}: ${modelName(p.modelId)}${p.promptId ? ` · ${p.promptId} #${p.repeat}` : ""}`));
       await load();
     } catch (error) { Alert.alert("Sweep failed", toUserMessage(error)); } finally { setLoading(false); setSweepStatus(null); }
   }, [load, modelName]);
@@ -70,7 +71,7 @@ export function BenchmarkScreen() {
     if (!documents[0]) return Alert.alert("No document", "Import a document before running the RAG sweep.");
     try {
       setLoading(true);
-      await BenchmarkService.runDocumentSweep(documents[0].id, (p) => setSweepStatus(`RAG sweep ${p.current}/${p.total}: ${modelName(p.modelId)} · ${p.chunkSize} tokens`));
+      await BenchmarkService.runDocumentSweep(documents[0].id, (p) => setSweepStatus(`RAG sweep ${p.current}/${p.total}: ${modelName(p.modelId)} · ${p.chunkSize} tokens${p.promptId ? ` · ${p.promptId} #${p.repeat}` : ""}`));
       await load();
     } catch (error) { Alert.alert("Sweep failed", toUserMessage(error)); } finally { setLoading(false); setSweepStatus(null); }
   }, [documents, load, modelName]);
@@ -86,6 +87,11 @@ export function BenchmarkScreen() {
         <StatCard label="Avg generation" value={`${(stats.generation / 1000).toFixed(1)}s`} accent={colors.success} />
         <StatCard label="Avg tokens/sec" value={stats.tps.toFixed(1)} accent={colors.primary} />
         <StatCard label="Avg retrieval" value={`${Math.round(stats.retrieval)}ms`} accent={colors.warning} />
+        <StatCard
+          label="Avg model memory"
+          value={stats.modelMemoryMb > 0 ? `${Math.round(stats.modelMemoryMb)} MB` : "n/a"}
+          accent={colors.primary}
+        />
       </View>
       <View style={styles.bestCard}>
         <Text style={styles.bestLabel}>Best current model</Text>
@@ -100,6 +106,10 @@ export function BenchmarkScreen() {
         <View style={styles.exportRow}>
           <AppButton title="Export CSV" icon="download-outline" variant="secondary" onPress={() => BenchmarkService.exportCsv().catch((error) => Alert.alert("Export failed", toUserMessage(error)))} style={styles.exportButton} />
           <AppButton title="Export JSON" icon="code-outline" variant="secondary" onPress={() => BenchmarkService.exportJson().catch((error) => Alert.alert("Export failed", toUserMessage(error)))} style={styles.exportButton} />
+        </View>
+        <View style={styles.exportRow}>
+          <AppButton title="Export summary" icon="stats-chart-outline" variant="secondary" onPress={() => BenchmarkService.exportAggregateCsv().catch((error) => Alert.alert("Export failed", toUserMessage(error)))} style={styles.exportButton} />
+          <AppButton title="Export retrieval" icon="search-outline" variant="secondary" onPress={() => BenchmarkService.exportRetrievalCsv().catch((error) => Alert.alert("Export failed", toUserMessage(error)))} style={styles.exportButton} />
         </View>
       </View>
       <Text style={styles.sectionTitle}>Recent runs</Text>
@@ -135,12 +145,21 @@ const RunRow = memo(function RunRow({ run }: { run: BenchmarkRun }) {
       </View>
       <Text style={styles.runTitle}>{model?.name ?? run.modelId}</Text>
       <Text style={styles.runMeta}>{(run.totalTimeMs / 1000).toFixed(1)}s · {run.tokensPerSecond?.toFixed(1) ?? "0"} tok/s{run.chunkStrategy ? ` · ${run.chunkStrategy.replace("fixed_", "")} tokens` : ""}</Text>
+      {run.memoryModelBytes || run.memoryPeakBytes ? (
+        <Text style={styles.runMeta}>
+          {run.memoryModelBytes ? `Model ${Math.round(run.memoryModelBytes / (1024 * 1024))} MB` : ""}
+          {run.memoryModelBytes && run.memoryPeakBytes ? " · " : ""}
+          {run.memoryPeakBytes ? `Peak ${Math.round(run.memoryPeakBytes / (1024 * 1024))} MB` : ""}
+        </Text>
+      ) : null}
     </View>
   );
 }, (prev, next) =>
   prev.run.id === next.run.id &&
   prev.run.totalTimeMs === next.run.totalTimeMs &&
   prev.run.tokensPerSecond === next.run.tokensPerSecond &&
+  prev.run.memoryModelBytes === next.run.memoryModelBytes &&
+  prev.run.memoryPeakBytes === next.run.memoryPeakBytes &&
   prev.run.createdAt === next.run.createdAt
 );
 

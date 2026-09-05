@@ -22,10 +22,16 @@ class DownloadService {
     if (!model) throw new Error("Unknown model selected.");
     await ModelFileService.ensureModelDir();
     const destination = await ModelFileService.getLocalModelPath(modelId);
-    const existing = await FileSystem.getInfoAsync(destination);
-    if (existing.exists) await FileSystem.deleteAsync(destination, { idempotent: true });
+    // Shkarkimi kryhet në një skedar të përkohshëm dhe zhvendoset vetëm pasi përfundon.
+    // Përndryshe, nëse procesi ndërpritet, në shtegun përfundimtar do të mbetej një skedar
+    // i cunguar që do të dukej si model i shkarkuar dhe do të dështonte gjatë ngarkimit.
+    const partial = `${destination}.part`;
+    for (const path of [destination, partial]) {
+      const info = await FileSystem.getInfoAsync(path);
+      if (info.exists) await FileSystem.deleteAsync(path, { idempotent: true });
+    }
 
-    const resumable = FileSystem.createDownloadResumable(model.url, destination, {}, (event) => {
+    const resumable = FileSystem.createDownloadResumable(model.url, partial, {}, (event) => {
       const total = event.totalBytesExpectedToWrite > 0 ? event.totalBytesExpectedToWrite : null;
       onProgress?.({ status: "downloading", progress: total ? event.totalBytesWritten / total : 0, downloadedBytes: event.totalBytesWritten, totalBytes: total });
     });
@@ -34,6 +40,9 @@ class DownloadService {
       const result = await resumable.downloadAsync();
       this.activeDownloads.delete(modelId);
       if (!result?.uri) throw new Error("Model download did not complete.");
+      const partialInfo = await FileSystem.getInfoAsync(partial, { size: true });
+      if (!partialInfo.exists || partialInfo.isDirectory) throw new Error("Downloaded model file could not be verified.");
+      await FileSystem.moveAsync({ from: partial, to: destination });
       const info = await FileSystem.getInfoAsync(destination, { size: true });
       if (!info.exists || info.isDirectory) throw new Error("Downloaded model file could not be verified.");
       const sizeBytes = "size" in info ? info.size ?? null : null;
@@ -43,6 +52,7 @@ class DownloadService {
       return destination;
     } catch (error) {
       this.activeDownloads.delete(modelId);
+      await FileSystem.deleteAsync(partial, { idempotent: true }).catch(() => undefined);
       await FileSystem.deleteAsync(destination, { idempotent: true }).catch(() => undefined);
       onProgress?.({ status: "failed", progress: 0, downloadedBytes: 0, totalBytes: null, error: error instanceof Error ? error.message : "Download failed" });
       throw error;

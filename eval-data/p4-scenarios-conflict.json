@@ -1,0 +1,1205 @@
+{
+ "note": "Conflict-aware scenarios for P4. Three kinds: supersession (newer item correct), authority (document correct over chat guess), old_correct (unique but old item correct). Each kind is built so no single factor suffices: fillers newer than the correct item defeat recency-only, and equally-relevant wrong items defeat relevance-only.",
+ "scenarios": [
+  {
+   "id": "p4b-a01",
+   "kind": "supersession",
+   "query": "Which room is the retrospective in?",
+   "answerSpans": [
+    "Granite-1"
+   ],
+   "goldItemId": "a0-gold",
+   "goldSource": "calendar",
+   "goldAge": "recent",
+   "goldPosition": "n/a",
+   "tokenBudget": 38,
+   "items": [
+    {
+     "id": "a0-stale",
+     "source": "calendar",
+     "text": "The team retrospective is scheduled in room Basalt-3 at 14:00.",
+     "tokenCount": 16,
+     "ageHours": 200
+    },
+    {
+     "id": "a0-gold",
+     "source": "calendar",
+     "text": "The retrospective has been moved to room Granite-1 at 16:30.",
+     "tokenCount": 15,
+     "ageHours": 3
+    },
+    {
+     "id": "a0-f0",
+     "source": "health",
+     "text": "Resting heart rate this morning measured 58 beats per minute.",
+     "tokenCount": 16,
+     "ageHours": 1
+    },
+    {
+     "id": "a0-f1",
+     "source": "chat",
+     "text": "The neighbour mentioned the lift will be serviced sometime soon.",
+     "tokenCount": 16,
+     "ageHours": 2
+    },
+    {
+     "id": "a0-f2",
+     "source": "document",
+     "text": "Waste is separated into general, cardboard, plastic film and hazardous streams.",
+     "tokenCount": 20,
+     "ageHours": 90
+    }
+   ]
+  },
+  {
+   "id": "p4b-a02",
+   "kind": "supersession",
+   "query": "What time does my flight to Vienna depart?",
+   "answerSpans": [
+    "09:40"
+   ],
+   "goldItemId": "a1-gold",
+   "goldSource": "calendar",
+   "goldAge": "recent",
+   "goldPosition": "n/a",
+   "tokenBudget": 33,
+   "items": [
+    {
+     "id": "a1-stale",
+     "source": "calendar",
+     "text": "Flight to Vienna departs at 06:25 from terminal 1.",
+     "tokenCount": 13,
+     "ageHours": 200
+    },
+    {
+     "id": "a1-gold",
+     "source": "calendar",
+     "text": "The Vienna flight was rescheduled and now departs at 09:40.",
+     "tokenCount": 15,
+     "ageHours": 3
+    },
+    {
+     "id": "a1-f0",
+     "source": "health",
+     "text": "Steps yesterday totalled 11420 and the weekly average is 8600.",
+     "tokenCount": 16,
+     "ageHours": 1
+    },
+    {
+     "id": "a1-f1",
+     "source": "calendar",
+     "text": "Yoga class on Tuesday evening at the community centre.",
+     "tokenCount": 14,
+     "ageHours": 2
+    },
+    {
+     "id": "a1-f2",
+     "source": "health",
+     "text": "Longest run this month was 12.3 kilometres.",
+     "tokenCount": 11,
+     "ageHours": 90
+    }
+   ]
+  },
+  {
+   "id": "p4b-a03",
+   "kind": "supersession",
+   "query": "When is the thesis supervision meeting?",
+   "answerSpans": [
+    "Wednesday at 15:00"
+   ],
+   "goldItemId": "a2-gold",
+   "goldSource": "calendar",
+   "goldAge": "recent",
+   "goldPosition": "n/a",
+   "tokenBudget": 37,
+   "items": [
+    {
+     "id": "a2-stale",
+     "source": "calendar",
+     "text": "Thesis supervision meeting is on Monday at 11:30.",
+     "tokenCount": 13,
+     "ageHours": 200
+    },
+    {
+     "id": "a2-gold",
+     "source": "calendar",
+     "text": "Supervision meeting rescheduled to Wednesday at 15:00.",
+     "tokenCount": 14,
+     "ageHours": 3
+    },
+    {
+     "id": "a2-f0",
+     "source": "chat",
+     "text": "I should remember to water the plants before the weekend.",
+     "tokenCount": 15,
+     "ageHours": 1
+    },
+    {
+     "id": "a2-f1",
+     "source": "document",
+     "text": "Waste is separated into general, cardboard, plastic film and hazardous streams.",
+     "tokenCount": 20,
+     "ageHours": 2
+    },
+    {
+     "id": "a2-f2",
+     "source": "calendar",
+     "text": "Book club meets at the library on the first Friday.",
+     "tokenCount": 13,
+     "ageHours": 90
+    }
+   ]
+  },
+  {
+   "id": "p4b-a04",
+   "kind": "supersession",
+   "query": "What is my bike lock combination?",
+   "answerSpans": [
+    "8802"
+   ],
+   "goldItemId": "a3-gold",
+   "goldSource": "chat",
+   "goldAge": "recent",
+   "goldPosition": "n/a",
+   "tokenBudget": 34,
+   "items": [
+    {
+     "id": "a3-stale",
+     "source": "chat",
+     "text": "My bike lock combination is 4471.",
+     "tokenCount": 9,
+     "ageHours": 200
+    },
+    {
+     "id": "a3-gold",
+     "source": "chat",
+     "text": "I changed the bike lock combination to 8802.",
+     "tokenCount": 11,
+     "ageHours": 3
+    },
+    {
+     "id": "a3-f0",
+     "source": "chat",
+     "text": "The neighbour mentioned the lift will be serviced sometime soon.",
+     "tokenCount": 16,
+     "ageHours": 1
+    },
+    {
+     "id": "a3-f1",
+     "source": "health",
+     "text": "Longest run this month was 12.3 kilometres.",
+     "tokenCount": 11,
+     "ageHours": 2
+    },
+    {
+     "id": "a3-f2",
+     "source": "health",
+     "text": "Resting heart rate this morning measured 58 beats per minute.",
+     "tokenCount": 16,
+     "ageHours": 90
+    }
+   ]
+  },
+  {
+   "id": "p4b-a05",
+   "kind": "supersession",
+   "query": "How much did the plumber quote?",
+   "answerSpans": [
+    "310 euros"
+   ],
+   "goldItemId": "a4-gold",
+   "goldSource": "chat",
+   "goldAge": "recent",
+   "goldPosition": "n/a",
+   "tokenBudget": 35,
+   "items": [
+    {
+     "id": "a4-stale",
+     "source": "chat",
+     "text": "The plumber quoted 240 euros for replacing the kitchen tap.",
+     "tokenCount": 15,
+     "ageHours": 200
+    },
+    {
+     "id": "a4-gold",
+     "source": "chat",
+     "text": "The plumber revised the quote to 310 euros after seeing the pipes.",
+     "tokenCount": 17,
+     "ageHours": 3
+    },
+    {
+     "id": "a4-f0",
+     "source": "calendar",
+     "text": "Yoga class on Tuesday evening at the community centre.",
+     "tokenCount": 14,
+     "ageHours": 1
+    },
+    {
+     "id": "a4-f1",
+     "source": "calendar",
+     "text": "Book club meets at the library on the first Friday.",
+     "tokenCount": 13,
+     "ageHours": 2
+    },
+    {
+     "id": "a4-f2",
+     "source": "health",
+     "text": "Steps yesterday totalled 11420 and the weekly average is 8600.",
+     "tokenCount": 16,
+     "ageHours": 90
+    }
+   ]
+  },
+  {
+   "id": "p4b-a06",
+   "kind": "supersession",
+   "query": "Where did I park the car?",
+   "answerSpans": [
+    "level 5"
+   ],
+   "goldItemId": "a5-gold",
+   "goldSource": "chat",
+   "goldAge": "recent",
+   "goldPosition": "n/a",
+   "tokenBudget": 38,
+   "items": [
+    {
+     "id": "a5-stale",
+     "source": "chat",
+     "text": "I parked the car on level 3 in the blue section.",
+     "tokenCount": 12,
+     "ageHours": 200
+    },
+    {
+     "id": "a5-gold",
+     "source": "chat",
+     "text": "I moved the car to level 5 because level 3 was closing.",
+     "tokenCount": 14,
+     "ageHours": 3
+    },
+    {
+     "id": "a5-f0",
+     "source": "document",
+     "text": "Waste is separated into general, cardboard, plastic film and hazardous streams.",
+     "tokenCount": 20,
+     "ageHours": 1
+    },
+    {
+     "id": "a5-f1",
+     "source": "health",
+     "text": "Resting heart rate this morning measured 58 beats per minute.",
+     "tokenCount": 16,
+     "ageHours": 2
+    },
+    {
+     "id": "a5-f2",
+     "source": "chat",
+     "text": "I should remember to water the plants before the weekend.",
+     "tokenCount": 15,
+     "ageHours": 90
+    }
+   ]
+  },
+  {
+   "id": "p4b-a07",
+   "kind": "supersession",
+   "query": "What is the guest wifi password?",
+   "answerSpans": [
+    "Qm71Vt8x"
+   ],
+   "goldItemId": "a6-gold",
+   "goldSource": "document",
+   "goldAge": "recent",
+   "goldPosition": "n/a",
+   "tokenBudget": 34,
+   "items": [
+    {
+     "id": "a6-stale",
+     "source": "document",
+     "text": "The guest wifi password is Hxk29Lm4.",
+     "tokenCount": 9,
+     "ageHours": 200
+    },
+    {
+     "id": "a6-gold",
+     "source": "document",
+     "text": "The guest wifi password was rotated to Qm71Vt8x.",
+     "tokenCount": 12,
+     "ageHours": 3
+    },
+    {
+     "id": "a6-f0",
+     "source": "health",
+     "text": "Longest run this month was 12.3 kilometres.",
+     "tokenCount": 11,
+     "ageHours": 1
+    },
+    {
+     "id": "a6-f1",
+     "source": "health",
+     "text": "Steps yesterday totalled 11420 and the weekly average is 8600.",
+     "tokenCount": 16,
+     "ageHours": 2
+    },
+    {
+     "id": "a6-f2",
+     "source": "chat",
+     "text": "The neighbour mentioned the lift will be serviced sometime soon.",
+     "tokenCount": 16,
+     "ageHours": 90
+    }
+   ]
+  },
+  {
+   "id": "p4b-a08",
+   "kind": "supersession",
+   "query": "When is my dentist appointment?",
+   "answerSpans": [
+    "Friday at 08:30"
+   ],
+   "goldItemId": "a7-gold",
+   "goldSource": "calendar",
+   "goldAge": "recent",
+   "goldPosition": "n/a",
+   "tokenBudget": 32,
+   "items": [
+    {
+     "id": "a7-stale",
+     "source": "calendar",
+     "text": "Dentist appointment with Dr Krasniqi on Thursday at 09:15.",
+     "tokenCount": 15,
+     "ageHours": 200
+    },
+    {
+     "id": "a7-gold",
+     "source": "calendar",
+     "text": "Dentist appointment moved to Friday at 08:30.",
+     "tokenCount": 12,
+     "ageHours": 3
+    },
+    {
+     "id": "a7-f0",
+     "source": "calendar",
+     "text": "Book club meets at the library on the first Friday.",
+     "tokenCount": 13,
+     "ageHours": 1
+    },
+    {
+     "id": "a7-f1",
+     "source": "chat",
+     "text": "I should remember to water the plants before the weekend.",
+     "tokenCount": 15,
+     "ageHours": 2
+    },
+    {
+     "id": "a7-f2",
+     "source": "calendar",
+     "text": "Yoga class on Tuesday evening at the community centre.",
+     "tokenCount": 14,
+     "ageHours": 90
+    }
+   ]
+  },
+  {
+   "id": "p4b-b01",
+   "kind": "authority",
+   "query": "What is the daily meal allowance for domestic travel?",
+   "answerSpans": [
+    "42 euros"
+   ],
+   "goldItemId": "b0-gold",
+   "goldSource": "document",
+   "goldAge": "medium",
+   "goldPosition": "n/a",
+   "tokenBudget": 35,
+   "items": [
+    {
+     "id": "b0-wrong",
+     "source": "chat",
+     "text": "I think the meal allowance for domestic travel is around 30 euros.",
+     "tokenCount": 17,
+     "ageHours": 30
+    },
+    {
+     "id": "b0-gold",
+     "source": "document",
+     "text": "The daily meal allowance is 42 euros for domestic travel.",
+     "tokenCount": 15,
+     "ageHours": 30
+    },
+    {
+     "id": "b0-f0",
+     "source": "health",
+     "text": "Steps yesterday totalled 11420 and the weekly average is 8600.",
+     "tokenCount": 16,
+     "ageHours": 1
+    },
+    {
+     "id": "b0-f1",
+     "source": "calendar",
+     "text": "Yoga class on Tuesday evening at the community centre.",
+     "tokenCount": 14,
+     "ageHours": 8
+    },
+    {
+     "id": "b0-f2",
+     "source": "health",
+     "text": "Longest run this month was 12.3 kilometres.",
+     "tokenCount": 11,
+     "ageHours": 150
+    }
+   ]
+  },
+  {
+   "id": "p4b-b02",
+   "kind": "authority",
+   "query": "How long must a company password be?",
+   "answerSpans": [
+    "fourteen characters"
+   ],
+   "goldItemId": "b1-gold",
+   "goldSource": "document",
+   "goldAge": "medium",
+   "goldPosition": "n/a",
+   "tokenBudget": 37,
+   "items": [
+    {
+     "id": "b1-wrong",
+     "source": "chat",
+     "text": "I believe passwords need about eight characters at work.",
+     "tokenCount": 14,
+     "ageHours": 30
+    },
+    {
+     "id": "b1-gold",
+     "source": "document",
+     "text": "Company passwords must be at least fourteen characters long.",
+     "tokenCount": 15,
+     "ageHours": 30
+    },
+    {
+     "id": "b1-f0",
+     "source": "chat",
+     "text": "I should remember to water the plants before the weekend.",
+     "tokenCount": 15,
+     "ageHours": 1
+    },
+    {
+     "id": "b1-f1",
+     "source": "document",
+     "text": "Waste is separated into general, cardboard, plastic film and hazardous streams.",
+     "tokenCount": 20,
+     "ageHours": 8
+    },
+    {
+     "id": "b1-f2",
+     "source": "calendar",
+     "text": "Book club meets at the library on the first Friday.",
+     "tokenCount": 13,
+     "ageHours": 150
+    }
+   ]
+  },
+  {
+   "id": "p4b-b03",
+   "kind": "authority",
+   "query": "How many days of annual leave do I get?",
+   "answerSpans": [
+    "24 days"
+   ],
+   "goldItemId": "b2-gold",
+   "goldSource": "document",
+   "goldAge": "medium",
+   "goldPosition": "n/a",
+   "tokenBudget": 35,
+   "items": [
+    {
+     "id": "b2-wrong",
+     "source": "chat",
+     "text": "Someone said we get around 20 days of annual leave.",
+     "tokenCount": 13,
+     "ageHours": 30
+    },
+    {
+     "id": "b2-gold",
+     "source": "document",
+     "text": "Full-time employees accrue 24 days of paid annual leave per year.",
+     "tokenCount": 17,
+     "ageHours": 30
+    },
+    {
+     "id": "b2-f0",
+     "source": "chat",
+     "text": "The neighbour mentioned the lift will be serviced sometime soon.",
+     "tokenCount": 16,
+     "ageHours": 1
+    },
+    {
+     "id": "b2-f1",
+     "source": "health",
+     "text": "Longest run this month was 12.3 kilometres.",
+     "tokenCount": 11,
+     "ageHours": 8
+    },
+    {
+     "id": "b2-f2",
+     "source": "health",
+     "text": "Resting heart rate this morning measured 58 beats per minute.",
+     "tokenCount": 16,
+     "ageHours": 150
+    }
+   ]
+  },
+  {
+   "id": "p4b-b04",
+   "kind": "authority",
+   "query": "What is the forklift speed limit indoors?",
+   "answerSpans": [
+    "8 kilometres per hour"
+   ],
+   "goldItemId": "b3-gold",
+   "goldSource": "document",
+   "goldAge": "medium",
+   "goldPosition": "n/a",
+   "tokenBudget": 42,
+   "items": [
+    {
+     "id": "b3-wrong",
+     "source": "chat",
+     "text": "I heard the forklift limit inside is maybe 15 kilometres per hour.",
+     "tokenCount": 17,
+     "ageHours": 30
+    },
+    {
+     "id": "b3-gold",
+     "source": "document",
+     "text": "The maximum permitted forklift travel speed inside the building is 8 kilometres per hour.",
+     "tokenCount": 23,
+     "ageHours": 30
+    },
+    {
+     "id": "b3-f0",
+     "source": "calendar",
+     "text": "Yoga class on Tuesday evening at the community centre.",
+     "tokenCount": 14,
+     "ageHours": 1
+    },
+    {
+     "id": "b3-f1",
+     "source": "calendar",
+     "text": "Book club meets at the library on the first Friday.",
+     "tokenCount": 13,
+     "ageHours": 8
+    },
+    {
+     "id": "b3-f2",
+     "source": "health",
+     "text": "Steps yesterday totalled 11420 and the weekly average is 8600.",
+     "tokenCount": 16,
+     "ageHours": 150
+    }
+   ]
+  },
+  {
+   "id": "p4b-b05",
+   "kind": "authority",
+   "query": "How long do I have to submit an expense claim?",
+   "answerSpans": [
+    "thirty days"
+   ],
+   "goldItemId": "b4-gold",
+   "goldSource": "document",
+   "goldAge": "medium",
+   "goldPosition": "n/a",
+   "tokenBudget": 40,
+   "items": [
+    {
+     "id": "b4-wrong",
+     "source": "chat",
+     "text": "I assume expense claims are due within a couple of weeks.",
+     "tokenCount": 15,
+     "ageHours": 30
+    },
+    {
+     "id": "b4-gold",
+     "source": "document",
+     "text": "Expense claims must be submitted within thirty days of the expenditure.",
+     "tokenCount": 18,
+     "ageHours": 30
+    },
+    {
+     "id": "b4-f0",
+     "source": "document",
+     "text": "Waste is separated into general, cardboard, plastic film and hazardous streams.",
+     "tokenCount": 20,
+     "ageHours": 1
+    },
+    {
+     "id": "b4-f1",
+     "source": "health",
+     "text": "Resting heart rate this morning measured 58 beats per minute.",
+     "tokenCount": 16,
+     "ageHours": 8
+    },
+    {
+     "id": "b4-f2",
+     "source": "chat",
+     "text": "I should remember to water the plants before the weekend.",
+     "tokenCount": 15,
+     "ageHours": 150
+    }
+   ]
+  },
+  {
+   "id": "p4b-b06",
+   "kind": "authority",
+   "query": "At what temperature are frozen goods carried?",
+   "answerSpans": [
+    "minus 18 degrees Celsius"
+   ],
+   "goldItemId": "b5-gold",
+   "goldSource": "document",
+   "goldAge": "medium",
+   "goldPosition": "n/a",
+   "tokenBudget": 34,
+   "items": [
+    {
+     "id": "b5-wrong",
+     "source": "chat",
+     "text": "Frozen goods are kept somewhere around minus 10 degrees I think.",
+     "tokenCount": 16,
+     "ageHours": 30
+    },
+    {
+     "id": "b5-gold",
+     "source": "document",
+     "text": "Frozen goods are carried at minus 18 degrees Celsius or below.",
+     "tokenCount": 16,
+     "ageHours": 30
+    },
+    {
+     "id": "b5-f0",
+     "source": "health",
+     "text": "Longest run this month was 12.3 kilometres.",
+     "tokenCount": 11,
+     "ageHours": 1
+    },
+    {
+     "id": "b5-f1",
+     "source": "health",
+     "text": "Steps yesterday totalled 11420 and the weekly average is 8600.",
+     "tokenCount": 16,
+     "ageHours": 8
+    },
+    {
+     "id": "b5-f2",
+     "source": "chat",
+     "text": "The neighbour mentioned the lift will be serviced sometime soon.",
+     "tokenCount": 16,
+     "ageHours": 150
+    }
+   ]
+  },
+  {
+   "id": "p4b-b07",
+   "kind": "authority",
+   "query": "What is the mileage reimbursement rate?",
+   "answerSpans": [
+    "0.38 euros per kilometre"
+   ],
+   "goldItemId": "b6-gold",
+   "goldSource": "document",
+   "goldAge": "medium",
+   "goldPosition": "n/a",
+   "tokenBudget": 37,
+   "items": [
+    {
+     "id": "b6-wrong",
+     "source": "chat",
+     "text": "Mileage is reimbursed at roughly 0.25 euros per kilometre I believe.",
+     "tokenCount": 17,
+     "ageHours": 30
+    },
+    {
+     "id": "b6-gold",
+     "source": "document",
+     "text": "Mileage for a private vehicle is reimbursed at 0.38 euros per kilometre.",
+     "tokenCount": 18,
+     "ageHours": 30
+    },
+    {
+     "id": "b6-f0",
+     "source": "calendar",
+     "text": "Book club meets at the library on the first Friday.",
+     "tokenCount": 13,
+     "ageHours": 1
+    },
+    {
+     "id": "b6-f1",
+     "source": "chat",
+     "text": "I should remember to water the plants before the weekend.",
+     "tokenCount": 15,
+     "ageHours": 8
+    },
+    {
+     "id": "b6-f2",
+     "source": "calendar",
+     "text": "Yoga class on Tuesday evening at the community centre.",
+     "tokenCount": 14,
+     "ageHours": 150
+    }
+   ]
+  },
+  {
+   "id": "p4b-b08",
+   "kind": "authority",
+   "query": "What is the recovery time objective?",
+   "answerSpans": [
+    "four hours"
+   ],
+   "goldItemId": "b7-gold",
+   "goldSource": "document",
+   "goldAge": "medium",
+   "goldPosition": "n/a",
+   "tokenBudget": 42,
+   "items": [
+    {
+     "id": "b7-wrong",
+     "source": "chat",
+     "text": "I think the recovery target is about a day.",
+     "tokenCount": 11,
+     "ageHours": 30
+    },
+    {
+     "id": "b7-gold",
+     "source": "document",
+     "text": "The recovery time objective for the transport management system is four hours.",
+     "tokenCount": 20,
+     "ageHours": 30
+    },
+    {
+     "id": "b7-f0",
+     "source": "health",
+     "text": "Resting heart rate this morning measured 58 beats per minute.",
+     "tokenCount": 16,
+     "ageHours": 1
+    },
+    {
+     "id": "b7-f1",
+     "source": "chat",
+     "text": "The neighbour mentioned the lift will be serviced sometime soon.",
+     "tokenCount": 16,
+     "ageHours": 8
+    },
+    {
+     "id": "b7-f2",
+     "source": "document",
+     "text": "Waste is separated into general, cardboard, plastic film and hazardous streams.",
+     "tokenCount": 20,
+     "ageHours": 150
+    }
+   ]
+  },
+  {
+   "id": "p4b-c01",
+   "kind": "old_correct",
+   "query": "What is my landlord's name?",
+   "answerSpans": [
+    "Ferizi"
+   ],
+   "goldItemId": "c0-gold",
+   "goldSource": "chat",
+   "goldAge": "old",
+   "goldPosition": "n/a",
+   "tokenBudget": 35,
+   "items": [
+    {
+     "id": "c0-gold",
+     "source": "chat",
+     "text": "My landlord's name is Mr Ferizi and he prefers calls after 18:00.",
+     "tokenCount": 17,
+     "ageHours": 400
+    },
+    {
+     "id": "c0-f0",
+     "source": "health",
+     "text": "Resting heart rate this morning measured 58 beats per minute.",
+     "tokenCount": 16,
+     "ageHours": 1
+    },
+    {
+     "id": "c0-f1",
+     "source": "health",
+     "text": "Steps yesterday totalled 11420 and the weekly average is 8600.",
+     "tokenCount": 16,
+     "ageHours": 4
+    },
+    {
+     "id": "c0-f2",
+     "source": "chat",
+     "text": "I should remember to water the plants before the weekend.",
+     "tokenCount": 15,
+     "ageHours": 7
+    },
+    {
+     "id": "c0-f3",
+     "source": "chat",
+     "text": "The neighbour mentioned the lift will be serviced sometime soon.",
+     "tokenCount": 16,
+     "ageHours": 10
+    }
+   ]
+  },
+  {
+   "id": "p4b-c02",
+   "kind": "old_correct",
+   "query": "What was my weight on Monday?",
+   "answerSpans": [
+    "74.6 kilograms"
+   ],
+   "goldItemId": "c1-gold",
+   "goldSource": "health",
+   "goldAge": "old",
+   "goldPosition": "n/a",
+   "tokenBudget": 34,
+   "items": [
+    {
+     "id": "c1-gold",
+     "source": "health",
+     "text": "Weight recorded on Monday was 74.6 kilograms.",
+     "tokenCount": 12,
+     "ageHours": 400
+    },
+    {
+     "id": "c1-f0",
+     "source": "health",
+     "text": "Steps yesterday totalled 11420 and the weekly average is 8600.",
+     "tokenCount": 16,
+     "ageHours": 1
+    },
+    {
+     "id": "c1-f1",
+     "source": "chat",
+     "text": "I should remember to water the plants before the weekend.",
+     "tokenCount": 15,
+     "ageHours": 4
+    },
+    {
+     "id": "c1-f2",
+     "source": "chat",
+     "text": "The neighbour mentioned the lift will be serviced sometime soon.",
+     "tokenCount": 16,
+     "ageHours": 7
+    },
+    {
+     "id": "c1-f3",
+     "source": "calendar",
+     "text": "Yoga class on Tuesday evening at the community centre.",
+     "tokenCount": 14,
+     "ageHours": 10
+    }
+   ]
+  },
+  {
+   "id": "p4b-c03",
+   "kind": "old_correct",
+   "query": "Where is the car service booked?",
+   "answerSpans": [
+    "Auto Dardania"
+   ],
+   "goldItemId": "c2-gold",
+   "goldSource": "calendar",
+   "goldAge": "old",
+   "goldPosition": "n/a",
+   "tokenBudget": 38,
+   "items": [
+    {
+     "id": "c2-gold",
+     "source": "calendar",
+     "text": "Car service booked at Auto Dardania for the 14th at 08:00.",
+     "tokenCount": 15,
+     "ageHours": 400
+    },
+    {
+     "id": "c2-f0",
+     "source": "chat",
+     "text": "I should remember to water the plants before the weekend.",
+     "tokenCount": 15,
+     "ageHours": 1
+    },
+    {
+     "id": "c2-f1",
+     "source": "chat",
+     "text": "The neighbour mentioned the lift will be serviced sometime soon.",
+     "tokenCount": 16,
+     "ageHours": 4
+    },
+    {
+     "id": "c2-f2",
+     "source": "calendar",
+     "text": "Yoga class on Tuesday evening at the community centre.",
+     "tokenCount": 14,
+     "ageHours": 7
+    },
+    {
+     "id": "c2-f3",
+     "source": "document",
+     "text": "Waste is separated into general, cardboard, plastic film and hazardous streams.",
+     "tokenCount": 20,
+     "ageHours": 10
+    }
+   ]
+  },
+  {
+   "id": "p4b-c04",
+   "kind": "old_correct",
+   "query": "What was my blood pressure reading?",
+   "answerSpans": [
+    "118 over 76"
+   ],
+   "goldItemId": "c3-gold",
+   "goldSource": "health",
+   "goldAge": "old",
+   "goldPosition": "n/a",
+   "tokenBudget": 38,
+   "items": [
+    {
+     "id": "c3-gold",
+     "source": "health",
+     "text": "Blood pressure reading was 118 over 76.",
+     "tokenCount": 10,
+     "ageHours": 400
+    },
+    {
+     "id": "c3-f0",
+     "source": "chat",
+     "text": "The neighbour mentioned the lift will be serviced sometime soon.",
+     "tokenCount": 16,
+     "ageHours": 1
+    },
+    {
+     "id": "c3-f1",
+     "source": "calendar",
+     "text": "Yoga class on Tuesday evening at the community centre.",
+     "tokenCount": 14,
+     "ageHours": 4
+    },
+    {
+     "id": "c3-f2",
+     "source": "document",
+     "text": "Waste is separated into general, cardboard, plastic film and hazardous streams.",
+     "tokenCount": 20,
+     "ageHours": 7
+    },
+    {
+     "id": "c3-f3",
+     "source": "health",
+     "text": "Longest run this month was 12.3 kilometres.",
+     "tokenCount": 11,
+     "ageHours": 10
+    }
+   ]
+  },
+  {
+   "id": "p4b-c05",
+   "kind": "old_correct",
+   "query": "Which phone plan did I switch to?",
+   "answerSpans": [
+    "20 gigabyte"
+   ],
+   "goldItemId": "c4-gold",
+   "goldSource": "chat",
+   "goldAge": "old",
+   "goldPosition": "n/a",
+   "tokenBudget": 36,
+   "items": [
+    {
+     "id": "c4-gold",
+     "source": "chat",
+     "text": "I switched my phone plan to the 20 gigabyte tariff.",
+     "tokenCount": 13,
+     "ageHours": 400
+    },
+    {
+     "id": "c4-f0",
+     "source": "calendar",
+     "text": "Yoga class on Tuesday evening at the community centre.",
+     "tokenCount": 14,
+     "ageHours": 1
+    },
+    {
+     "id": "c4-f1",
+     "source": "document",
+     "text": "Waste is separated into general, cardboard, plastic film and hazardous streams.",
+     "tokenCount": 20,
+     "ageHours": 4
+    },
+    {
+     "id": "c4-f2",
+     "source": "health",
+     "text": "Longest run this month was 12.3 kilometres.",
+     "tokenCount": 11,
+     "ageHours": 7
+    },
+    {
+     "id": "c4-f3",
+     "source": "calendar",
+     "text": "Book club meets at the library on the first Friday.",
+     "tokenCount": 13,
+     "ageHours": 10
+    }
+   ]
+  },
+  {
+   "id": "p4b-c06",
+   "kind": "old_correct",
+   "query": "What is the primary assembly point?",
+   "answerSpans": [
+    "north car park"
+   ],
+   "goldItemId": "c5-gold",
+   "goldSource": "document",
+   "goldAge": "old",
+   "goldPosition": "n/a",
+   "tokenBudget": 38,
+   "items": [
+    {
+     "id": "c5-gold",
+     "source": "document",
+     "text": "The primary assembly point is the north car park.",
+     "tokenCount": 13,
+     "ageHours": 400
+    },
+    {
+     "id": "c5-f0",
+     "source": "document",
+     "text": "Waste is separated into general, cardboard, plastic film and hazardous streams.",
+     "tokenCount": 20,
+     "ageHours": 1
+    },
+    {
+     "id": "c5-f1",
+     "source": "health",
+     "text": "Longest run this month was 12.3 kilometres.",
+     "tokenCount": 11,
+     "ageHours": 4
+    },
+    {
+     "id": "c5-f2",
+     "source": "calendar",
+     "text": "Book club meets at the library on the first Friday.",
+     "tokenCount": 13,
+     "ageHours": 7
+    },
+    {
+     "id": "c5-f3",
+     "source": "health",
+     "text": "Resting heart rate this morning measured 58 beats per minute.",
+     "tokenCount": 16,
+     "ageHours": 10
+    }
+   ]
+  },
+  {
+   "id": "p4b-c07",
+   "kind": "old_correct",
+   "query": "How often is the fire alarm tested?",
+   "answerSpans": [
+    "every Wednesday at 11:00"
+   ],
+   "goldItemId": "c6-gold",
+   "goldSource": "document",
+   "goldAge": "old",
+   "goldPosition": "n/a",
+   "tokenBudget": 34,
+   "items": [
+    {
+     "id": "c6-gold",
+     "source": "document",
+     "text": "The building fire alarm is tested every Wednesday at 11:00.",
+     "tokenCount": 15,
+     "ageHours": 400
+    },
+    {
+     "id": "c6-f0",
+     "source": "health",
+     "text": "Longest run this month was 12.3 kilometres.",
+     "tokenCount": 11,
+     "ageHours": 1
+    },
+    {
+     "id": "c6-f1",
+     "source": "calendar",
+     "text": "Book club meets at the library on the first Friday.",
+     "tokenCount": 13,
+     "ageHours": 4
+    },
+    {
+     "id": "c6-f2",
+     "source": "health",
+     "text": "Resting heart rate this morning measured 58 beats per minute.",
+     "tokenCount": 16,
+     "ageHours": 7
+    },
+    {
+     "id": "c6-f3",
+     "source": "health",
+     "text": "Steps yesterday totalled 11420 and the weekly average is 8600.",
+     "tokenCount": 16,
+     "ageHours": 10
+    }
+   ]
+  },
+  {
+   "id": "p4b-c08",
+   "kind": "old_correct",
+   "query": "When does my sister's flight land?",
+   "answerSpans": [
+    "22:40"
+   ],
+   "goldItemId": "c7-gold",
+   "goldSource": "chat",
+   "goldAge": "old",
+   "goldPosition": "n/a",
+   "tokenBudget": 35,
+   "items": [
+    {
+     "id": "c7-gold",
+     "source": "chat",
+     "text": "My sister's flight lands at 22:40 and she asked me to collect her.",
+     "tokenCount": 17,
+     "ageHours": 400
+    },
+    {
+     "id": "c7-f0",
+     "source": "calendar",
+     "text": "Book club meets at the library on the first Friday.",
+     "tokenCount": 13,
+     "ageHours": 1
+    },
+    {
+     "id": "c7-f1",
+     "source": "health",
+     "text": "Resting heart rate this morning measured 58 beats per minute.",
+     "tokenCount": 16,
+     "ageHours": 4
+    },
+    {
+     "id": "c7-f2",
+     "source": "health",
+     "text": "Steps yesterday totalled 11420 and the weekly average is 8600.",
+     "tokenCount": 16,
+     "ageHours": 7
+    },
+    {
+     "id": "c7-f3",
+     "source": "chat",
+     "text": "I should remember to water the plants before the weekend.",
+     "tokenCount": 15,
+     "ageHours": 10
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,1350 @@
+{
+ "note": "Balanced factorial scenarios for P4. Gold age and arrival position are rotated across sources so that no baseline strategy is systematically advantaged.",
+ "itemsPerScenario": 6,
+ "scenarios": [
+  {
+   "id": "p4-01",
+   "query": "What is the guest wifi password?",
+   "goldItemId": "d1-gold",
+   "goldSource": "document",
+   "goldAge": "recent",
+   "goldPosition": "early",
+   "answerSpans": [
+    "Hxk29Lm4"
+   ],
+   "tokenBudget": 50,
+   "items": [
+    {
+     "id": "d1-gold",
+     "source": "document",
+     "text": "The office wifi network for guests is called Northwind-Guest and the password is Hxk29Lm4.",
+     "tokenCount": 23,
+     "ageHours": 2
+    },
+    {
+     "id": "d1-d0",
+     "source": "document",
+     "text": "Expense claims must be submitted within thirty days of the expenditure.",
+     "tokenCount": 18,
+     "ageHours": 1
+    },
+    {
+     "id": "d1-d1",
+     "source": "chat",
+     "text": "I told you earlier that my landlord's name is Mr Ferizi and he prefers calls after 18:00.",
+     "tokenCount": 23,
+     "ageHours": 6
+    },
+    {
+     "id": "d1-d2",
+     "source": "chat",
+     "text": "I decided to switch my phone plan to the 20 gigabyte tariff.",
+     "tokenCount": 15,
+     "ageHours": 24
+    },
+    {
+     "id": "d1-d3",
+     "source": "calendar",
+     "text": "Thesis supervision meeting moved to Monday at 11:30.",
+     "tokenCount": 13,
+     "ageHours": 120
+    },
+    {
+     "id": "d1-d4",
+     "source": "health",
+     "text": "Weight recorded on Monday was 74.6 kilograms.",
+     "tokenCount": 12,
+     "ageHours": 336
+    }
+   ]
+  },
+  {
+   "id": "p4-02",
+   "query": "How long do I have to submit an expense claim?",
+   "goldItemId": "d2-gold",
+   "goldSource": "document",
+   "goldAge": "medium",
+   "goldPosition": "early",
+   "answerSpans": [
+    "thirty days"
+   ],
+   "tokenBudget": 44,
+   "items": [
+    {
+     "id": "d2-gold",
+     "source": "document",
+     "text": "Expense claims must be submitted within thirty days of the expenditure.",
+     "tokenCount": 18,
+     "ageHours": 72
+    },
+    {
+     "id": "d2-d0",
+     "source": "chat",
+     "text": "I parked the car on level 3 in the blue section near the lift.",
+     "tokenCount": 16,
+     "ageHours": 1
+    },
+    {
+     "id": "d2-d1",
+     "source": "calendar",
+     "text": "Team retrospective scheduled in room Basalt-3 from 14:00 to 15:00.",
+     "tokenCount": 17,
+     "ageHours": 6
+    },
+    {
+     "id": "d2-d2",
+     "source": "health",
+     "text": "Steps yesterday totalled 11420 and the weekly average is 8600.",
+     "tokenCount": 16,
+     "ageHours": 24
+    },
+    {
+     "id": "d2-d3",
+     "source": "health",
+     "text": "Blood pressure reading was 118 over 76.",
+     "tokenCount": 10,
+     "ageHours": 120
+    },
+    {
+     "id": "d2-d4",
+     "source": "document",
+     "text": "The recovery time objective for the transport management system is four hours.",
+     "tokenCount": 20,
+     "ageHours": 336
+    }
+   ]
+  },
+  {
+   "id": "p4-03",
+   "query": "What is the forklift speed limit indoors?",
+   "goldItemId": "d3-gold",
+   "goldSource": "document",
+   "goldAge": "old",
+   "goldPosition": "early",
+   "answerSpans": [
+    "8 kilometres per hour"
+   ],
+   "tokenBudget": 46,
+   "items": [
+    {
+     "id": "d3-gold",
+     "source": "document",
+     "text": "The warehouse forklift speed limit inside the building is 8 kilometres per hour.",
+     "tokenCount": 20,
+     "ageHours": 504
+    },
+    {
+     "id": "d3-d0",
+     "source": "calendar",
+     "text": "Parents visiting on the weekend of the 22nd, staying two nights.",
+     "tokenCount": 16,
+     "ageHours": 1
+    },
+    {
+     "id": "d3-d1",
+     "source": "health",
+     "text": "Resting heart rate this morning measured 58 beats per minute.",
+     "tokenCount": 16,
+     "ageHours": 6
+    },
+    {
+     "id": "d3-d2",
+     "source": "document",
+     "text": "Expense claims must be submitted within thirty days of the expenditure.",
+     "tokenCount": 18,
+     "ageHours": 24
+    },
+    {
+     "id": "d3-d3",
+     "source": "chat",
+     "text": "Remember that my bike lock combination is 4471.",
+     "tokenCount": 12,
+     "ageHours": 120
+    },
+    {
+     "id": "d3-d4",
+     "source": "calendar",
+     "text": "Dentist appointment with Dr Krasniqi on Thursday at 09:15 at the clinic on Rruga B.",
+     "tokenCount": 21,
+     "ageHours": 336
+    }
+   ]
+  },
+  {
+   "id": "p4-04",
+   "query": "How long must my password be?",
+   "goldItemId": "d4-gold",
+   "goldSource": "document",
+   "goldAge": "recent",
+   "goldPosition": "middle",
+   "answerSpans": [
+    "fourteen characters"
+   ],
+   "tokenBudget": 38,
+   "items": [
+    {
+     "id": "d4-d0",
+     "source": "health",
+     "text": "Longest run this month was 12.3 kilometres.",
+     "tokenCount": 11,
+     "ageHours": 1
+    },
+    {
+     "id": "d4-d1",
+     "source": "document",
+     "text": "Frozen goods are carried at minus 18 degrees Celsius or below.",
+     "tokenCount": 16,
+     "ageHours": 6
+    },
+    {
+     "id": "d4-gold",
+     "source": "document",
+     "text": "Company passwords must be at least fourteen characters long.",
+     "tokenCount": 15,
+     "ageHours": 2
+    },
+    {
+     "id": "d4-d2",
+     "source": "chat",
+     "text": "My sister's flight lands at 22:40 and she asked me to collect her.",
+     "tokenCount": 17,
+     "ageHours": 24
+    },
+    {
+     "id": "d4-d3",
+     "source": "calendar",
+     "text": "Flight to Vienna departs at 06:25 from terminal 1.",
+     "tokenCount": 13,
+     "ageHours": 120
+    },
+    {
+     "id": "d4-d4",
+     "source": "health",
+     "text": "Sleep last night was 6 hours and 12 minutes.",
+     "tokenCount": 11,
+     "ageHours": 336
+    }
+   ]
+  },
+  {
+   "id": "p4-05",
+   "query": "At what temperature are frozen goods carried?",
+   "goldItemId": "d5-gold",
+   "goldSource": "document",
+   "goldAge": "medium",
+   "goldPosition": "middle",
+   "answerSpans": [
+    "minus 18 degrees Celsius"
+   ],
+   "tokenBudget": 50,
+   "items": [
+    {
+     "id": "d5-d0",
+     "source": "chat",
+     "text": "I told you earlier that my landlord's name is Mr Ferizi and he prefers calls after 18:00.",
+     "tokenCount": 23,
+     "ageHours": 1
+    },
+    {
+     "id": "d5-d1",
+     "source": "chat",
+     "text": "I decided to switch my phone plan to the 20 gigabyte tariff.",
+     "tokenCount": 15,
+     "ageHours": 6
+    },
+    {
+     "id": "d5-gold",
+     "source": "document",
+     "text": "Frozen goods are carried at minus 18 degrees Celsius or below.",
+     "tokenCount": 16,
+     "ageHours": 72
+    },
+    {
+     "id": "d5-d2",
+     "source": "calendar",
+     "text": "Thesis supervision meeting moved to Monday at 11:30.",
+     "tokenCount": 13,
+     "ageHours": 24
+    },
+    {
+     "id": "d5-d3",
+     "source": "health",
+     "text": "Weight recorded on Monday was 74.6 kilograms.",
+     "tokenCount": 12,
+     "ageHours": 120
+    },
+    {
+     "id": "d5-d4",
+     "source": "document",
+     "text": "The warehouse forklift speed limit inside the building is 8 kilometres per hour.",
+     "tokenCount": 20,
+     "ageHours": 336
+    }
+   ]
+  },
+  {
+   "id": "p4-06",
+   "query": "What is the recovery time objective?",
+   "goldItemId": "d6-gold",
+   "goldSource": "document",
+   "goldAge": "old",
+   "goldPosition": "middle",
+   "answerSpans": [
+    "four hours"
+   ],
+   "tokenBudget": 44,
+   "items": [
+    {
+     "id": "d6-d0",
+     "source": "calendar",
+     "text": "Team retrospective scheduled in room Basalt-3 from 14:00 to 15:00.",
+     "tokenCount": 17,
+     "ageHours": 1
+    },
+    {
+     "id": "d6-d1",
+     "source": "health",
+     "text": "Steps yesterday totalled 11420 and the weekly average is 8600.",
+     "tokenCount": 16,
+     "ageHours": 6
+    },
+    {
+     "id": "d6-gold",
+     "source": "document",
+     "text": "The recovery time objective for the transport management system is four hours.",
+     "tokenCount": 20,
+     "ageHours": 504
+    },
+    {
+     "id": "d6-d2",
+     "source": "health",
+     "text": "Blood pressure reading was 118 over 76.",
+     "tokenCount": 10,
+     "ageHours": 24
+    },
+    {
+     "id": "d6-d3",
+     "source": "document",
+     "text": "Frozen goods are carried at minus 18 degrees Celsius or below.",
+     "tokenCount": 16,
+     "ageHours": 120
+    },
+    {
+     "id": "d6-d4",
+     "source": "chat",
+     "text": "The plumber quoted 240 euros for replacing the kitchen tap.",
+     "tokenCount": 15,
+     "ageHours": 336
+    }
+   ]
+  },
+  {
+   "id": "p4-07",
+   "query": "What is my landlord's name?",
+   "goldItemId": "c1-gold",
+   "goldSource": "chat",
+   "goldAge": "recent",
+   "goldPosition": "late",
+   "answerSpans": [
+    "Ferizi"
+   ],
+   "tokenBudget": 50,
+   "items": [
+    {
+     "id": "c1-d0",
+     "source": "health",
+     "text": "Resting heart rate this morning measured 58 beats per minute.",
+     "tokenCount": 16,
+     "ageHours": 1
+    },
+    {
+     "id": "c1-d1",
+     "source": "document",
+     "text": "Expense claims must be submitted within thirty days of the expenditure.",
+     "tokenCount": 18,
+     "ageHours": 6
+    },
+    {
+     "id": "c1-d2",
+     "source": "chat",
+     "text": "Remember that my bike lock combination is 4471.",
+     "tokenCount": 12,
+     "ageHours": 24
+    },
+    {
+     "id": "c1-d3",
+     "source": "calendar",
+     "text": "Dentist appointment with Dr Krasniqi on Thursday at 09:15 at the clinic on Rruga B.",
+     "tokenCount": 21,
+     "ageHours": 120
+    },
+    {
+     "id": "c1-d4",
+     "source": "calendar",
+     "text": "Car service booked at Auto Dardania for the 14th at 08:00.",
+     "tokenCount": 15,
+     "ageHours": 336
+    },
+    {
+     "id": "c1-gold",
+     "source": "chat",
+     "text": "I told you earlier that my landlord's name is Mr Ferizi and he prefers calls after 18:00.",
+     "tokenCount": 23,
+     "ageHours": 2
+    }
+   ]
+  },
+  {
+   "id": "p4-08",
+   "query": "What is my bike lock combination?",
+   "goldItemId": "c2-gold",
+   "goldSource": "chat",
+   "goldAge": "medium",
+   "goldPosition": "late",
+   "answerSpans": [
+    "4471"
+   ],
+   "tokenBudget": 50,
+   "items": [
+    {
+     "id": "c2-d0",
+     "source": "document",
+     "text": "Company passwords must be at least fourteen characters long.",
+     "tokenCount": 15,
+     "ageHours": 1
+    },
+    {
+     "id": "c2-d1",
+     "source": "chat",
+     "text": "My sister's flight lands at 22:40 and she asked me to collect her.",
+     "tokenCount": 17,
+     "ageHours": 6
+    },
+    {
+     "id": "c2-d2",
+     "source": "calendar",
+     "text": "Flight to Vienna departs at 06:25 from terminal 1.",
+     "tokenCount": 13,
+     "ageHours": 24
+    },
+    {
+     "id": "c2-d3",
+     "source": "health",
+     "text": "Sleep last night was 6 hours and 12 minutes.",
+     "tokenCount": 11,
+     "ageHours": 120
+    },
+    {
+     "id": "c2-d4",
+     "source": "document",
+     "text": "The office wifi network for guests is called Northwind-Guest and the password is Hxk29Lm4.",
+     "tokenCount": 23,
+     "ageHours": 336
+    },
+    {
+     "id": "c2-gold",
+     "source": "chat",
+     "text": "Remember that my bike lock combination is 4471.",
+     "tokenCount": 12,
+     "ageHours": 72
+    }
+   ]
+  },
+  {
+   "id": "p4-09",
+   "query": "Where did I park the car?",
+   "goldItemId": "c3-gold",
+   "goldSource": "chat",
+   "goldAge": "old",
+   "goldPosition": "late",
+   "answerSpans": [
+    "level 3"
+   ],
+   "tokenBudget": 44,
+   "items": [
+    {
+     "id": "c3-d0",
+     "source": "chat",
+     "text": "I decided to switch my phone plan to the 20 gigabyte tariff.",
+     "tokenCount": 15,
+     "ageHours": 1
+    },
+    {
+     "id": "c3-d1",
+     "source": "calendar",
+     "text": "Thesis supervision meeting moved to Monday at 11:30.",
+     "tokenCount": 13,
+     "ageHours": 6
+    },
+    {
+     "id": "c3-d2",
+     "source": "health",
+     "text": "Weight recorded on Monday was 74.6 kilograms.",
+     "tokenCount": 12,
+     "ageHours": 24
+    },
+    {
+     "id": "c3-d3",
+     "source": "document",
+     "text": "The warehouse forklift speed limit inside the building is 8 kilometres per hour.",
+     "tokenCount": 20,
+     "ageHours": 120
+    },
+    {
+     "id": "c3-d4",
+     "source": "chat",
+     "text": "Remember that my bike lock combination is 4471.",
+     "tokenCount": 12,
+     "ageHours": 336
+    },
+    {
+     "id": "c3-gold",
+     "source": "chat",
+     "text": "I parked the car on level 3 in the blue section near the lift.",
+     "tokenCount": 16,
+     "ageHours": 504
+    }
+   ]
+  },
+  {
+   "id": "p4-10",
+   "query": "When does my sister's flight land?",
+   "goldItemId": "c4-gold",
+   "goldSource": "chat",
+   "goldAge": "recent",
+   "goldPosition": "early",
+   "answerSpans": [
+    "22:40"
+   ],
+   "tokenBudget": 38,
+   "items": [
+    {
+     "id": "c4-gold",
+     "source": "chat",
+     "text": "My sister's flight lands at 22:40 and she asked me to collect her.",
+     "tokenCount": 17,
+     "ageHours": 2
+    },
+    {
+     "id": "c4-d0",
+     "source": "health",
+     "text": "Steps yesterday totalled 11420 and the weekly average is 8600.",
+     "tokenCount": 16,
+     "ageHours": 1
+    },
+    {
+     "id": "c4-d1",
+     "source": "health",
+     "text": "Blood pressure reading was 118 over 76.",
+     "tokenCount": 10,
+     "ageHours": 6
+    },
+    {
+     "id": "c4-d2",
+     "source": "document",
+     "text": "Frozen goods are carried at minus 18 degrees Celsius or below.",
+     "tokenCount": 16,
+     "ageHours": 24
+    },
+    {
+     "id": "c4-d3",
+     "source": "chat",
+     "text": "The plumber quoted 240 euros for replacing the kitchen tap.",
+     "tokenCount": 15,
+     "ageHours": 120
+    },
+    {
+     "id": "c4-d4",
+     "source": "calendar",
+     "text": "Parents visiting on the weekend of the 22nd, staying two nights.",
+     "tokenCount": 16,
+     "ageHours": 336
+    }
+   ]
+  },
+  {
+   "id": "p4-11",
+   "query": "How much did the plumber quote?",
+   "goldItemId": "c5-gold",
+   "goldSource": "chat",
+   "goldAge": "medium",
+   "goldPosition": "early",
+   "answerSpans": [
+    "240 euros"
+   ],
+   "tokenBudget": 50,
+   "items": [
+    {
+     "id": "c5-gold",
+     "source": "chat",
+     "text": "The plumber quoted 240 euros for replacing the kitchen tap.",
+     "tokenCount": 15,
+     "ageHours": 72
+    },
+    {
+     "id": "c5-d0",
+     "source": "document",
+     "text": "Expense claims must be submitted within thirty days of the expenditure.",
+     "tokenCount": 18,
+     "ageHours": 1
+    },
+    {
+     "id": "c5-d1",
+     "source": "chat",
+     "text": "I told you earlier that my landlord's name is Mr Ferizi and he prefers calls after 18:00.",
+     "tokenCount": 23,
+     "ageHours": 6
+    },
+    {
+     "id": "c5-d2",
+     "source": "calendar",
+     "text": "Dentist appointment with Dr Krasniqi on Thursday at 09:15 at the clinic on Rruga B.",
+     "tokenCount": 21,
+     "ageHours": 24
+    },
+    {
+     "id": "c5-d3",
+     "source": "calendar",
+     "text": "Car service booked at Auto Dardania for the 14th at 08:00.",
+     "tokenCount": 15,
+     "ageHours": 120
+    },
+    {
+     "id": "c5-d4",
+     "source": "health",
+     "text": "Longest run this month was 12.3 kilometres.",
+     "tokenCount": 11,
+     "ageHours": 336
+    }
+   ]
+  },
+  {
+   "id": "p4-12",
+   "query": "Which phone plan did I switch to?",
+   "goldItemId": "c6-gold",
+   "goldSource": "chat",
+   "goldAge": "old",
+   "goldPosition": "early",
+   "answerSpans": [
+    "20 gigabyte"
+   ],
+   "tokenBudget": 50,
+   "items": [
+    {
+     "id": "c6-gold",
+     "source": "chat",
+     "text": "I decided to switch my phone plan to the 20 gigabyte tariff.",
+     "tokenCount": 15,
+     "ageHours": 504
+    },
+    {
+     "id": "c6-d0",
+     "source": "chat",
+     "text": "I parked the car on level 3 in the blue section near the lift.",
+     "tokenCount": 16,
+     "ageHours": 1
+    },
+    {
+     "id": "c6-d1",
+     "source": "calendar",
+     "text": "Flight to Vienna departs at 06:25 from terminal 1.",
+     "tokenCount": 13,
+     "ageHours": 6
+    },
+    {
+     "id": "c6-d2",
+     "source": "health",
+     "text": "Sleep last night was 6 hours and 12 minutes.",
+     "tokenCount": 11,
+     "ageHours": 24
+    },
+    {
+     "id": "c6-d3",
+     "source": "document",
+     "text": "The office wifi network for guests is called Northwind-Guest and the password is Hxk29Lm4.",
+     "tokenCount": 23,
+     "ageHours": 120
+    },
+    {
+     "id": "c6-d4",
+     "source": "document",
+     "text": "The recovery time objective for the transport management system is four hours.",
+     "tokenCount": 20,
+     "ageHours": 336
+    }
+   ]
+  },
+  {
+   "id": "p4-13",
+   "query": "When is my dentist appointment?",
+   "goldItemId": "k1-gold",
+   "goldSource": "calendar",
+   "goldAge": "recent",
+   "goldPosition": "middle",
+   "answerSpans": [
+    "Thursday at 09:15"
+   ],
+   "tokenBudget": 46,
+   "items": [
+    {
+     "id": "k1-d0",
+     "source": "calendar",
+     "text": "Thesis supervision meeting moved to Monday at 11:30.",
+     "tokenCount": 13,
+     "ageHours": 1
+    },
+    {
+     "id": "k1-d1",
+     "source": "health",
+     "text": "Weight recorded on Monday was 74.6 kilograms.",
+     "tokenCount": 12,
+     "ageHours": 6
+    },
+    {
+     "id": "k1-gold",
+     "source": "calendar",
+     "text": "Dentist appointment with Dr Krasniqi on Thursday at 09:15 at the clinic on Rruga B.",
+     "tokenCount": 21,
+     "ageHours": 2
+    },
+    {
+     "id": "k1-d2",
+     "source": "document",
+     "text": "The warehouse forklift speed limit inside the building is 8 kilometres per hour.",
+     "tokenCount": 20,
+     "ageHours": 24
+    },
+    {
+     "id": "k1-d3",
+     "source": "chat",
+     "text": "Remember that my bike lock combination is 4471.",
+     "tokenCount": 12,
+     "ageHours": 120
+    },
+    {
+     "id": "k1-d4",
+     "source": "calendar",
+     "text": "Team retrospective scheduled in room Basalt-3 from 14:00 to 15:00.",
+     "tokenCount": 17,
+     "ageHours": 336
+    }
+   ]
+  },
+  {
+   "id": "p4-14",
+   "query": "Which room is the retrospective in?",
+   "goldItemId": "k2-gold",
+   "goldSource": "calendar",
+   "goldAge": "medium",
+   "goldPosition": "middle",
+   "answerSpans": [
+    "Basalt-3"
+   ],
+   "tokenBudget": 38,
+   "items": [
+    {
+     "id": "k2-d0",
+     "source": "health",
+     "text": "Blood pressure reading was 118 over 76.",
+     "tokenCount": 10,
+     "ageHours": 1
+    },
+    {
+     "id": "k2-d1",
+     "source": "document",
+     "text": "Frozen goods are carried at minus 18 degrees Celsius or below.",
+     "tokenCount": 16,
+     "ageHours": 6
+    },
+    {
+     "id": "k2-gold",
+     "source": "calendar",
+     "text": "Team retrospective scheduled in room Basalt-3 from 14:00 to 15:00.",
+     "tokenCount": 17,
+     "ageHours": 72
+    },
+    {
+     "id": "k2-d2",
+     "source": "chat",
+     "text": "My sister's flight lands at 22:40 and she asked me to collect her.",
+     "tokenCount": 17,
+     "ageHours": 24
+    },
+    {
+     "id": "k2-d3",
+     "source": "calendar",
+     "text": "Parents visiting on the weekend of the 22nd, staying two nights.",
+     "tokenCount": 16,
+     "ageHours": 120
+    },
+    {
+     "id": "k2-d4",
+     "source": "health",
+     "text": "Resting heart rate this morning measured 58 beats per minute.",
+     "tokenCount": 16,
+     "ageHours": 336
+    }
+   ]
+  },
+  {
+   "id": "p4-15",
+   "query": "What time does my flight to Vienna depart?",
+   "goldItemId": "k3-gold",
+   "goldSource": "calendar",
+   "goldAge": "old",
+   "goldPosition": "middle",
+   "answerSpans": [
+    "06:25"
+   ],
+   "tokenBudget": 50,
+   "items": [
+    {
+     "id": "k3-d0",
+     "source": "chat",
+     "text": "I told you earlier that my landlord's name is Mr Ferizi and he prefers calls after 18:00.",
+     "tokenCount": 23,
+     "ageHours": 1
+    },
+    {
+     "id": "k3-d1",
+     "source": "chat",
+     "text": "I decided to switch my phone plan to the 20 gigabyte tariff.",
+     "tokenCount": 15,
+     "ageHours": 6
+    },
+    {
+     "id": "k3-gold",
+     "source": "calendar",
+     "text": "Flight to Vienna departs at 06:25 from terminal 1.",
+     "tokenCount": 13,
+     "ageHours": 504
+    },
+    {
+     "id": "k3-d2",
+     "source": "calendar",
+     "text": "Car service booked at Auto Dardania for the 14th at 08:00.",
+     "tokenCount": 15,
+     "ageHours": 24
+    },
+    {
+     "id": "k3-d3",
+     "source": "health",
+     "text": "Longest run this month was 12.3 kilometres.",
+     "tokenCount": 11,
+     "ageHours": 120
+    },
+    {
+     "id": "k3-d4",
+     "source": "document",
+     "text": "Company passwords must be at least fourteen characters long.",
+     "tokenCount": 15,
+     "ageHours": 336
+    }
+   ]
+  },
+  {
+   "id": "p4-16",
+   "query": "When are my parents visiting?",
+   "goldItemId": "k4-gold",
+   "goldSource": "calendar",
+   "goldAge": "recent",
+   "goldPosition": "late",
+   "answerSpans": [
+    "weekend of the 22nd"
+   ],
+   "tokenBudget": 50,
+   "items": [
+    {
+     "id": "k4-d0",
+     "source": "calendar",
+     "text": "Team retrospective scheduled in room Basalt-3 from 14:00 to 15:00.",
+     "tokenCount": 17,
+     "ageHours": 1
+    },
+    {
+     "id": "k4-d1",
+     "source": "health",
+     "text": "Sleep last night was 6 hours and 12 minutes.",
+     "tokenCount": 11,
+     "ageHours": 6
+    },
+    {
+     "id": "k4-d2",
+     "source": "document",
+     "text": "The office wifi network for guests is called Northwind-Guest and the password is Hxk29Lm4.",
+     "tokenCount": 23,
+     "ageHours": 24
+    },
+    {
+     "id": "k4-d3",
+     "source": "document",
+     "text": "The recovery time objective for the transport management system is four hours.",
+     "tokenCount": 20,
+     "ageHours": 120
+    },
+    {
+     "id": "k4-d4",
+     "source": "chat",
+     "text": "The plumber quoted 240 euros for replacing the kitchen tap.",
+     "tokenCount": 15,
+     "ageHours": 336
+    },
+    {
+     "id": "k4-gold",
+     "source": "calendar",
+     "text": "Parents visiting on the weekend of the 22nd, staying two nights.",
+     "tokenCount": 16,
+     "ageHours": 2
+    }
+   ]
+  },
+  {
+   "id": "p4-17",
+   "query": "When is the thesis supervision meeting?",
+   "goldItemId": "k5-gold",
+   "goldSource": "calendar",
+   "goldAge": "medium",
+   "goldPosition": "late",
+   "answerSpans": [
+    "Monday at 11:30"
+   ],
+   "tokenBudget": 46,
+   "items": [
+    {
+     "id": "k5-d0",
+     "source": "health",
+     "text": "Weight recorded on Monday was 74.6 kilograms.",
+     "tokenCount": 12,
+     "ageHours": 1
+    },
+    {
+     "id": "k5-d1",
+     "source": "document",
+     "text": "The warehouse forklift speed limit inside the building is 8 kilometres per hour.",
+     "tokenCount": 20,
+     "ageHours": 6
+    },
+    {
+     "id": "k5-d2",
+     "source": "chat",
+     "text": "Remember that my bike lock combination is 4471.",
+     "tokenCount": 12,
+     "ageHours": 24
+    },
+    {
+     "id": "k5-d3",
+     "source": "calendar",
+     "text": "Dentist appointment with Dr Krasniqi on Thursday at 09:15 at the clinic on Rruga B.",
+     "tokenCount": 21,
+     "ageHours": 120
+    },
+    {
+     "id": "k5-d4",
+     "source": "health",
+     "text": "Steps yesterday totalled 11420 and the weekly average is 8600.",
+     "tokenCount": 16,
+     "ageHours": 336
+    },
+    {
+     "id": "k5-gold",
+     "source": "calendar",
+     "text": "Thesis supervision meeting moved to Monday at 11:30.",
+     "tokenCount": 13,
+     "ageHours": 72
+    }
+   ]
+  },
+  {
+   "id": "p4-18",
+   "query": "Where is the car service booked?",
+   "goldItemId": "k6-gold",
+   "goldSource": "calendar",
+   "goldAge": "old",
+   "goldPosition": "late",
+   "answerSpans": [
+    "Auto Dardania"
+   ],
+   "tokenBudget": 40,
+   "items": [
+    {
+     "id": "k6-d0",
+     "source": "document",
+     "text": "Frozen goods are carried at minus 18 degrees Celsius or below.",
+     "tokenCount": 16,
+     "ageHours": 1
+    },
+    {
+     "id": "k6-d1",
+     "source": "chat",
+     "text": "My sister's flight lands at 22:40 and she asked me to collect her.",
+     "tokenCount": 17,
+     "ageHours": 6
+    },
+    {
+     "id": "k6-d2",
+     "source": "calendar",
+     "text": "Flight to Vienna departs at 06:25 from terminal 1.",
+     "tokenCount": 13,
+     "ageHours": 24
+    },
+    {
+     "id": "k6-d3",
+     "source": "health",
+     "text": "Resting heart rate this morning measured 58 beats per minute.",
+     "tokenCount": 16,
+     "ageHours": 120
+    },
+    {
+     "id": "k6-d4",
+     "source": "document",
+     "text": "Expense claims must be submitted within thirty days of the expenditure.",
+     "tokenCount": 18,
+     "ageHours": 336
+    },
+    {
+     "id": "k6-gold",
+     "source": "calendar",
+     "text": "Car service booked at Auto Dardania for the 14th at 08:00.",
+     "tokenCount": 15,
+     "ageHours": 504
+    }
+   ]
+  },
+  {
+   "id": "p4-19",
+   "query": "How many steps did I take yesterday?",
+   "goldItemId": "h1-gold",
+   "goldSource": "health",
+   "goldAge": "recent",
+   "goldPosition": "early",
+   "answerSpans": [
+    "11420"
+   ],
+   "tokenBudget": 36,
+   "items": [
+    {
+     "id": "h1-gold",
+     "source": "health",
+     "text": "Steps yesterday totalled 11420 and the weekly average is 8600.",
+     "tokenCount": 16,
+     "ageHours": 2
+    },
+    {
+     "id": "h1-d0",
+     "source": "chat",
+     "text": "I decided to switch my phone plan to the 20 gigabyte tariff.",
+     "tokenCount": 15,
+     "ageHours": 1
+    },
+    {
+     "id": "h1-d1",
+     "source": "calendar",
+     "text": "Thesis supervision meeting moved to Monday at 11:30.",
+     "tokenCount": 13,
+     "ageHours": 6
+    },
+    {
+     "id": "h1-d2",
+     "source": "health",
+     "text": "Longest run this month was 12.3 kilometres.",
+     "tokenCount": 11,
+     "ageHours": 24
+    },
+    {
+     "id": "h1-d3",
+     "source": "document",
+     "text": "Company passwords must be at least fourteen characters long.",
+     "tokenCount": 15,
+     "ageHours": 120
+    },
+    {
+     "id": "h1-d4",
+     "source": "chat",
+     "text": "I parked the car on level 3 in the blue section near the lift.",
+     "tokenCount": 16,
+     "ageHours": 336
+    }
+   ]
+  },
+  {
+   "id": "p4-20",
+   "query": "How much did I sleep last night?",
+   "goldItemId": "h2-gold",
+   "goldSource": "health",
+   "goldAge": "medium",
+   "goldPosition": "early",
+   "answerSpans": [
+    "6 hours and 12 minutes"
+   ],
+   "tokenBudget": 50,
+   "items": [
+    {
+     "id": "h2-gold",
+     "source": "health",
+     "text": "Sleep last night was 6 hours and 12 minutes.",
+     "tokenCount": 11,
+     "ageHours": 72
+    },
+    {
+     "id": "h2-d0",
+     "source": "health",
+     "text": "Steps yesterday totalled 11420 and the weekly average is 8600.",
+     "tokenCount": 16,
+     "ageHours": 1
+    },
+    {
+     "id": "h2-d1",
+     "source": "document",
+     "text": "The office wifi network for guests is called Northwind-Guest and the password is Hxk29Lm4.",
+     "tokenCount": 23,
+     "ageHours": 6
+    },
+    {
+     "id": "h2-d2",
+     "source": "document",
+     "text": "The recovery time objective for the transport management system is four hours.",
+     "tokenCount": 20,
+     "ageHours": 24
+    },
+    {
+     "id": "h2-d3",
+     "source": "chat",
+     "text": "The plumber quoted 240 euros for replacing the kitchen tap.",
+     "tokenCount": 15,
+     "ageHours": 120
+    },
+    {
+     "id": "h2-d4",
+     "source": "calendar",
+     "text": "Parents visiting on the weekend of the 22nd, staying two nights.",
+     "tokenCount": 16,
+     "ageHours": 336
+    }
+   ]
+  },
+  {
+   "id": "p4-21",
+   "query": "What was my resting heart rate?",
+   "goldItemId": "h3-gold",
+   "goldSource": "health",
+   "goldAge": "old",
+   "goldPosition": "early",
+   "answerSpans": [
+    "58 beats per minute"
+   ],
+   "tokenBudget": 46,
+   "items": [
+    {
+     "id": "h3-gold",
+     "source": "health",
+     "text": "Resting heart rate this morning measured 58 beats per minute.",
+     "tokenCount": 16,
+     "ageHours": 504
+    },
+    {
+     "id": "h3-d0",
+     "source": "document",
+     "text": "The warehouse forklift speed limit inside the building is 8 kilometres per hour.",
+     "tokenCount": 20,
+     "ageHours": 1
+    },
+    {
+     "id": "h3-d1",
+     "source": "chat",
+     "text": "Remember that my bike lock combination is 4471.",
+     "tokenCount": 12,
+     "ageHours": 6
+    },
+    {
+     "id": "h3-d2",
+     "source": "calendar",
+     "text": "Dentist appointment with Dr Krasniqi on Thursday at 09:15 at the clinic on Rruga B.",
+     "tokenCount": 21,
+     "ageHours": 24
+    },
+    {
+     "id": "h3-d3",
+     "source": "calendar",
+     "text": "Car service booked at Auto Dardania for the 14th at 08:00.",
+     "tokenCount": 15,
+     "ageHours": 120
+    },
+    {
+     "id": "h3-d4",
+     "source": "health",
+     "text": "Blood pressure reading was 118 over 76.",
+     "tokenCount": 10,
+     "ageHours": 336
+    }
+   ]
+  },
+  {
+   "id": "p4-22",
+   "query": "What was my weight on Monday?",
+   "goldItemId": "h4-gold",
+   "goldSource": "health",
+   "goldAge": "recent",
+   "goldPosition": "middle",
+   "answerSpans": [
+    "74.6 kilograms"
+   ],
+   "tokenBudget": 50,
+   "items": [
+    {
+     "id": "h4-d0",
+     "source": "chat",
+     "text": "My sister's flight lands at 22:40 and she asked me to collect her.",
+     "tokenCount": 17,
+     "ageHours": 1
+    },
+    {
+     "id": "h4-d1",
+     "source": "calendar",
+     "text": "Flight to Vienna departs at 06:25 from terminal 1.",
+     "tokenCount": 13,
+     "ageHours": 6
+    },
+    {
+     "id": "h4-gold",
+     "source": "health",
+     "text": "Weight recorded on Monday was 74.6 kilograms.",
+     "tokenCount": 12,
+     "ageHours": 2
+    },
+    {
+     "id": "h4-d2",
+     "source": "health",
+     "text": "Sleep last night was 6 hours and 12 minutes.",
+     "tokenCount": 11,
+     "ageHours": 24
+    },
+    {
+     "id": "h4-d3",
+     "source": "document",
+     "text": "Expense claims must be submitted within thirty days of the expenditure.",
+     "tokenCount": 18,
+     "ageHours": 120
+    },
+    {
+     "id": "h4-d4",
+     "source": "chat",
+     "text": "I told you earlier that my landlord's name is Mr Ferizi and he prefers calls after 18:00.",
+     "tokenCount": 23,
+     "ageHours": 336
+    }
+   ]
+  },
+  {
+   "id": "p4-23",
+   "query": "What was my longest run this month?",
+   "goldItemId": "h5-gold",
+   "goldSource": "health",
+   "goldAge": "medium",
+   "goldPosition": "middle",
+   "answerSpans": [
+    "12.3 kilometres"
+   ],
+   "tokenBudget": 38,
+   "items": [
+    {
+     "id": "h5-d0",
+     "source": "calendar",
+     "text": "Thesis supervision meeting moved to Monday at 11:30.",
+     "tokenCount": 13,
+     "ageHours": 1
+    },
+    {
+     "id": "h5-d1",
+     "source": "health",
+     "text": "Weight recorded on Monday was 74.6 kilograms.",
+     "tokenCount": 12,
+     "ageHours": 6
+    },
+    {
+     "id": "h5-gold",
+     "source": "health",
+     "text": "Longest run this month was 12.3 kilometres.",
+     "tokenCount": 11,
+     "ageHours": 72
+    },
+    {
+     "id": "h5-d2",
+     "source": "document",
+     "text": "Company passwords must be at least fourteen characters long.",
+     "tokenCount": 15,
+     "ageHours": 24
+    },
+    {
+     "id": "h5-d3",
+     "source": "chat",
+     "text": "I parked the car on level 3 in the blue section near the lift.",
+     "tokenCount": 16,
+     "ageHours": 120
+    },
+    {
+     "id": "h5-d4",
+     "source": "calendar",
+     "text": "Team retrospective scheduled in room Basalt-3 from 14:00 to 15:00.",
+     "tokenCount": 17,
+     "ageHours": 336
+    }
+   ]
+  },
+  {
+   "id": "p4-24",
+   "query": "What was my blood pressure reading?",
+   "goldItemId": "h6-gold",
+   "goldSource": "health",
+   "goldAge": "old",
+   "goldPosition": "middle",
+   "answerSpans": [
+    "118 over 76"
+   ],
+   "tokenBudget": 50,
+   "items": [
+    {
+     "id": "h6-d0",
+     "source": "document",
+     "text": "The office wifi network for guests is called Northwind-Guest and the password is Hxk29Lm4.",
+     "tokenCount": 23,
+     "ageHours": 1
+    },
+    {
+     "id": "h6-d1",
+     "source": "document",
+     "text": "The recovery time objective for the transport management system is four hours.",
+     "tokenCount": 20,
+     "ageHours": 6
+    },
+    {
+     "id": "h6-gold",
+     "source": "health",
+     "text": "Blood pressure reading was 118 over 76.",
+     "tokenCount": 10,
+     "ageHours": 504
+    },
+    {
+     "id": "h6-d2",
+     "source": "chat",
+     "text": "The plumber quoted 240 euros for replacing the kitchen tap.",
+     "tokenCount": 15,
+     "ageHours": 24
+    },
+    {
+     "id": "h6-d3",
+     "source": "calendar",
+     "text": "Parents visiting on the weekend of the 22nd, staying two nights.",
+     "tokenCount": 16,
+     "ageHours": 120
+    },
+    {
+     "id": "h6-d4",
+     "source": "health",
+     "text": "Resting heart rate this morning measured 58 beats per minute.",
+     "tokenCount": 16,
+     "ageHours": 336
+    }
+   ]
+  }
+ ]
+}

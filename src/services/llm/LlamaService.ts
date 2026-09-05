@@ -72,7 +72,12 @@ class PocketLlamaService {
       const llama = await import("llama.rn");
       const initLlama = (llama as unknown as { initLlama?: (params: Record<string, unknown>) => Promise<LlamaContext> }).initLlama;
       if (!initLlama) throw new Error("llama.rn initLlama API was not found.");
-      this.context = await initLlama({ model: modelPath, n_ctx: contextSize, use_mlock: true });
+      // use_mlock mbahet i shkyçur sepse ngulitja e faqeve në memorie ul hapësirën e lirë
+      // të aplikacionit (nga rreth 2.76 GB në rreth 2.0 GB në matjet mbi iPhone 12 Pro) dhe
+      // rrit rrezikun që sistemi operativ ta mbyllë aplikacionin në pajisje me 6 GB memorie.
+      // Shënim: gjurma e matur e memories del dymodale pavarësisht kësaj vlere, prandaj
+      // mlock nuk është shkaku i asaj dukurie.
+      this.context = await initLlama({ model: modelPath, n_ctx: contextSize, use_mlock: false });
       this.loadedModelId = modelId;
       this.loadedContextSize = contextSize;
       return Date.now() - started;

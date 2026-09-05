@@ -1,6 +1,15 @@
 import { PermissionStatus } from "./permissions";
 
-export type ModelId = "phi3-mini-q4" | "llama32-3b-q4" | "llama32-1b-q4" | "llama32-1b-q8" | "llama32-3b-q8";
+export type ModelId =
+  | "phi3-mini-q4"
+  | "llama32-3b-q4"
+  | "llama32-3b-q8"
+  // Kurba e kuantizimit mbi të njëjtin model 1B: 3, 4, 5, 6 dhe 8 bit.
+  | "llama32-1b-q3"
+  | "llama32-1b-q4"
+  | "llama32-1b-q5"
+  | "llama32-1b-q6"
+  | "llama32-1b-q8";
 
 export interface ModelCatalogItem {
   id: ModelId;
@@ -139,4 +148,35 @@ export interface BenchmarkRun {
   rouge1?: number | null;
   rouge2?: number | null;
   rougeL?: number | null;
+  // Matjet e memories (P2). memoryModelBytes është gjurma e vetë modelit të kuantizuar:
+  // diferenca midis gjendjes pa model të ngarkuar dhe gjendjes menjëherë pas ngarkimit.
+  memoryBaselineBytes?: number | null;
+  memoryAfterLoadBytes?: number | null;
+  memoryModelBytes?: number | null;
+  memoryPeakBytes?: number | null;
+  memoryDeltaBytes?: number | null;
+  deviceTotalMemoryBytes?: number | null;
+  memoryMetric?: string | null;
+  // Identiteti i pyetjes dhe përsëritja, për mesatare dhe devijim standard.
+  promptId?: string | null;
+  promptCategory?: string | null;
+  repeatIndex?: number | null;
+  loadTimeMs?: number | null;
+}
+
+// Një rresht i vlerësimit të marrjes së informacionit: një kombinim copëzimi, top-K dhe
+// lloji embeddings, i matur mbi një grup pyetjesh me përgjigje të njohura.
+export interface RetrievalEvalRun {
+  id: string;
+  documentId: string;
+  chunkStrategy: string;
+  topK: number;
+  embeddingKind: "neural" | "tfidf";
+  questionCount: number;
+  hitRate: number;
+  recallAtK: number;
+  precisionAtK: number;
+  mrr: number;
+  retrievalTimeMsMean: number | null;
+  createdAt: string;
 }

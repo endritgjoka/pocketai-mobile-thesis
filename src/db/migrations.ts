@@ -86,4 +86,66 @@ export const runMigrations = async (db: SQLite.SQLiteDatabase) => {
     }
     await db.execAsync("PRAGMA user_version = 6;");
   }
+
+  const afterBenchExtras = afterEmbeddings < 6 ? 6 : afterEmbeddings;
+  if (afterBenchExtras < 7) {
+    for (const col of [
+      "memory_baseline_bytes", "memory_after_load_bytes", "memory_model_bytes",
+      "memory_peak_bytes", "memory_delta_bytes", "device_total_memory_bytes",
+    ]) {
+      if (!(await hasColumn(db, "benchmark_runs", col))) {
+        await db.execAsync(`ALTER TABLE benchmark_runs ADD COLUMN ${col} REAL`);
+      }
+    }
+    // Emri i metrikës ndryshon sipas platformës (phys_footprint në iOS, PSS në Android),
+    // prandaj ruhet bashkë me matjen që rezultatet të jenë të interpretueshme.
+    if (!(await hasColumn(db, "benchmark_runs", "memory_metric"))) {
+      await db.execAsync("ALTER TABLE benchmark_runs ADD COLUMN memory_metric TEXT");
+    }
+    await db.execAsync("PRAGMA user_version = 7;");
+  }
+
+  const afterMemory = afterBenchExtras < 7 ? 7 : afterBenchExtras;
+  if (afterMemory < 8) {
+    // Identiteti i pyetjes dhe numri i përsëritjes, të nevojshme për mesatare dhe devijim
+    // standard mbi disa pyetje e disa ekzekutime të të njëjtit konfigurim.
+    for (const col of ["prompt_id", "prompt_category"]) {
+      if (!(await hasColumn(db, "benchmark_runs", col))) {
+        await db.execAsync(`ALTER TABLE benchmark_runs ADD COLUMN ${col} TEXT`);
+      }
+    }
+    if (!(await hasColumn(db, "benchmark_runs", "repeat_index"))) {
+      await db.execAsync("ALTER TABLE benchmark_runs ADD COLUMN repeat_index INTEGER");
+    }
+    // Koha e ngarkimit të modelit, tregues i rëndësishëm i realizueshmërisë dhe i ndikimit
+    // të nivelit të kuantizimit mbi madhësinë e skedarit që lexohet.
+    if (!(await hasColumn(db, "benchmark_runs", "load_time_ms"))) {
+      await db.execAsync("ALTER TABLE benchmark_runs ADD COLUMN load_time_ms REAL");
+    }
+    await db.execAsync("PRAGMA user_version = 8;");
+  }
+
+  const afterPrompts = afterMemory < 8 ? 8 : afterMemory;
+  if (afterPrompts < 9) {
+    // Vlerësimi i marrjes së informacionit matet pa gjenerim, prandaj ruhet në tabelë të
+    // veçantë: një rresht për kombinim të copëzimit, top-K dhe llojit të embeddings.
+    await db.execAsync(`
+      CREATE TABLE IF NOT EXISTS retrieval_eval_runs (
+        id TEXT PRIMARY KEY NOT NULL,
+        document_id TEXT NOT NULL,
+        chunk_strategy TEXT NOT NULL,
+        top_k INTEGER NOT NULL,
+        embedding_kind TEXT NOT NULL,
+        question_count INTEGER NOT NULL,
+        hit_rate REAL NOT NULL,
+        recall_at_k REAL NOT NULL,
+        precision_at_k REAL NOT NULL,
+        mrr REAL NOT NULL,
+        retrieval_time_ms_mean REAL,
+        created_at TEXT NOT NULL
+      );
+      CREATE INDEX IF NOT EXISTS idx_retrieval_eval_document ON retrieval_eval_runs(document_id);
+      PRAGMA user_version = 9;
+    `);
+  }
 };

@@ -15,6 +15,15 @@ export interface ContextItem {
 export interface ScoringWeights {
   sourceWeights: Record<ContextSourceKind, number>;
   recencyHalfLifeHours: number;
+  /**
+   * Kufiri i poshtëm i faktorit të freskisë.
+   *
+   * Pa këtë kufi, informacioni i vjetër por i vlefshëm ndëshkohet pa nevojë: matjet e P4
+   * treguan se njësia e duhur renditej e para vetëm në 37.5 përqind të rasteve kur ajo
+   * ishte e vjetër, ndërsa relevanca e pastër arrinte 100 përqind. Vlera 0 riprodhon
+   * sjelljen fillestare.
+   */
+  recencyFloor?: number;
 }
 
 export interface ScoredItem extends ContextItem {
@@ -37,4 +46,9 @@ export interface PrioritizationResult {
 export const DEFAULT_WEIGHTS: ScoringWeights = {
   sourceWeights: { document: 1.0, chat: 0.8, calendar: 0.6, health: 0.4 },
   recencyHalfLifeHours: 24 * 7,
+  // 0.5 u zgjodh nga një provë me vlera nga 0 deri në 1 mbi 48 skenarë. Me këtë vlerë freskia
+  // mund të zvogëlojë rezultatin e një njësie së shumti në gjysmë, pra e modulon relevancën
+  // pa e anuluar atë. Kjo ruan dallimin e informacionit të zëvendësuar dhe njëkohësisht nuk
+  // ndëshkon informacionin e vjetër që nuk është zëvendësuar nga asgjë.
+  recencyFloor: 0.5,
 };

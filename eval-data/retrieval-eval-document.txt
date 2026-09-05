@@ -1,0 +1,305 @@
+NORTHWIND LOGISTICS
+Employee Handbook and Operations Manual
+Revision 7, effective 12 March 2025
+
+SECTION 1. PURPOSE AND SCOPE
+
+This manual describes the operating rules for all staff of Northwind Logistics, including warehouse personnel, drivers, dispatch coordinators and office employees. It replaces Revision 6 in full. Where a local collective agreement conflicts with this manual, the collective agreement takes precedence. Questions about interpretation should be directed to the Human Resources department before acting.
+
+The manual is reviewed annually. Proposed changes are collected by the Operations Committee, which meets on the first Tuesday of each quarter. Employees may submit suggestions in writing at any time through their line manager.
+
+SECTION 2. WORKING HOURS AND ATTENDANCE
+
+The standard working week is 38 hours, distributed across five days. Warehouse shifts run from 06:00 to 14:00 and from 14:00 to 22:00. Office staff observe core hours between 09:30 and 15:30, during which attendance is mandatory, with flexible start and finish times outside that window.
+
+Overtime must be approved in advance by a department head. Approved overtime is compensated at 1.5 times the base hourly rate on weekdays and at 2.0 times the base rate on Sundays and public holidays. Unapproved overtime is not compensated and may be treated as a disciplinary matter.
+
+Employees who arrive more than fifteen minutes late without notice must record the delay in the attendance log. Repeated unexplained lateness, defined as four occurrences within a single calendar month, triggers a formal review with Human Resources.
+
+SECTION 3. ANNUAL LEAVE AND ABSENCE
+
+Full-time employees accrue 24 days of paid annual leave per calendar year, increasing to 27 days after five years of continuous service. Leave requests must be submitted at least fourteen days in advance for periods shorter than one week, and at least thirty days in advance for longer periods.
+
+A maximum of five unused leave days may be carried over into the following year. Carried-over days expire on 31 March. Leave may not be taken during the December peak period from 8 December to 2 January, except in documented emergencies approved by the Operations Director.
+
+Sick leave requires notification to the line manager before the start of the shift. A medical certificate is required from the fourth consecutive day of absence. Northwind Logistics pays 80 percent of base salary during certified sick leave beyond the statutory minimum period.
+
+SECTION 4. VEHICLE OPERATION AND DRIVER DUTIES
+
+All drivers must hold a valid category C licence and complete the internal defensive driving course before their first solo route. The course is repeated every three years. Drivers are responsible for completing the pre-departure inspection checklist, which covers tyre pressure, fluid levels, lights, brakes and load security.
+
+Daily driving time may not exceed nine hours, extendable to ten hours no more than twice per week. A break of at least 45 minutes is mandatory after four and a half hours of driving. Rest periods and driving times are recorded automatically by the onboard tachograph, and records are retained for twelve months.
+
+Any collision, however minor, must be reported to the dispatch centre within thirty minutes. Drivers must not admit liability at the scene. The incident report form must be completed before the end of the shift in which the incident occurred.
+
+Fuel cards are issued to named drivers and may not be transferred. Personal use of company vehicles is prohibited without written authorisation from the Fleet Manager.
+
+SECTION 5. WAREHOUSE SAFETY
+
+High-visibility vests and safety footwear are mandatory throughout the warehouse floor at all times, including in the loading bays. Hard hats are required only in the racking area above level three, where overhead work may occur.
+
+Forklift operation is restricted to certified operators. Certification is valid for five years and requires a practical reassessment on renewal. The maximum permitted travel speed inside the building is 8 kilometres per hour.
+
+Manual lifting above 25 kilograms requires either mechanical assistance or a second person. Employees must not climb racking under any circumstances; a mobile platform or an order picker must be used instead.
+
+Spills must be contained immediately and reported to the shift supervisor. The spill kit locations are marked in green on the warehouse floor plan posted at each entrance.
+
+SECTION 6. INFORMATION SECURITY
+
+Company accounts require a password of at least fourteen characters, combining upper and lower case letters, digits and at least one symbol. Passwords must be changed every 180 days and may not repeat any of the previous five passwords. Multi-factor authentication is mandatory for all accounts with access to customer data.
+
+Laptops and mobile devices issued by the company must have full disk encryption enabled. Storing customer data on personal devices or personal cloud accounts is strictly prohibited. Removable storage media may be used only if issued by the IT department and encrypted.
+
+Suspected phishing messages should be forwarded to the security mailbox and then deleted. Employees must never forward suspected phishing messages to colleagues. A suspected data breach must be reported to the Data Protection Officer within twenty-four hours of discovery.
+
+Remote access to internal systems requires the company VPN. Public wireless networks may be used only with the VPN active. Screen locking is enforced automatically after ten minutes of inactivity.
+
+SECTION 7. EXPENSES AND TRAVEL
+
+Business travel must be booked through the approved travel provider. Economy class is standard for all flights under six hours. Rail travel is preferred for journeys under 500 kilometres.
+
+The daily meal allowance is 42 euros for domestic travel and 65 euros for international travel. Receipts are required for any single expense above 25 euros. Expense claims must be submitted within thirty days of the expenditure; claims submitted later than that are rejected except in documented exceptional circumstances.
+
+Accommodation is reimbursed up to 140 euros per night in standard cities and up to 210 euros per night in the designated high-cost cities listed in Appendix B. Upgrades and minibar charges are not reimbursed.
+
+Mileage for the use of a private vehicle on company business is reimbursed at 0.38 euros per kilometre, and requires prior written approval from the line manager.
+
+SECTION 8. TRAINING AND DEVELOPMENT
+
+Every employee completes a mandatory induction programme during the first two weeks of employment, covering safety, information security and company procedures. Induction concludes with a written assessment; a score of at least 70 percent is required to pass.
+
+Each employee is entitled to five paid training days per year. Requests for external courses require a business justification and are approved by the department head. The annual training budget per employee is 900 euros.
+
+Performance reviews are held twice a year, in June and December. Reviews assess objectives agreed at the previous review and set new objectives for the coming period. A written summary is provided to the employee within ten working days of the review meeting.
+
+SECTION 9. CONDUCT AND DISCIPLINE
+
+Northwind Logistics does not tolerate harassment, discrimination or intimidation of any kind. Complaints may be raised with the line manager, with Human Resources, or through the confidential reporting line. All complaints are investigated, and the outcome is communicated to the complainant in writing.
+
+Consumption of alcohol or drugs during working hours is grounds for immediate dismissal. Random testing applies to all safety-critical roles, including drivers and forklift operators.
+
+The disciplinary procedure consists of a verbal warning, a first written warning, a final written warning and dismissal. Employees may be accompanied by a colleague or a union representative at any disciplinary meeting. Gross misconduct may result in dismissal without prior warnings.
+
+SECTION 10. CONTACT INFORMATION
+
+The dispatch centre operates twenty-four hours a day and can be reached on extension 4400. Human Resources is available on weekdays between 08:00 and 17:00 on extension 4210. The IT service desk operates on weekdays between 07:00 and 19:00 on extension 4500. The Data Protection Officer can be contacted at extension 4265.
+
+For emergencies outside these hours, the on-call duty manager is reachable through the dispatch centre, which maintains the current on-call rota.
+
+SECTION 11. RECRUITMENT AND ONBOARDING
+
+Vacancies are advertised internally for ten working days before external publication. Internal candidates who meet the stated minimum requirements are guaranteed an interview. Interview panels consist of at least two people, one of whom must be from outside the hiring department.
+
+New employees serve a probationary period of six months. During probation the notice period is two weeks for either party. A probation review is held at the three-month point, and a written confirmation of successful completion is issued at the end of the period.
+
+All new staff receive a personal identification badge on their first day. Lost badges must be reported to the security office immediately, and a replacement fee of 15 euros applies to the second and any subsequent replacement.
+
+SECTION 12. CUSTOMER SERVICE STANDARDS
+
+Telephone enquiries must be answered within four rings during business hours. Written enquiries received through the customer portal must receive a substantive response within one working day, and never later than two working days.
+
+Delivery windows communicated to customers are two hours wide for standard service and one hour wide for premium service. Where a delivery will miss its window, the dispatch centre must notify the customer before the window opens, not after it has passed.
+
+Complaints are logged in the customer relationship system with a unique reference number. First-line resolution is attempted by the dispatch coordinator. Complaints that cannot be resolved within two working days are escalated to the Customer Service Manager. Compensation above 250 euros requires approval from the Operations Director.
+
+SECTION 13. INVENTORY AND STOCK CONTROL
+
+A full physical stock count is performed twice per year, in June and in December. Rolling partial counts are performed weekly on the twenty highest-value stock lines. Discrepancies above 2 percent of recorded quantity must be investigated and documented within five working days.
+
+Goods received are inspected against the delivery note before signature. Damaged pallets must be photographed before they are moved. Any shortage or damage must be annotated on the delivery note at the point of signature; claims raised afterwards are generally not accepted by carriers.
+
+Stock is rotated on a first expired, first out basis. Temperature-controlled goods are stored between 2 and 8 degrees Celsius, and the cold-store temperature is logged automatically every fifteen minutes. An alarm escalates to the duty manager if the temperature leaves the permitted range for more than twenty minutes.
+
+SECTION 14. MAINTENANCE AND FACILITIES
+
+Preventive maintenance on materials handling equipment is scheduled every 250 operating hours. Maintenance records are kept for the working life of the equipment plus three years. Equipment found defective must be tagged out of service immediately and reported to the Facilities Manager.
+
+The building fire alarm is tested every Wednesday at 11:00. A full evacuation drill is held twice per year. Assembly points are marked on the site plan; the primary assembly point is the north car park. Employees must not re-enter the building until the fire warden confirms it is safe.
+
+Waste is separated into general, cardboard, plastic film and hazardous streams. Hazardous waste, including damaged batteries, must be placed in the yellow containers in the compound and never in general waste.
+
+SECTION 15. DATA RETENTION AND PRIVACY
+
+Personal data is retained only as long as necessary for the purpose for which it was collected. Employee records are retained for seven years after the end of employment. Customer delivery records are retained for six years. Recruitment records for unsuccessful candidates are deleted after twelve months.
+
+Closed-circuit television footage is retained for thirty days and then overwritten automatically. Access to footage requires a written request approved by the Data Protection Officer, and every access is logged.
+
+Employees have the right to request a copy of the personal data held about them. Such requests are answered within one month of receipt. Requests should be addressed to the Data Protection Officer.
+
+SECTION 16. QUALITY AND CONTINUOUS IMPROVEMENT
+
+Northwind Logistics operates a quality management system certified to ISO 9001. Internal audits are conducted quarterly by trained internal auditors who do not audit their own area of work. Nonconformities are recorded with an owner and a target closure date.
+
+The key operational indicators are on-time delivery rate, order accuracy, damage rate and customer complaint volume. The on-time delivery target is 97 percent measured monthly. The order accuracy target is 99.5 percent. Performance against targets is published on the notice boards in the first week of each month.
+
+Improvement suggestions accepted by the Operations Committee and implemented are recognised with a one-off award of 150 euros.
+
+SECTION 17. PROCUREMENT AND SUPPLIER MANAGEMENT
+
+All purchases above 500 euros require a purchase order raised in the finance system before the commitment is made. Purchases above 5000 euros require three written quotations, unless the supplier is on the approved sole-source register maintained by the Procurement Manager. Retrospective purchase orders are not permitted and will be rejected by the finance team.
+
+New suppliers are subject to a due diligence check covering legal registration, insurance cover, financial standing and, where relevant, environmental certification. The check is repeated every two years for active suppliers. Suppliers handling personal data on behalf of the company must sign a data processing agreement before any data is shared.
+
+Supplier performance is reviewed annually against agreed service levels. Suppliers falling below the agreed threshold for two consecutive quarters are placed on a formal improvement plan lasting three months. Failure to improve within that period results in removal from the approved supplier list.
+
+Invoices are paid on thirty day terms from the date of a valid invoice. Disputed invoices are placed on hold and the supplier is notified within five working days of the dispute being raised. Early payment discounts are accepted only where the discount exceeds one percent of the invoice value.
+
+SECTION 18. FLEET MANAGEMENT AND FUEL
+
+The vehicle fleet consists of light commercial vans under three and a half tonnes and rigid trucks up to eighteen tonnes. Each vehicle is assigned a primary depot and a nominated responsible manager. Vehicle allocation between depots requires the approval of the Fleet Manager.
+
+Scheduled servicing follows the manufacturer interval or every 40000 kilometres, whichever occurs first. Tyres are replaced when tread depth reaches 3 millimetres, which is above the legal minimum, in order to maintain a safety margin. Winter tyres are fitted between the first of November and the fifteenth of April on all vehicles operating in mountain regions.
+
+Fuel consumption is monitored per vehicle and per driver. A deviation of more than fifteen percent above the vehicle baseline triggers a review of driving style and a check for mechanical faults. Idling for more than three minutes is discouraged and is monitored through the telematics system.
+
+Vehicle cleanliness is the responsibility of the assigned driver. Interior cleaning is expected weekly and exterior washing at least fortnightly. Vehicles carrying food products are subject to an additional hygiene inspection before loading.
+
+Toll charges and congestion charges incurred on company business are reimbursed in full on presentation of the receipt. Parking fines and speeding penalties are the personal responsibility of the driver and are never reimbursed by the company.
+
+SECTION 19. SUBCONTRACTED TRANSPORT
+
+Where capacity requires it, transport may be subcontracted to approved carriers. Subcontracted carriers must hold valid operator licences, goods in transit insurance of at least one million euros, and public liability insurance of at least two million euros. Insurance certificates are verified before the first job and at each renewal.
+
+Subcontractors are briefed on the customer service standards described in Section 12 and are held to the same delivery window commitments. Performance data for subcontractors is recorded alongside that of the internal fleet, and the same on-time delivery target applies.
+
+Subcontractors must not further subcontract a consignment without written permission. Breach of this rule is treated as a material breach of contract and may result in immediate termination.
+
+Consignments containing high-value goods, defined as goods with a declared value above 25000 euros, may not be subcontracted at all and must be carried by the internal fleet with two crew members.
+
+SECTION 20. DANGEROUS GOODS
+
+Dangerous goods are transported only where the consignment is correctly classified, packaged, marked and documented in accordance with the applicable regulations. The company holds authorisation for limited quantities in specified classes; consignments outside that authorisation are refused at the point of booking.
+
+Drivers assigned to dangerous goods routes hold the required additional certification, which is renewed every five years. Each such vehicle carries the prescribed equipment, including an eye rinse bottle, absorbent material, a warning triangle set and the appropriate fire extinguishers.
+
+In the event of a spill or leak of dangerous goods, the driver must stop in a safe location, avoid contact with the substance, keep upwind, notify the dispatch centre immediately and follow the instructions on the transport document. Drivers must never attempt to clean up a dangerous goods spill themselves.
+
+Dangerous goods may not be stored in the general warehouse. The dedicated segregated store in the east compound is used, with incompatible classes physically separated according to the segregation table posted at the entrance.
+
+SECTION 21. CUSTOMS AND CROSS-BORDER OPERATIONS
+
+Cross-border consignments require complete commercial documentation before departure, comprising the commercial invoice, packing list, transport document and any required certificates of origin. Incomplete documentation is the most common cause of border delay and is treated as a preventable operational failure.
+
+The customs brokerage function is outsourced to an appointed broker. Declaration data is submitted electronically at least four hours before the expected arrival at the border. Discrepancies between the declared and actual goods must be reported to the broker immediately and never corrected informally.
+
+Drivers crossing borders carry a printed set of documents in addition to the electronic copies, because border systems are not always available. Drivers must not sign any document they do not understand and should contact the dispatch centre for guidance.
+
+Transit times published to customers for cross-border lanes include an allowance of four hours for border formalities. Where a border delay exceeds eight hours, the customer is notified proactively and a revised delivery estimate is issued.
+
+SECTION 22. BUSINESS CONTINUITY
+
+The business continuity plan covers loss of premises, loss of information systems, loss of key personnel and disruption to fuel supply. The plan is tested annually through a desktop exercise, and the results are reported to the management board.
+
+In the event of a systems outage, operations revert to the documented manual fallback procedure. Paper consignment notes are held in a sealed emergency pack at each depot, and each depot maintains a printed copy of the current customer contact list, refreshed monthly.
+
+The recovery time objective for the core transport management system is four hours. The recovery point objective, which is the maximum acceptable data loss, is one hour. Backups are taken hourly and replicated to a second location.
+
+Should a depot become unusable, operations transfer to the nearest alternative depot according to the pairing table in the continuity plan. Customers affected by such a transfer are informed within two hours of the decision being taken.
+
+SECTION 23. ENVIRONMENTAL RESPONSIBILITY
+
+The company measures its carbon intensity per tonne kilometre and reports it annually. The current reduction target is fifteen percent over three years against the 2024 baseline. Progress is reviewed at each quarterly management meeting.
+
+Route planning aims to minimise empty running. The empty running target is below twelve percent of total distance. Consolidation of part loads is preferred over separate journeys wherever the delivery window allows.
+
+Depot lighting uses motion sensors and light emitting diode fittings throughout. Heating in warehouse areas is set to a maximum of 16 degrees Celsius during working hours, in line with the guidance for physically active work environments.
+
+Single use plastics are not purchased for office or canteen use. Pallet wrap is recovered and recycled through the appointed waste contractor, and pallets are repaired rather than discarded where repair is economically sensible.
+
+SECTION 24. INSURANCE AND CLAIMS
+
+The company holds goods in transit insurance, motor fleet insurance, employer liability insurance and public liability insurance. Details of the current policies are available from the finance department on request.
+
+Claims for damaged or lost goods must be notified to the insurer within seven days of the incident. The claim file must contain the consignment note, photographs where available, the driver statement and the customer correspondence. Incomplete claim files are the most common reason for claim rejection.
+
+Excess amounts are borne by the operating depot rather than centrally, in order to align responsibility with cost. Repeated claims arising from the same root cause trigger a formal investigation led by the Operations Director.
+
+Employees must cooperate fully with insurers and loss adjusters. No admission of liability may be made to a customer or a third party before the insurer has assessed the claim.
+
+SECTION 25. RECORDS AND DOCUMENT CONTROL
+
+Controlled documents, including this manual, carry a revision number and an effective date. Superseded versions are archived and marked clearly as withdrawn. Only the current version published on the intranet is valid for operational use.
+
+Printed copies are considered uncontrolled and must not be relied upon for more than one working day. Depot notice boards display only the current summary sheets, which are replaced whenever the underlying document changes.
+
+Consignment notes and delivery confirmations are scanned and indexed within two working days of return to the depot. Original paper documents are retained for one year and then destroyed securely.
+
+Requests for historical records from customers are handled by the depot administration team. Records older than six years may no longer be available, in line with the retention rules in Section 15.
+
+SECTION 26. DEPOT OPERATIONS AND SHIFT HANDOVER
+
+Each depot operates a formal shift handover at the change of every shift. The outgoing shift supervisor completes the handover record, listing outstanding consignments, equipment faults, staff absences and any customer issues requiring follow-up. The incoming supervisor countersigns the record before the outgoing supervisor leaves the site.
+
+Handover records are retained for three months and are reviewed by the depot manager weekly. Recurring items appearing in three consecutive handovers are escalated as a systemic issue rather than being carried forward indefinitely.
+
+Yard movements are controlled by the yard marshal during peak hours, defined as 05:30 to 08:30 and 15:00 to 18:00. Outside peak hours drivers follow the marked one-way system and the posted speed limit of 10 kilometres per hour in the yard.
+
+Trailers left in the yard must have their landing legs lowered and wheels chocked. Trailer keys are held in the depot key cabinet and signed out against the driver name and consignment reference.
+
+SECTION 27. LOADING AND SECURING OF LOADS
+
+Load security is the legal responsibility of the driver, who must satisfy themselves that the load is adequately restrained before departure. Where the driver considers a load unsafe, they must refuse to depart and inform the dispatch centre, and no disciplinary action follows from such a refusal.
+
+Restraint equipment includes ratchet straps, load bars, anti-slip mats and edge protectors. Straps showing cuts, fraying or deformed hooks are removed from service immediately and placed in the marked disposal bin rather than returned to the equipment store.
+
+Heavy items are loaded low and against the headboard. Weight is distributed to keep the load within the permitted axle limits, and the calculated axle loading is recorded on the loading sheet for consignments above twelve tonnes.
+
+Curtain sided trailers do not provide load restraint unless specifically rated for it. Drivers must not rely on curtains to retain a load, and internal restraint is required regardless of the curtain specification.
+
+Double stacking of pallets is permitted only where the lower pallet is rated for the load and the goods are of uniform height. Fragile goods marked with the appropriate label are never double stacked.
+
+SECTION 28. TEMPERATURE CONTROLLED TRANSPORT
+
+Refrigerated vehicles are pre cooled to the required set point before loading begins. Loading doors are kept closed for as long as practicable, and the loading bay dock shelter must be engaged for all chilled consignments.
+
+The temperature recorder in each refrigerated vehicle produces a printed trace that accompanies the delivery documentation. Where a customer requires it, a copy of the trace is provided at the point of delivery. Traces are retained centrally for two years.
+
+A temperature excursion is defined as any period longer than fifteen minutes outside the specified range. Excursions must be reported to the dispatch centre while the vehicle is still in transit, so that a decision on the consignment can be taken before delivery rather than afterwards.
+
+Frozen goods are carried at minus 18 degrees Celsius or below. Chilled goods are carried in the range already specified for cold storage. Mixed loads of frozen and chilled goods require a vehicle with a bulkhead and dual temperature capability.
+
+Defrost cycles are scheduled outside delivery windows wherever possible. Where a defrost cycle occurs in transit, it is recorded on the trace and is not treated as an excursion provided the duration is within the manufacturer specification.
+
+SECTION 29. STAFF WELFARE AND FACILITIES
+
+Each depot provides a rest area with seating, drinking water, a refrigerator and facilities for heating food. Rest areas are cleaned daily and are not used for storage of operational materials.
+
+Drivers returning from long routes are entitled to use the shower facilities available at the main depot. Towels are not provided and drivers are expected to bring their own.
+
+An employee assistance programme provides confidential support on personal, financial and legal matters. The service is provided by an external organisation and is available at no cost to employees and their immediate household members. Use of the service is not reported to the company in any individually identifiable form.
+
+Occupational health assessments are offered to all staff every two years, and annually for drivers over the age of fifty. Assessments are voluntary except where required by law for safety critical roles.
+
+Where an employee reports a work related musculoskeletal complaint, a workstation or task assessment is carried out within ten working days and reasonable adjustments are considered.
+
+SECTION 30. COMMUNICATION AND MEETINGS
+
+A daily operations briefing is held at each depot at 07:00 and lasts no longer than fifteen minutes. The briefing covers the volume forecast, staff availability, known constraints and safety reminders.
+
+A monthly all staff communication is issued by the Operations Director summarising performance against the key indicators, notable customer feedback and any organisational changes. The communication is posted on the notice boards and distributed by internal email.
+
+Employee representatives meet management quarterly through the consultative committee. Agenda items may be submitted by any employee through their representative up to five working days before the meeting. Minutes are published within ten working days.
+
+Company wide announcements affecting terms and conditions are communicated in writing and never solely verbally or through informal channels.
+
+SECTION 31. USE OF COMPANY SYSTEMS AND SOCIAL MEDIA
+
+Company systems are provided for business use. Limited personal use is tolerated provided it does not interfere with work, consume significant bandwidth or involve prohibited content. Employees should have no expectation of privacy in relation to data held on company systems, subject to applicable law.
+
+Employees must not present personal opinions as company positions on social media. Where an employee identifies themselves as working for the company, they should make clear that views expressed are their own.
+
+Photographs taken inside operational areas may not be published externally without permission, because they may reveal customer information, security arrangements or commercially sensitive layouts.
+
+Customer names and consignment details are confidential and must never appear in social media posts, including in images where documentation is visible in the background.
+
+SECTION 32. TERMINATION OF EMPLOYMENT
+
+Notice periods after successful completion of probation are one month for operational staff and three months for management roles, unless the individual contract specifies otherwise. Notice must be given in writing.
+
+On the final day of employment all company property must be returned, including identification badge, keys, fuel card, mobile device, laptop and uniform items. A property return checklist is completed and countersigned by the line manager.
+
+Access to company systems is revoked on the final working day. Where an employee is placed on garden leave, access is revoked at the start of that period.
+
+An exit interview is offered to all leavers. Participation is voluntary and the summary is shared with Human Resources in aggregate form for the purpose of identifying retention themes.
+
+Final salary, including payment for accrued but untaken annual leave, is paid in the next scheduled payroll run following the termination date.

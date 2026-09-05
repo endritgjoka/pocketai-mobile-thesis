@@ -1,0 +1,21 @@
+{
+  "document": "retrieval-eval-document.txt",
+  "note": "Ground truth for retrieval evaluation (P3). Relevance = a retrieved chunk contains the answer span verbatim. Spans are deliberately short and distinctive so that containment is unambiguous.",
+  "questions": [
+    { "id": "q01", "question": "How many days of paid annual leave do full-time employees receive each year?", "answerSpans": ["24 days of paid annual leave"] },
+    { "id": "q02", "question": "What is the daily meal allowance for international travel?", "answerSpans": ["65 euros for international travel"] },
+    { "id": "q03", "question": "What is the minimum length of a company account password?", "answerSpans": ["at least fourteen characters"] },
+    { "id": "q04", "question": "What is the maximum forklift travel speed inside the building?", "answerSpans": ["8 kilometres per hour"] },
+    { "id": "q05", "question": "How quickly must a suspected data breach be reported?", "answerSpans": ["within twenty-four hours"] },
+    { "id": "q06", "question": "What is the reimbursement rate for using a private vehicle?", "answerSpans": ["0.38 euros per kilometre"] },
+    { "id": "q07", "question": "What score is required to pass the induction assessment?", "answerSpans": ["at least 70 percent"] },
+    { "id": "q08", "question": "At what temperature are temperature-controlled goods stored?", "answerSpans": ["between 2 and 8 degrees Celsius"] },
+    { "id": "q09", "question": "How long is closed-circuit television footage kept?", "answerSpans": ["retained for thirty days"] },
+    { "id": "q10", "question": "Which extension is the IT service desk reachable on?", "answerSpans": ["extension 4500"] },
+    { "id": "q11", "question": "What is the on-time delivery target?", "answerSpans": ["on-time delivery target is 97 percent"] },
+    { "id": "q12", "question": "How long is the probationary period for new employees?", "answerSpans": ["probationary period of six months"] },
+    { "id": "q13", "question": "How is overtime compensated on Sundays?", "answerSpans": ["2.0 times the base rate on Sundays"] },
+    { "id": "q14", "question": "How much accommodation cost is reimbursed per night in standard cities?", "answerSpans": ["140 euros per night in standard cities"] },
+    { "id": "q15", "question": "What is the annual training budget per employee?", "answerSpans": ["900 euros"] }
+  ]
+}

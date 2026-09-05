@@ -24,6 +24,39 @@ export const MODEL_CATALOG: ModelCatalogItem[] = [
     defaultContextSize: 2048
   },
   {
+    id: "llama32-1b-q3",
+    name: "Llama 3.2 1B Q3",
+    modeLabel: "3-bit",
+    filename: "llama-3.2-1b-instruct-q3.gguf",
+    url: "https://huggingface.co/bartowski/Llama-3.2-1B-Instruct-GGUF/resolve/main/Llama-3.2-1B-Instruct-Q3_K_L.gguf",
+    sizeLabel: "~0.68 GB",
+    recommendedRam: "4GB+ RAM",
+    description: "Lowest bit width in the sweep — expected quality loss, for the quantization curve.",
+    defaultContextSize: 2048
+  },
+  {
+    id: "llama32-1b-q5",
+    name: "Llama 3.2 1B Q5",
+    modeLabel: "5-bit",
+    filename: "llama-3.2-1b-instruct-q5.gguf",
+    url: "https://huggingface.co/bartowski/Llama-3.2-1B-Instruct-GGUF/resolve/main/Llama-3.2-1B-Instruct-Q5_K_M.gguf",
+    sizeLabel: "~0.85 GB",
+    recommendedRam: "4GB+ RAM",
+    description: "Mid point between Q4 and Q8 on the quantization curve.",
+    defaultContextSize: 2048
+  },
+  {
+    id: "llama32-1b-q6",
+    name: "Llama 3.2 1B Q6",
+    modeLabel: "6-bit",
+    filename: "llama-3.2-1b-instruct-q6.gguf",
+    url: "https://huggingface.co/bartowski/Llama-3.2-1B-Instruct-GGUF/resolve/main/Llama-3.2-1B-Instruct-Q6_K.gguf",
+    sizeLabel: "~0.95 GB",
+    recommendedRam: "4GB+ RAM",
+    description: "Near-lossless quantization, upper end of the curve before 8-bit.",
+    defaultContextSize: 2048
+  },
+  {
     id: "phi3-mini-q4",
     name: "Phi-3 Mini Q4",
     modeLabel: "Light Mode",
