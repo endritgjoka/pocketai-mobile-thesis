@@ -40,8 +40,22 @@ class DownloadService {
       const result = await resumable.downloadAsync();
       this.activeDownloads.delete(modelId);
       if (!result?.uri) throw new Error("Model download did not complete.");
+      // Serveri mund te kthejë një përgjigje gabimi (për shembull 429 kur kërkesat janë
+      // shumë të shpeshta) dhe trupi i saj shkruhet në skedar njësoj si të dhënat e modelit.
+      // Pa këtë kontroll, një faqe HTML prej pak kilobajtësh do të ruhej si model i vlefshëm.
+      const status = (result as { status?: number }).status;
+      if (typeof status === "number" && (status < 200 || status >= 300)) {
+        throw new Error(`Model download failed with HTTP status ${status}.`);
+      }
       const partialInfo = await FileSystem.getInfoAsync(partial, { size: true });
       if (!partialInfo.exists || partialInfo.isDirectory) throw new Error("Downloaded model file could not be verified.");
+      // Asnjë model GGUF nuk është nën këtë prag, prandaj një skedar më i vogël tregon
+      // se u shkarkua diçka tjetër dhe jo modeli.
+      const MIN_MODEL_BYTES = 50 * 1024 * 1024;
+      const partialSize = "size" in partialInfo ? partialInfo.size ?? 0 : 0;
+      if (partialSize < MIN_MODEL_BYTES) {
+        throw new Error(`Downloaded file is only ${Math.round(partialSize / 1024)} KB, which is not a valid model.`);
+      }
       await FileSystem.moveAsync({ from: partial, to: destination });
       const info = await FileSystem.getInfoAsync(destination, { size: true });
       if (!info.exists || info.isDirectory) throw new Error("Downloaded model file could not be verified.");
