@@ -44,4 +44,12 @@ android/.cxx/
 *.gguf
 *.sqlite
 *.db
+# Fotografitë e bazës së të dhënave mbeten lokale. Matjet publikohen si CSV, të cilat
+# përmbajnë të njëjtat të dhëna pa mbetjet e përdorimit personal të pajisjes.
 thesis/
+# Cache i Python-it nga skriptet e figurave
+__pycache__/
+*.pyc
+
+# Skedar i gjeneruar nga tools/gen-p4-script.py, mbahet vetëm gjeneruesi
+tools/p4-holdout.js

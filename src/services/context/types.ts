@@ -46,9 +46,11 @@ export interface PrioritizationResult {
 export const DEFAULT_WEIGHTS: ScoringWeights = {
   sourceWeights: { document: 1.0, chat: 0.8, calendar: 0.6, health: 0.4 },
   recencyHalfLifeHours: 24 * 7,
-  // 0.5 u zgjodh nga një provë me vlera nga 0 deri në 1 mbi 48 skenarë. Me këtë vlerë freskia
-  // mund të zvogëlojë rezultatin e një njësie së shumti në gjysmë, pra e modulon relevancën
-  // pa e anuluar atë. Kjo ruan dallimin e informacionit të zëvendësuar dhe njëkohësisht nuk
-  // ndëshkon informacionin e vjetër që nuk është zëvendësuar nga asgjë.
-  recencyFloor: 0.5,
+  // 0.7 u zgjodh nga një provë me njëmbëdhjetë vlera nga 0 deri në 1 mbi një nëngrup kalibrimi
+  // prej 24 skenarësh, dhe u verifikua mbi një nëngrup të veçantë prej 24 skenarësh të tjerë që
+  // nuk morën pjesë në zgjedhje. Me këtë vlerë freskia e modulon relevancën pa e anuluar atë,
+  // çka ruan dallimin e informacionit të zëvendësuar dhe njëkohësisht nuk ndëshkon informacionin
+  // e vjetër që nuk është zëvendësuar nga asgjë. Mbi nëngrupin e mbajtur mënjanë vlerat 0.5 dhe
+  // 0.7 dalin të njëjta, prandaj zgjedhja qëndron mbi një brez të gjerë dhe jo mbi një pikë.
+  recencyFloor: 0.7,
 };

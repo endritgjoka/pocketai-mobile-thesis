@@ -1,0 +1,109 @@
+{
+  "note": "Ndarje e përcaktuar (pa rastësi) e 48 skenarëve të P4 në kalibrim dhe në grup të mbajtur mënjanë. Kufiri i afërsisë kohore zgjidhet mbi kalibrimin dhe raportohet mbi grupin e mbajtur mënjanë.",
+  "calibration": [
+    "p4-14",
+    "p4-18",
+    "p4-13",
+    "p4-11",
+    "p4-09",
+    "p4-10",
+    "p4-02",
+    "p4-06",
+    "p4-01",
+    "p4-23",
+    "p4-21",
+    "p4-22",
+    "p4b-b01",
+    "p4b-b03",
+    "p4b-b05",
+    "p4b-b07",
+    "p4b-c01",
+    "p4b-c03",
+    "p4b-c05",
+    "p4b-c07",
+    "p4b-a01",
+    "p4b-a03",
+    "p4b-a05",
+    "p4b-a07"
+  ],
+  "holdout": [
+    "p4-17",
+    "p4-15",
+    "p4-16",
+    "p4-08",
+    "p4-12",
+    "p4-07",
+    "p4-05",
+    "p4-03",
+    "p4-04",
+    "p4-20",
+    "p4-24",
+    "p4-19",
+    "p4b-b02",
+    "p4b-b04",
+    "p4b-b06",
+    "p4b-b08",
+    "p4b-c02",
+    "p4b-c04",
+    "p4b-c06",
+    "p4b-c08",
+    "p4b-a02",
+    "p4b-a04",
+    "p4b-a06",
+    "p4b-a08"
+  ],
+  "profiles": {
+    "calibration": {
+      "n": 24,
+      "burimi": {
+        "calendar": 6,
+        "chat": 6,
+        "document": 9,
+        "health": 3
+      },
+      "mosha": {
+        "medium": 8,
+        "old": 8,
+        "recent": 8
+      },
+      "pozicioni": {
+        "early": 5,
+        "late": 2,
+        "middle": 5,
+        "n/a": 12
+      },
+      "lloji": {
+        "authority": 4,
+        "n/a": 12,
+        "old_correct": 4,
+        "supersession": 4
+      }
+    },
+    "holdout": {
+      "n": 24,
+      "burimi": {
+        "calendar": 5,
+        "chat": 6,
+        "document": 8,
+        "health": 5
+      },
+      "mosha": {
+        "medium": 8,
+        "old": 8,
+        "recent": 8
+      },
+      "pozicioni": {
+        "early": 4,
+        "late": 4,
+        "middle": 4,
+        "n/a": 12
+      },
+      "lloji": {
+        "authority": 4,
+        "n/a": 12,
+        "old_correct": 4,
+        "supersession": 4
+      }
+    }
+  }
+}

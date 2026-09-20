@@ -1,0 +1,14 @@
+{"model":"llama32-1b-q3","metric":"PSS total","platform":"android","baseMb":275,"afterMb":1117,"modelMb":842,"loadMs":13579,"pssNativeMb":287,"pssDalvikMb":8,"nativeHeapMb":603,"deviceAvailMb":3204}
+{"model":"llama32-1b-q3","metric":"PSS total","platform":"android","baseMb":228,"afterMb":1162,"modelMb":935,"loadMs":3994,"pssNativeMb":325,"pssDalvikMb":14,"nativeHeapMb":605,"deviceAvailMb":3224}
+{"model":"llama32-1b-q3","metric":"PSS total","platform":"android","baseMb":272,"afterMb":1168,"modelMb":896,"loadMs":4054,"pssNativeMb":330,"pssDalvikMb":20,"nativeHeapMb":605,"deviceAvailMb":3260}
+{"model":"llama32-1b-q4","metric":"PSS total","platform":"android","baseMb":270,"afterMb":1184,"modelMb":914,"loadMs":15662,"pssNativeMb":286,"pssDalvikMb":8,"nativeHeapMb":602,"deviceAvailMb":3360}
+{"model":"llama32-1b-q4","metric":"PSS total","platform":"android","baseMb":272,"afterMb":1220,"modelMb":948,"loadMs":4766,"pssNativeMb":320,"pssDalvikMb":9,"nativeHeapMb":605,"deviceAvailMb":3373}
+{"model":"llama32-1b-q5","metric":"PSS total","platform":"android","baseMb":271,"afterMb":1280,"modelMb":1009,"loadMs":19360,"pssNativeMb":286,"pssDalvikMb":8,"nativeHeapMb":602,"deviceAvailMb":3912}
+{"model":"llama32-1b-q5","metric":"PSS total","platform":"android","baseMb":230,"afterMb":1328,"modelMb":1098,"loadMs":3856,"pssNativeMb":326,"pssDalvikMb":9,"nativeHeapMb":605,"deviceAvailMb":3804}
+{"model":"llama32-1b-q5","metric":"PSS total","platform":"android","baseMb":275,"afterMb":1336,"modelMb":1061,"loadMs":3704,"pssNativeMb":323,"pssDalvikMb":19,"nativeHeapMb":605,"deviceAvailMb":3755}
+{"model":"llama32-1b-q6","metric":"PSS total","platform":"android","baseMb":276,"afterMb":1409,"modelMb":1133,"loadMs":5538,"pssNativeMb":290,"pssDalvikMb":21,"nativeHeapMb":605,"deviceAvailMb":3818}
+{"model":"llama32-1b-q6","metric":"PSS total","platform":"android","baseMb":275,"afterMb":1441,"modelMb":1166,"loadMs":4560,"pssNativeMb":325,"pssDalvikMb":19,"nativeHeapMb":605,"deviceAvailMb":3803}
+{"model":"llama32-1b-q6","metric":"PSS total","platform":"android","baseMb":277,"afterMb":1454,"modelMb":1177,"loadMs":2233,"pssNativeMb":340,"pssDalvikMb":12,"nativeHeapMb":613,"deviceAvailMb":3768}
+{"model":"llama32-1b-q8","metric":"PSS total","platform":"android","baseMb":276,"afterMb":1692,"modelMb":1416,"loadMs":5916,"pssNativeMb":288,"pssDalvikMb":20,"nativeHeapMb":605,"deviceAvailMb":3942}
+{"model":"llama32-1b-q8","metric":"PSS total","platform":"android","baseMb":270,"afterMb":1674,"modelMb":1404,"loadMs":10468,"pssNativeMb":287,"pssDalvikMb":8,"nativeHeapMb":605,"deviceAvailMb":3642}
+{"model":"llama32-1b-q8","metric":"PSS total","platform":"android","baseMb":270,"afterMb":1675,"modelMb":1405,"loadMs":6943,"pssNativeMb":289,"pssDalvikMb":8,"nativeHeapMb":606,"deviceAvailMb":3624}
