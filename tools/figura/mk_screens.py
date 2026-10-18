@@ -15,8 +15,10 @@ def font(sz):
             except Exception: pass
     return ImageFont.load_default()
 
-def compose(paths, labels, out, gap=70, pad=28, label_h=90, border="#d7dce3"):
+def compose(paths, labels, out, gap=70, pad=28, label_h=90, border="#d7dce3", crop_h=None):
     ims = [Image.open(p).convert("RGB") for p in paths]
+    # crop_h pret pamjet në të njëjtën lartësi, kur një rresht i ndërfaqes do të dilte i prerë përgjysmë.
+    if crop_h: ims = [i.crop((0, 0, i.width, crop_h)) for i in ims]
     h = min(i.height for i in ims)
     ims = [i.resize((round(i.width * h / i.height), h), Image.LANCZOS) for i in ims]
     W = sum(i.width for i in ims) + gap * (len(ims) - 1) + pad * 2
@@ -37,6 +39,12 @@ def compose(paths, labels, out, gap=70, pad=28, label_h=90, border="#d7dce3"):
 compose([f"{A}/IMG_9432.png", f"{A}/IMG_9436.png"],
         ["(a) lista e bisedave", "(b) biseda e hapur"],
         f"{OUT}/fig-5-1-bisedat.png")
-compose([f"{A}/IMG_9435.png"], [""], f"{OUT}/fig-5-2-modelet.png", label_h=10)
-compose([f"{A}/IMG_9433.png"], [""], f"{OUT}/fig-5-3-dokumentet.png", label_h=10)
-compose([f"{A}/IMG_9437.png"], [""], f"{OUT}/fig-6-0-benchmarks.png", label_h=10)
+compose([f"{A}/IMG_9435.png", f"{A}/IMG_9456.png"],
+        ["(a) modelet dhe kuantizimi", "(b) parametrat e inferencës"],
+        f"{OUT}/fig-5-2-modelet.png", crop_h=2050)
+compose([f"{A}/IMG_9465.png", f"{A}/IMG_9466.png"],
+        ["(a) lista e dokumenteve", "(b) dokumenti i hapur"],
+        f"{OUT}/fig-5-3-dokumentet.png")
+compose([f"{A}/IMG_9437.png", f"{A}/IMG_9457.png"],
+        ["(a) përmbledhja e matjeve", "(b) ekzekutimet e fundit"],
+        f"{OUT}/fig-6-0-benchmarks.png")

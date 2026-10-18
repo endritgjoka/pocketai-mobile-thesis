@@ -145,9 +145,6 @@ export interface BenchmarkRun {
   batteryStart?: number | null;
   batteryEnd?: number | null;
   batteryDelta?: number | null;
-  rouge1?: number | null;
-  rouge2?: number | null;
-  rougeL?: number | null;
   // Matjet e memories (P2). memoryModelBytes është gjurma e vetë modelit të kuantizuar:
   // diferenca midis gjendjes pa model të ngarkuar dhe gjendjes menjëherë pas ngarkimit.
   memoryBaselineBytes?: number | null;

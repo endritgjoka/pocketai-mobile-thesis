@@ -13,7 +13,7 @@ def esc(t):
 gt = json.load(io.open(os.path.join(EVAL, "retrieval-ground-truth.json"), encoding="utf8"))
 split_ids = json.load(io.open(os.path.join(EVAL, "p4-split.json"), encoding="utf8"))
 CAL = set(split_ids["calibration"])
-NENGRUPI = lambda sid: "kalibrim" if sid in CAL else "mbajtur mënjanë"
+NENGRUPI = lambda sid: "kalibrim" if sid in CAL else "testim"
 
 bal = json.load(io.open(os.path.join(EVAL, "p4-scenarios.json"), encoding="utf8"))
 con = json.load(io.open(os.path.join(EVAL, "p4-scenarios-conflict.json"), encoding="utf8"))
@@ -34,8 +34,8 @@ w("Kjo shtojcë paraqet të 15 pyetjet mbi të cilat janë matur saktësia e mar
   "prej rreth 31 mijë karakteresh i një ndërmarrjeje logjistike të trilluar. "
   "Një përgjigje quhet e saktë vetëm nëse vargu i dhënë në kolonën e tretë shfaqet fjalë për fjalë brenda tekstit të gjeneruar. "
   "Vargjet janë mbajtur të shkurtra dhe të veçanta, që gjykimi të mos varet nga interpretimi. "
-  "Pyetjet dhe dokumenti janë në anglisht, sepse prototipi punon me tekst anglisht, "
-  "ndërsa modelet e provuara mbështeten dukshëm më mirë në këtë gjuhë.")
+  "Pyetjet dhe dokumenti janë në anglisht, sepse prototipi punon me tekst anglisht "
+  "dhe modelet e provuara funksionojnë dukshëm më mirë në këtë gjuhë.")
 w("")
 w("**Tabela A1.** Pyetjet e vlerësimit dhe vargjet e pritura të përgjigjes.")
 w("")
@@ -52,16 +52,16 @@ w("Algoritmi i prioritizimit të kontekstit u vlerësua mbi 48 skenarë të ndë
   "që përzgjedhja të jetë e detyrueshme.")
 w("")
 w("Për vlerësimin e kufirit të poshtëm të afërsisë kohore këta 48 skenarë ndahen më tej në dy nëngrupe "
-  "prej 24 skenarësh, një nëngrup kalibrimi mbi të cilin zgjidhet vlera e parametrit dhe një nëngrup i "
-  "mbajtur mënjanë mbi të cilin matet rezultati. Ndarja është e përcaktuar dhe nuk përdor rastësi. "
+  "prej 24 skenarësh, një nëngrup kalibrimi mbi të cilin zgjidhet vlera e parametrit dhe një nëngrup "
+  "testimi mbi të cilin matet rezultati. Ndarja është e përcaktuar dhe nuk përdor rastësi. "
   "Kolona e fundit e tabelave të mëposhtme tregon se ku bie secili skenar.")
 w("")
 w("## B.1 Grupi i baraspeshuar")
 w("")
-w("Grupi i parë është ndërtuar si plan faktorial. Burimi i njësisë së duhur rrotullohet midis 4 burimeve, "
-  "mosha e saj midis 3 niveleve dhe pozicioni i saj i mbërritjes midis fillimit dhe fundit të listës, "
+w("Grupi i parë është ndërtuar si plan faktorial. Burimi i njësisë së duhur rrotullohet midis katër burimeve, "
+  "mosha e saj midis tri niveleve dhe pozicioni i saj i mbërritjes midis fillimit dhe fundit të listës, "
   "që asnjë qasje bazë të mos favorizohet në mënyrë sistematike. "
-  "Secili skenar përmban 6 njësi. Buxhetet shkojnë nga 36 deri në 50 tokena.")
+  "Secili skenar përmban gjashtë njësi. Buxhetet shkojnë nga 36 deri në 50 tokena.")
 w("")
 w("**Tabela B1.** Grupi i baraspeshuar, 24 skenarë.")
 w("")
@@ -74,12 +74,12 @@ w("")
 w("## B.2 Grupi me informacion konfliktual")
 w("")
 w("Grupi i dytë është ndërtuar që asnjë faktor i vetëm të mos mjaftojë. "
-  "Ai përmban 3 lloje skenarësh me nga 8 raste. Te zëvendësimi njësia e re e ka zëvendësuar një njësi të vjetër "
+  "Ai përmban tri lloje skenarësh me nga tetë raste. Te zëvendësimi njësia e re e ka zëvendësuar një njësi të vjetër "
   "që flet për të njëjtën gjë. Te autoriteti i njëjti fakt vjen njëherë nga një bisedë e pasigurt dhe njëherë nga një dokument zyrtar. "
   "Te rasti i tretë njësia e duhur është e vetmja e saktë por edhe më e vjetra. "
   "Njësitë shpërqendruese janë më të reja se njësia e duhur, që qasja me vetëm afërsi kohore të mos mjaftojë, "
   "dhe po aq të ngjashme me pyetjen, që qasja me vetëm relevancë të mos mjaftojë. "
-  "Secili skenar përmban 5 njësi.")
+  "Secili skenar përmban pesë njësi.")
 w("")
 w("**Tabela B2.** Grupi me informacion konfliktual, 24 skenarë.")
 w("")

@@ -32,7 +32,7 @@ ax.text(CX + CW/2, BY + 1.48, "Vlerësimi i secilës njësi", ha="center", va="c
         fontsize=8, zorder=3, color="#111827")
 ax.text(CX + CW/2, BY + 0.95, "rezultati = relevanca ×\nafërsia kohore × pesha e burimit",
         ha="center", va="center", fontsize=8, zorder=3, color="#111827", linespacing=1.3)
-ax.text(CX + CW/2, BY + 0.28, "afërsia kohore nuk zbret nën kufirin 0.5",
+ax.text(CX + CW/2, BY + 0.28, "afërsia kohore nuk zbret nën kufirin 0.7",
         ha="center", va="center", fontsize=7.3, style="italic", color="#475569", zorder=3)
 
 arrow(CX + CW/2, BY - 0.02, CX + CW/2, 4.62)
@@ -40,7 +40,7 @@ box(CX, 3.72, CW, 0.88, "Renditja në rend zbritës sipas rezultatit", fc="#ffff
 
 arrow(CX + CW/2, 3.70, CX + CW/2, 3.20)
 box(CX, 2.10, CW, 1.08,
-    "Përzgjedhje greedy derisa mbushet buxheti\n(gjysma e dritares së kontekstit)",
+    "Përzgjedhje lakmitare derisa mbushet buxheti\n(gjysma e dritares së kontekstit)",
     fc="#eaf3ea", ec=ACCENT, fs=8)
 
 # dega e njësive të papërzgjedhura

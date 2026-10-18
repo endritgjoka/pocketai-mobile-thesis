@@ -17,8 +17,8 @@ ax.bar(x + 1.5*w, freskia,   w, label="Vetëm afërsia kohore", color="#d1d5db",
 
 for xi, vals in zip(x, zip(propozuar, relevanca, cungim, freskia)):
     for dx, v in zip((-1.5*w, -0.5*w, 0.5*w, 1.5*w), vals):
-        if v > 0.02:
-            ax.text(xi + dx, v + 0.022, f"{v:.3f}", ha="center", fontsize=6.8)
+        # Vlerat zero shënohen në bazë, që shtylla që mungon të mos lexohet si e dhënë që mungon.
+        ax.text(xi + dx, v + 0.022, f"{v:.3f}" if v > 0.02 else "0", ha="center", fontsize=6.8)
 
 ax.set_xticks(x); ax.set_xticklabels(llojet)
 ax.set_ylabel("Renditja e parë e njësisë së duhur")

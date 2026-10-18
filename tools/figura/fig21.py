@@ -15,12 +15,16 @@ ax.bar(x - w, fp16, w, label="16 bita", color=NEUTRAL)
 ax.bar(x,     b8,   w, label="8 bita",  color=IPHONE)
 ax.bar(x + w, b4,   w, label="4 bita",  color=ACCENT)
 ax.axhline(DISPONUESHME, color="#b91c1c", linestyle="--", linewidth=1.2)
-ax.text(-0.42, DISPONUESHME + 0.18, "memoria e lirë e aplikacionit, rreth 2.76 GB",
+ax.text(-0.40, DISPONUESHME + 0.16, "memoria e lirë e\naplikacionit, rreth 2.76 GB",
         color="#b91c1c", fontsize=8, ha="left",
         bbox=dict(facecolor="white", edgecolor="none", pad=1.5))
 for xi, vals in zip(x, zip(fp16, b8, b4)):
     for dx, v in zip((-w, 0, w), vals):
-        ax.text(xi + dx, v + 0.12, f"{v:.1f}", ha="center", fontsize=7.5)
+        # Vlera nën vijën e kuqe vendoset brenda shtyllës, që vija të mos e presë.
+        if DISPONUESHME - 0.5 < v < DISPONUESHME:
+            ax.text(xi + dx, v - 0.35, f"{v:.1f}", ha="center", fontsize=7.5, color="white")
+        else:
+            ax.text(xi + dx, v + 0.12, f"{v:.1f}", ha="center", fontsize=7.5)
 ax.set_xticks(x); ax.set_xticklabels(modele)
 ax.set_ylabel("Memoria e nevojshme (GB)")
 ax.set_ylim(0, 8.3)

@@ -30,7 +30,7 @@ box(0.15, 2.75, 1.95, 1.1, "Pyetja e\npërdoruesit", fc="#eef2f7")
 ar(2.18, 3.3, 2.72, 3.3)
 box(2.75, 2.75, 1.95, 1.1, "Vektori i pyetjes\n384 përmasa", fc="#e8eef6", ec=IPHONE)
 ar(4.78, 3.3, 5.32, 3.3)
-box(5.35, 2.75, 2.15, 1.1, "Ngjashmëria kosinuse\nme segmentet e ruajtura", fc="#e8eef6", ec=IPHONE)
+box(5.35, 2.75, 2.15, 1.1, "Ngjashmëria kosinusi\nme segmentet e ruajtura", fc="#e8eef6", ec=IPHONE)
 ar(8.98, 5.5, 8.98, 3.92)   # nga baza te krahasimi
 ar(7.53, 3.3, 8.12, 3.3)
 box(8.15, 2.75, 1.7, 1.1, "Segmentet\nmë të afërta", fc="#eaf3ea", ec=ACCENT, fs=7.5)

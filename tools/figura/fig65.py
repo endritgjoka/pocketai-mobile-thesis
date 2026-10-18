@@ -19,7 +19,7 @@ ax.text(zgjedhur, 1.055, "vlera e zgjedhur\nmbi kalibrimin", ha="center", fontsi
 ax.plot(kufi, kal,  "o-",  color=IPHONE, lw=1.7, ms=5,
         label="Nëngrupi i kalibrimit (zgjedh vlerën)")
 ax.plot(kufi, mbaj, "s--", color=S10,    lw=1.7, ms=5,
-        label="Nëngrupi i mbajtur mënjanë (mat rezultatin)")
+        label="Nëngrupi i testimit (mat rezultatin)")
 
 # Pika e raportuar: kufiri i zgjedhur mbi kalibrim, i matur mbi grupin e mbajtur menjane.
 yv = d["holdoutSweep"][str(zgjedhur)]["first"]

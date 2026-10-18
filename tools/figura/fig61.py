@@ -18,19 +18,18 @@ b2 = ax.bar(x + w/2, s10, w, yerr=sd_s, capsize=3, label="Samsung Galaxy S10+", 
 for xi, v, e in zip(x - w/2, iphone, sd_i): ax.text(xi, v + e + 0.7, f"{v:.1f}", ha="center", fontsize=7.5)
 for xi, v, e in zip(x + w/2, s10, sd_s):    ax.text(xi, v + e + 0.7, f"{v:.1f}", ha="center", fontsize=7.5)
 # Përmbysja e renditjes te Q8_0 theksohet, sepse është gjetja kryesore e krahasimit.
-ax.annotate("më i shpejti mbi iPhone", xy=(4 - w/2, iphone[4] + sd_i[4]), xytext=(2.35, 30.5),
-            fontsize=8, color=IPHONE, ha="center",
-            arrowprops=dict(arrowstyle="->", color=IPHONE, lw=0.9,
-                            connectionstyle="arc3,rad=-0.15"),
+ax.annotate("më i shpejti\nnë iPhone", xy=(4 - w/2 - 0.04, 26.5), xytext=(3.45, 25.0),
+            fontsize=8, color=IPHONE, ha="right", va="center",
+            arrowprops=dict(arrowstyle="->", color=IPHONE, lw=0.9),
             bbox=dict(facecolor="white", edgecolor="none", pad=1.5))
-ax.annotate("më i ngadalshmi mbi S10+", xy=(4 + w/2, s10[4] + sd_s[4]), xytext=(2.15, 11.6),
-            fontsize=8, color=S10, ha="center",
-            arrowprops=dict(arrowstyle="->", color=S10, lw=0.9,
-                            connectionstyle="arc3,rad=0.2"),
+ax.annotate("më i ngadalshmi\nnë S10+", xy=(4 + w/2 + 0.12, s10[4] + 1.0), xytext=(4.45, 11.0),
+            fontsize=8, color=S10, ha="left", va="center",
+            arrowprops=dict(arrowstyle="->", color=S10, lw=0.9),
             bbox=dict(facecolor="white", edgecolor="none", pad=1.5))
 ax.set_xticks(x); ax.set_xticklabels(nivele)
 ax.set_ylabel("Tokena për sekondë")
 ax.set_xlabel("Niveli i kuantizimit")
 ax.set_ylim(0, 34)
+ax.set_xlim(-0.6, 5.25)
 ax.legend(frameon=False, ncol=2, loc="upper left")
 save(fig, "fig-6-1-shpejtesia-sipas-kuantizimit")

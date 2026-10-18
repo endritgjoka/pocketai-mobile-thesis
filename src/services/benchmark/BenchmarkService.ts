@@ -16,7 +16,6 @@ import { buildRagPrompt } from "../rag/ragPrompt";
 import { retrieveChunks } from "../rag/retrieval";
 import { BatteryService, batteryDeltaPct } from "./BatteryService";
 import { MemoryService, memoryDelta, memoryMetricName, bytesToMb } from "./MemoryService";
-import { computeRouge } from "../eval/rouge";
 import { BenchPrompt, CHAT_PROMPTS, DOC_PROMPTS, DEFAULT_REPEATS } from "./prompts";
 import { aggregateRuns, AggregateRow } from "./aggregate";
 import { retrievalEvalRepository } from "../../repositories/retrievalEvalRepository";
@@ -353,38 +352,6 @@ export const BenchmarkService = {
     return runs;
   },
 
-  // Përmbledh dokumentin me modelin aktiv dhe llogarit ROUGE përkundër një përmbledhjeje referencë.
-  async runSummaryEval(documentId: string, referenceSummary: string) {
-    const settings = await settingsRepository.getSettings();
-    if (!settings.activeModelId) throw new Error("Select a model before running the summary evaluation.");
-    const doc = await documentRepository.getDocument(documentId);
-    if (!doc) throw new Error("Document not found.");
-    const source = doc.text.slice(0, 4000);
-    const messages: Pick<Message, "role" | "content">[] = [
-      { role: "user", content: `Summarize the following document in a few sentences.\n\nDocument:\n${source}` },
-    ];
-    const batteryStart = await BatteryService.level();
-    const started = Date.now();
-    const { result, memory } = await withMemory(() => LlamaService.generateChatCompletion({
-      modelId: settings.activeModelId as ModelId, messages, contextSize: settings.contextSize, temperature: settings.temperature,
-      topP: settings.topP, maxTokens: settings.maxTokens, useMockInference: settings.useMockInference,
-    }));
-    const batteryEnd = await BatteryService.level();
-    const rouge = computeRouge(result.text, referenceSummary);
-    const run: BenchmarkRun = {
-      ...memory,
-      id: createId("bench"), taskType: "summary", modelId: settings.activeModelId, documentId, chunkStrategy: null, topK: null,
-      promptText: messages[0].content, promptTokenEstimate: estimateTokens(messages[0].content), outputTokenEstimate: result.stats.outputTokens,
-      retrievalTimeMs: null, generationTimeMs: result.stats.totalTimeMs, totalTimeMs: Date.now() - started,
-      tokensPerSecond: result.stats.tokensPerSecond, selectedChunkIds: null,
-      notes: `summary R1=${rouge.rouge1.toFixed(3)} R2=${rouge.rouge2.toFixed(3)} RL=${rouge.rougeL.toFixed(3)}`, createdAt: nowIso(),
-      batteryStart, batteryEnd, batteryDelta: batteryDeltaPct(batteryStart, batteryEnd),
-      rouge1: rouge.rouge1, rouge2: rouge.rouge2, rougeL: rouge.rougeL,
-    };
-    await benchmarkRepository.addRun(run);
-    return { run, summary: result.text, rouge };
-  },
-
   /**
    * Vlerëson saktësinë e marrjes së informacionit (P3) pa e përfshirë gjenerimin.
    *
@@ -475,7 +442,7 @@ export const BenchmarkService = {
       "createdAt", "taskType", "modelId", "documentId", "chunkStrategy", "topK",
       "promptTokenEstimate", "outputTokenEstimate", "retrievalTimeMs", "generationTimeMs", "totalTimeMs", "tokensPerSecond",
       "promptId", "promptCategory", "repeatIndex", "loadTimeMs",
-      "batteryStart", "batteryEnd", "batteryDelta", "rouge1", "rouge2", "rougeL",
+      "batteryStart", "batteryEnd", "batteryDelta",
       "memoryMetric", "memoryBaselineBytes", "memoryAfterLoadBytes", "memoryModelBytes",
       "memoryPeakBytes", "memoryDeltaBytes", "deviceTotalMemoryBytes", "notes",
     ];
